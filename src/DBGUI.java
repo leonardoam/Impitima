@@ -413,7 +413,7 @@ public class DBGUI extends javax.swing.JFrame {
             model.setColumnIdentifiers(new String[] {tabelaZona.getModel().getColumnName(0),
                                                      tabelaZona.getModel().getColumnName(1),
                                                      tabelaZona.getModel().getColumnName(2)});
-            
+            /*teste*/
             tabelaZona.setModel(model);
             System.out.println("Select All Zonas:");
             for(int i=0; res.next(); i++){
