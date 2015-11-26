@@ -197,14 +197,14 @@ public class DBGUI extends javax.swing.JFrame {
 
             },
             new String [] {
-                "Número da Zona", "Estado da Zona", "Endereço da Zona"
+                "Número da Zona", "Estado da Zona", "Endereço da Zona", "", ""
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.Integer.class, java.lang.String.class, java.lang.String.class
+                java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.Object.class, java.lang.Object.class
             };
             boolean[] canEdit = new boolean [] {
-                false, false, false
+                false, false, false, false, true
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -217,7 +217,11 @@ public class DBGUI extends javax.swing.JFrame {
         });
         jScrollPane1.setViewportView(tabelaZona);
         if (tabelaZona.getColumnModel().getColumnCount() > 0) {
-            tabelaZona.getColumnModel().getColumn(1).setResizable(false);
+            tabelaZona.getColumnModel().getColumn(0).setMaxWidth(100);
+            tabelaZona.getColumnModel().getColumn(1).setMaxWidth(100);
+            tabelaZona.getColumnModel().getColumn(2).setMaxWidth(600);
+            tabelaZona.getColumnModel().getColumn(3).setMaxWidth(100);
+            tabelaZona.getColumnModel().getColumn(4).setMaxWidth(100);
         }
 
         javax.swing.GroupLayout inserePane2Layout = new javax.swing.GroupLayout(inserePane2);
@@ -346,7 +350,7 @@ public class DBGUI extends javax.swing.JFrame {
             tabelaZona.setModel(model);
             System.out.println("Select All Zonas:");
             for(int i=0; res.next(); i++){
-                model.addRow(new Object[]{res.getInt(1), res.getString(2), res.getString(3)});
+                model.addRow(new Object[]{res.getInt(1), res.getString(2), res.getString(3), });
                 System.out.println(res.getInt(1)+" "+res.getString(2)+" "+res.getString(3));
             }
             System.out.println("All Zonas retornadas.");
