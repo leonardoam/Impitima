@@ -1,5 +1,6 @@
 
 import java.awt.Button;
+import java.awt.Component;
 import java.awt.event.MouseAdapter;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -7,7 +8,9 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JButton;
 import javax.swing.JOptionPane;
+import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableCellRenderer;
 import javax.swing.table.TableModel;
 import trabalhobd.DBConnector;
 import trabalhobd.DataManipulation;
@@ -33,7 +36,8 @@ public class DBGUI extends javax.swing.JFrame {
      */
     public DBGUI() {
         initComponents();
-        estadoZona.setModel(new javax.swing.DefaultComboBoxModel(estados));
+        estadoZonaCria.setModel(new javax.swing.DefaultComboBoxModel(estados));
+        estadoZonaEdita.setModel(new javax.swing.DefaultComboBoxModel(estados));
         
         try{
             DBConnector connector = new DBConnector("a7987265", "a7987265", true);
@@ -71,19 +75,24 @@ public class DBGUI extends javax.swing.JFrame {
         zonaPane = new javax.swing.JTabbedPane();
         inserePane = new javax.swing.JPanel();
         CriaPane = new javax.swing.JPanel();
-        nroZonaLabel1 = new javax.swing.JLabel();
-        numeroZona1 = new javax.swing.JSpinner();
-        estadoZonaLabel1 = new javax.swing.JLabel();
-        estadoZona = new javax.swing.JComboBox();
-        endZonaLabel1 = new javax.swing.JLabel();
-        enderecoZona1 = new javax.swing.JTextField();
-        insereZonaBotao1 = new javax.swing.JButton();
+        nroZonaLabelCria = new javax.swing.JLabel();
+        numeroZonaCria = new javax.swing.JSpinner();
+        estadoZonaLabelCria = new javax.swing.JLabel();
+        estadoZonaCria = new javax.swing.JComboBox();
+        endZonaLabelCria = new javax.swing.JLabel();
+        enderecoZonaCria = new javax.swing.JTextField();
+        insereZonaBotaoCria = new javax.swing.JButton();
         inserePane2 = new javax.swing.JPanel();
         nroZonaLabel2 = new javax.swing.JLabel();
         numeroZona2 = new javax.swing.JSpinner();
         atualizaZona = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         tabelaZona = new javax.swing.JTable();
+        editZona = new javax.swing.JPanel();
+        nroZonaLabelEdita = new javax.swing.JLabel();
+        estadoZonaLabelEdita = new javax.swing.JLabel();
+        estadoZonaEdita = new javax.swing.JComboBox();
+        numeroZonaEdita = new javax.swing.JSpinner();
         secaoPane = new javax.swing.JPanel();
         urnaPane = new javax.swing.JPanel();
         pessoasPane = new javax.swing.JTabbedPane();
@@ -92,31 +101,31 @@ public class DBGUI extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        nroZonaLabel1.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
-        nroZonaLabel1.setText("Número da Zona Eleitoral:");
+        nroZonaLabelCria.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
+        nroZonaLabelCria.setText("Número da Zona Eleitoral:");
 
-        numeroZona1.setModel(new javax.swing.SpinnerNumberModel(0, 0, 999, 1));
-        numeroZona1.setToolTipText("min: 0 - max: 999");
+        numeroZonaCria.setModel(new javax.swing.SpinnerNumberModel(0, 0, 999, 1));
+        numeroZonaCria.setToolTipText("min: 0 - max: 999");
 
-        estadoZonaLabel1.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
-        estadoZonaLabel1.setText("Estado da Zona Eleitoral:");
+        estadoZonaLabelCria.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
+        estadoZonaLabelCria.setText("Estado da Zona Eleitoral:");
 
-        estadoZona.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        estadoZona.addActionListener(new java.awt.event.ActionListener() {
+        estadoZonaCria.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        estadoZonaCria.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                estadoZonaActionPerformed(evt);
+                estadoZonaCriaActionPerformed(evt);
             }
         });
 
-        endZonaLabel1.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
-        endZonaLabel1.setText("Endereço da Zona Eleitoral:");
+        endZonaLabelCria.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
+        endZonaLabelCria.setText("Endereço da Zona Eleitoral:");
 
-        enderecoZona1.setToolTipText("max. num. characters: 200");
+        enderecoZonaCria.setToolTipText("max. num. characters: 200");
 
-        insereZonaBotao1.setText("Insere");
-        insereZonaBotao1.addMouseListener(new java.awt.event.MouseAdapter() {
+        insereZonaBotaoCria.setText("Insere");
+        insereZonaBotaoCria.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                insereZonaBotao1MouseClicked(evt);
+                insereZonaBotaoCriaMouseClicked(evt);
             }
         });
 
@@ -128,23 +137,23 @@ public class DBGUI extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(CriaPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(CriaPaneLayout.createSequentialGroup()
-                        .addComponent(endZonaLabel1)
+                        .addComponent(endZonaLabelCria)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(enderecoZona1))
+                        .addComponent(enderecoZonaCria))
                     .addGroup(CriaPaneLayout.createSequentialGroup()
                         .addGroup(CriaPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addGroup(CriaPaneLayout.createSequentialGroup()
-                                .addComponent(nroZonaLabel1)
+                                .addComponent(nroZonaLabelCria)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(numeroZona1))
+                                .addComponent(numeroZonaCria))
                             .addGroup(CriaPaneLayout.createSequentialGroup()
-                                .addComponent(estadoZonaLabel1)
+                                .addComponent(estadoZonaLabelCria)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(estadoZona, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addComponent(estadoZonaCria, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addGap(0, 529, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, CriaPaneLayout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(insereZonaBotao1)))
+                        .addComponent(insereZonaBotaoCria)))
                 .addContainerGap())
         );
         CriaPaneLayout.setVerticalGroup(
@@ -152,18 +161,18 @@ public class DBGUI extends javax.swing.JFrame {
             .addGroup(CriaPaneLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(CriaPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(nroZonaLabel1)
-                    .addComponent(numeroZona1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(nroZonaLabelCria)
+                    .addComponent(numeroZonaCria, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(CriaPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(estadoZonaLabel1)
-                    .addComponent(estadoZona, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(estadoZonaLabelCria)
+                    .addComponent(estadoZonaCria, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(CriaPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(endZonaLabel1)
-                    .addComponent(enderecoZona1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(endZonaLabelCria)
+                    .addComponent(enderecoZonaCria, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(insereZonaBotao1)
+                .addComponent(insereZonaBotaoCria)
                 .addContainerGap(351, Short.MAX_VALUE))
         );
 
@@ -200,14 +209,14 @@ public class DBGUI extends javax.swing.JFrame {
 
             },
             new String [] {
-                "Número da Zona", "Estado da Zona", "Endereço da Zona", "", ""
+                "Número da Zona", "Estado da Zona", "Endereço da Zona"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.Object.class, java.lang.Object.class
+                java.lang.Integer.class, java.lang.String.class, java.lang.String.class
             };
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, true
+                false, false, false
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -223,8 +232,6 @@ public class DBGUI extends javax.swing.JFrame {
             tabelaZona.getColumnModel().getColumn(0).setMaxWidth(100);
             tabelaZona.getColumnModel().getColumn(1).setMaxWidth(100);
             tabelaZona.getColumnModel().getColumn(2).setMaxWidth(600);
-            tabelaZona.getColumnModel().getColumn(3).setMaxWidth(100);
-            tabelaZona.getColumnModel().getColumn(4).setMaxWidth(100);
         }
 
         javax.swing.GroupLayout inserePane2Layout = new javax.swing.GroupLayout(inserePane2);
@@ -256,6 +263,55 @@ public class DBGUI extends javax.swing.JFrame {
         );
 
         zonaPane.addTab("Consulta", inserePane2);
+
+        nroZonaLabelEdita.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
+        nroZonaLabelEdita.setText("Número da Zona Eleitoral:");
+
+        estadoZonaLabelEdita.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
+        estadoZonaLabelEdita.setText("Estado da Zona Eleitoral:");
+
+        estadoZonaEdita.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        estadoZonaEdita.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                estadoZonaEditaActionPerformed(evt);
+            }
+        });
+
+        numeroZonaEdita.setModel(new javax.swing.SpinnerNumberModel(0, 0, 999, 1));
+        numeroZonaEdita.setToolTipText("min: 0 - max: 999");
+
+        javax.swing.GroupLayout editZonaLayout = new javax.swing.GroupLayout(editZona);
+        editZona.setLayout(editZonaLayout);
+        editZonaLayout.setHorizontalGroup(
+            editZonaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(editZonaLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(editZonaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addGroup(editZonaLayout.createSequentialGroup()
+                        .addComponent(nroZonaLabelEdita)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(numeroZonaEdita))
+                    .addGroup(editZonaLayout.createSequentialGroup()
+                        .addComponent(estadoZonaLabelEdita)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(estadoZonaEdita, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        editZonaLayout.setVerticalGroup(
+            editZonaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(editZonaLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(editZonaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(nroZonaLabelEdita)
+                    .addComponent(numeroZonaEdita, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(editZonaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(estadoZonaLabelEdita)
+                    .addComponent(estadoZonaEdita, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(406, Short.MAX_VALUE))
+        );
+
+        zonaPane.addTab("Edita/Deleta", editZona);
 
         javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
         jPanel5.setLayout(jPanel5Layout);
@@ -337,43 +393,46 @@ public class DBGUI extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void estadoZonaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_estadoZonaActionPerformed
+    private void estadoZonaCriaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_estadoZonaCriaActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_estadoZonaActionPerformed
+    }//GEN-LAST:event_estadoZonaCriaActionPerformed
 
-    private void insereZonaBotao1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_insereZonaBotao1MouseClicked
-        // TODO add your handling code here:
-    }//GEN-LAST:event_insereZonaBotao1MouseClicked
+    private void insereZonaBotaoCriaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_insereZonaBotaoCriaMouseClicked
+        try {
+            dml.insereZona((int)numeroZonaCria.getValue(), (String)estadoZonaCria.getSelectedItem(), (String)enderecoZonaCria.getText());
+            JOptionPane.showMessageDialog(null, "Valor inserido com sucesso.\n");
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Problemas ao inserir Zona Eleitoral.\n"+ex.getMessage());
+        }
+    }//GEN-LAST:event_insereZonaBotaoCriaMouseClicked
 
     private void atualizaZonaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_atualizaZonaMouseClicked
         try {
             ResultSet res = ds.selectAllZonas();
             DefaultTableModel model = new DefaultTableModel();
-            model.setColumnIdentifiers(new String[] {tabelaZona.getModel().getColumnName(0),tabelaZona.getModel().getColumnName(1),tabelaZona.getModel().getColumnName(2)});
+            model.setColumnIdentifiers(new String[] {tabelaZona.getModel().getColumnName(0),
+                                                     tabelaZona.getModel().getColumnName(1),
+                                                     tabelaZona.getModel().getColumnName(2)});
+            
             tabelaZona.setModel(model);
             System.out.println("Select All Zonas:");
             for(int i=0; res.next(); i++){
-                JButton saveButton = new JButton();
-                saveButton.addMouseListener(new MouseAdapter() {
-                    public void mouseClicked(java.awt.event.MouseEvent evt){
-                        System.out.println("saveButton clicked");
-                    }
-                });
-                JButton deleteButton = new JButton();
-                deleteButton.addMouseListener(new MouseAdapter() {
-                    public void mouseClicked(java.awt.event.MouseEvent evt){
-                        System.out.println("deleteButton clicked");
-                    }
-                });
-                model.addRow(new Object[]{res.getInt(1), res.getString(2), res.getString(3), saveButton, deleteButton});
+                model.addRow(new Object[]{res.getInt(1), res.getString(2), res.getString(3)});
                 System.out.println(res.getInt(1)+" "+res.getString(2)+" "+res.getString(3));
             }
+            tabelaZona.getColumn(model.getColumnName(0)).setMaxWidth(100);
+            tabelaZona.getColumn(model.getColumnName(1)).setMaxWidth(100);
+            tabelaZona.getColumn(model.getColumnName(2)).setMaxWidth(600);
             System.out.println("All Zonas retornadas.");
             //tabelaZona.setModel(model);
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, "Problemas ao executar consulta.\n"+ex.getMessage());
         }
     }//GEN-LAST:event_atualizaZonaMouseClicked
+
+    private void estadoZonaEditaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_estadoZonaEditaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_estadoZonaEditaActionPerformed
 
     /**
      * @param args the command line arguments
@@ -415,21 +474,26 @@ public class DBGUI extends javax.swing.JFrame {
     private javax.swing.JPanel CriaPane;
     private javax.swing.JTabbedPane MainPane;
     private javax.swing.JButton atualizaZona;
-    private javax.swing.JLabel endZonaLabel1;
-    private javax.swing.JTextField enderecoZona1;
-    private javax.swing.JComboBox estadoZona;
-    private javax.swing.JLabel estadoZonaLabel1;
+    private javax.swing.JPanel editZona;
+    private javax.swing.JLabel endZonaLabelCria;
+    private javax.swing.JTextField enderecoZonaCria;
+    private javax.swing.JComboBox estadoZonaCria;
+    private javax.swing.JComboBox estadoZonaEdita;
+    private javax.swing.JLabel estadoZonaLabelCria;
+    private javax.swing.JLabel estadoZonaLabelEdita;
     private javax.swing.JPanel inserePane;
     private javax.swing.JPanel inserePane2;
-    private javax.swing.JButton insereZonaBotao1;
+    private javax.swing.JButton insereZonaBotaoCria;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel5;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JLabel nroZonaLabel1;
     private javax.swing.JLabel nroZonaLabel2;
-    private javax.swing.JSpinner numeroZona1;
+    private javax.swing.JLabel nroZonaLabelCria;
+    private javax.swing.JLabel nroZonaLabelEdita;
     private javax.swing.JSpinner numeroZona2;
+    private javax.swing.JSpinner numeroZonaCria;
+    private javax.swing.JSpinner numeroZonaEdita;
     private javax.swing.JTabbedPane pessoasPane;
     private javax.swing.JTabbedPane registroPane;
     private javax.swing.JTabbedPane relatoriosPane;
