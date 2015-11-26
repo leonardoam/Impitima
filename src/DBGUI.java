@@ -1,8 +1,11 @@
 
+import java.awt.Button;
+import java.awt.event.MouseAdapter;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JButton;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
@@ -350,7 +353,19 @@ public class DBGUI extends javax.swing.JFrame {
             tabelaZona.setModel(model);
             System.out.println("Select All Zonas:");
             for(int i=0; res.next(); i++){
-                model.addRow(new Object[]{res.getInt(1), res.getString(2), res.getString(3), });
+                JButton saveButton = new JButton();
+                saveButton.addMouseListener(new MouseAdapter() {
+                    public void mouseClicked(java.awt.event.MouseEvent evt){
+                        System.out.println("saveButton clicked");
+                    }
+                });
+                JButton deleteButton = new JButton();
+                deleteButton.addMouseListener(new MouseAdapter() {
+                    public void mouseClicked(java.awt.event.MouseEvent evt){
+                        System.out.println("deleteButton clicked");
+                    }
+                });
+                model.addRow(new Object[]{res.getInt(1), res.getString(2), res.getString(3), saveButton, deleteButton});
                 System.out.println(res.getInt(1)+" "+res.getString(2)+" "+res.getString(3));
             }
             System.out.println("All Zonas retornadas.");
