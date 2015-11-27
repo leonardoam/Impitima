@@ -107,8 +107,8 @@
                             <Container class="javax.swing.JPanel" name="inserePane">
                               <Constraints>
                                 <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout" value="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout$JTabbedPaneConstraintsDescription">
-                                  <JTabbedPaneConstraints tabName="Cria">
-                                    <Property name="tabTitle" type="java.lang.String" value="Cria"/>
+                                  <JTabbedPaneConstraints tabName="Cria Nova">
+                                    <Property name="tabTitle" type="java.lang.String" value="Cria Nova"/>
                                   </JTabbedPaneConstraints>
                                 </Constraint>
                               </Constraints>
@@ -142,24 +142,24 @@
                                                       <EmptySpace max="-2" attributes="0"/>
                                                       <Component id="enderecoZonaCria" max="32767" attributes="0"/>
                                                   </Group>
-                                                  <Group type="102" alignment="0" attributes="0">
-                                                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                                          <Group type="102" alignment="0" attributes="0">
-                                                              <Component id="nroZonaLabelCria" min="-2" max="-2" attributes="0"/>
-                                                              <EmptySpace max="-2" attributes="0"/>
-                                                              <Component id="numeroZonaCria" max="32767" attributes="0"/>
-                                                          </Group>
+                                                  <Group type="102" alignment="1" attributes="0">
+                                                      <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                                                      <Component id="insereZonaBotaoCria" min="-2" max="-2" attributes="0"/>
+                                                  </Group>
+                                                  <Group type="102" attributes="0">
+                                                      <Group type="103" groupAlignment="0" attributes="0">
                                                           <Group type="102" alignment="0" attributes="0">
                                                               <Component id="estadoZonaLabelCria" min="-2" max="-2" attributes="0"/>
                                                               <EmptySpace type="unrelated" max="-2" attributes="0"/>
                                                               <Component id="estadoZonaCria" min="-2" max="-2" attributes="0"/>
                                                           </Group>
+                                                          <Group type="102" alignment="0" attributes="0">
+                                                              <Component id="nroZonaLabelCria" min="-2" max="-2" attributes="0"/>
+                                                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                                                              <Component id="numeroZonaCria" min="-2" max="-2" attributes="0"/>
+                                                          </Group>
                                                       </Group>
-                                                      <EmptySpace min="0" pref="529" max="32767" attributes="0"/>
-                                                  </Group>
-                                                  <Group type="102" alignment="1" attributes="0">
-                                                      <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
-                                                      <Component id="insereZonaBotaoCria" min="-2" max="-2" attributes="0"/>
+                                                      <EmptySpace min="0" pref="522" max="32767" attributes="0"/>
                                                   </Group>
                                               </Group>
                                               <EmptySpace max="-2" attributes="0"/>
@@ -197,7 +197,7 @@
                                         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                                           <Font name="Calibri" size="14" style="0"/>
                                         </Property>
-                                        <Property name="text" type="java.lang.String" value="N&#xfa;mero da Zona Eleitoral:"/>
+                                        <Property name="text" type="java.lang.String" value="N&#xfa;mero da Zona Eleitoral*:"/>
                                       </Properties>
                                     </Component>
                                     <Component class="javax.swing.JSpinner" name="numeroZonaCria">
@@ -213,7 +213,7 @@
                                         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                                           <Font name="Calibri" size="14" style="0"/>
                                         </Property>
-                                        <Property name="text" type="java.lang.String" value="Estado da Zona Eleitoral:"/>
+                                        <Property name="text" type="java.lang.String" value="Estado da Zona Eleitoral*:"/>
                                       </Properties>
                                     </Component>
                                     <Component class="javax.swing.JComboBox" name="estadoZonaCria">
@@ -256,7 +256,7 @@
                                 </Container>
                               </SubComponents>
                             </Container>
-                            <Container class="javax.swing.JPanel" name="inserePane2">
+                            <Container class="javax.swing.JPanel" name="consultaPane">
                               <Constraints>
                                 <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout" value="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout$JTabbedPaneConstraintsDescription">
                                   <JTabbedPaneConstraints tabName="Consulta">
@@ -271,14 +271,14 @@
                                       <Group type="102" attributes="0">
                                           <EmptySpace max="-2" attributes="0"/>
                                           <Component id="atualizaZona" min="-2" max="-2" attributes="0"/>
-                                          <EmptySpace min="-2" pref="1138" max="-2" attributes="0"/>
+                                          <EmptySpace min="-2" pref="1130" max="-2" attributes="0"/>
                                           <Component id="nroZonaLabel2" min="-2" max="-2" attributes="0"/>
                                           <EmptySpace max="-2" attributes="0"/>
                                           <Component id="numeroZona2" min="-2" pref="54" max="-2" attributes="0"/>
                                           <EmptySpace max="32767" attributes="0"/>
                                       </Group>
                                       <Group type="102" alignment="0" attributes="0">
-                                          <Component id="jScrollPane1" min="-2" pref="753" max="-2" attributes="0"/>
+                                          <Component id="jScrollPane1" min="-2" pref="754" max="-2" attributes="0"/>
                                           <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                                       </Group>
                                   </Group>
@@ -293,7 +293,7 @@
                                               <Component id="atualizaZona" alignment="3" min="-2" max="-2" attributes="0"/>
                                           </Group>
                                           <EmptySpace max="32767" attributes="0"/>
-                                          <Component id="jScrollPane1" min="-2" max="-2" attributes="0"/>
+                                          <Component id="jScrollPane1" min="-2" pref="427" max="-2" attributes="0"/>
                                       </Group>
                                   </Group>
                                 </DimensionLayout>
@@ -317,7 +317,7 @@
                                 </Component>
                                 <Component class="javax.swing.JButton" name="atualizaZona">
                                   <Properties>
-                                    <Property name="text" type="java.lang.String" value="Atualiza Dados"/>
+                                    <Property name="text" type="java.lang.String" value="Procurar Dados"/>
                                   </Properties>
                                   <Events>
                                     <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="atualizaZonaMouseClicked"/>
@@ -333,25 +333,37 @@
                                     <Component class="javax.swing.JTable" name="tabelaZona">
                                       <Properties>
                                         <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
-                                          <Table columnCount="3" rowCount="0">
-                                            <Column editable="false" title="N&#xfa;mero da Zona" type="java.lang.Integer"/>
-                                            <Column editable="false" title="Estado da Zona" type="java.lang.String"/>
+                                          <Table columnCount="5" rowCount="0">
+                                            <Column editable="false" title="N&#xfa;mero da Zona*" type="java.lang.Integer"/>
+                                            <Column editable="false" title="Estado da Zona*" type="java.lang.String"/>
                                             <Column editable="false" title="Endere&#xe7;o da Zona" type="java.lang.String"/>
+                                            <Column editable="false" title="" type="java.lang.Object"/>
+                                            <Column editable="false" title="" type="java.lang.Object"/>
                                           </Table>
                                         </Property>
                                         <Property name="columnModel" type="javax.swing.table.TableColumnModel" editor="org.netbeans.modules.form.editors2.TableColumnModelEditor">
                                           <TableColumnModel selectionModel="0">
-                                            <Column maxWidth="100" minWidth="-1" prefWidth="-1" resizable="true">
+                                            <Column maxWidth="-1" minWidth="110" prefWidth="-1" resizable="true">
                                               <Title/>
                                               <Editor/>
                                               <Renderer/>
                                             </Column>
-                                            <Column maxWidth="100" minWidth="-1" prefWidth="-1" resizable="true">
+                                            <Column maxWidth="-1" minWidth="110" prefWidth="-1" resizable="true">
                                               <Title/>
                                               <Editor/>
                                               <Renderer/>
                                             </Column>
-                                            <Column maxWidth="600" minWidth="-1" prefWidth="-1" resizable="true">
+                                            <Column maxWidth="-1" minWidth="363" prefWidth="-1" resizable="true">
+                                              <Title/>
+                                              <Editor/>
+                                              <Renderer/>
+                                            </Column>
+                                            <Column maxWidth="-1" minWidth="90" prefWidth="-1" resizable="true">
+                                              <Title/>
+                                              <Editor/>
+                                              <Renderer/>
+                                            </Column>
+                                            <Column maxWidth="-1" minWidth="90" prefWidth="-1" resizable="true">
                                               <Title/>
                                               <Editor/>
                                               <Renderer/>
@@ -365,96 +377,6 @@
                                     </Component>
                                   </SubComponents>
                                 </Container>
-                              </SubComponents>
-                            </Container>
-                            <Container class="javax.swing.JPanel" name="editZona">
-                              <Constraints>
-                                <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout" value="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout$JTabbedPaneConstraintsDescription">
-                                  <JTabbedPaneConstraints tabName="Edita/Deleta">
-                                    <Property name="tabTitle" type="java.lang.String" value="Edita/Deleta"/>
-                                  </JTabbedPaneConstraints>
-                                </Constraint>
-                              </Constraints>
-
-                              <Layout>
-                                <DimensionLayout dim="0">
-                                  <Group type="103" groupAlignment="0" attributes="0">
-                                      <Group type="102" alignment="0" attributes="0">
-                                          <EmptySpace max="-2" attributes="0"/>
-                                          <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                              <Group type="102" alignment="0" attributes="0">
-                                                  <Component id="nroZonaLabelEdita" min="-2" max="-2" attributes="0"/>
-                                                  <EmptySpace max="-2" attributes="0"/>
-                                                  <Component id="numeroZonaEdita" max="32767" attributes="0"/>
-                                              </Group>
-                                              <Group type="102" alignment="0" attributes="0">
-                                                  <Component id="estadoZonaLabelEdita" min="-2" max="-2" attributes="0"/>
-                                                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                                                  <Component id="estadoZonaEdita" min="-2" max="-2" attributes="0"/>
-                                              </Group>
-                                          </Group>
-                                          <EmptySpace max="32767" attributes="0"/>
-                                      </Group>
-                                  </Group>
-                                </DimensionLayout>
-                                <DimensionLayout dim="1">
-                                  <Group type="103" groupAlignment="0" attributes="0">
-                                      <Group type="102" alignment="0" attributes="0">
-                                          <EmptySpace max="-2" attributes="0"/>
-                                          <Group type="103" groupAlignment="3" attributes="0">
-                                              <Component id="nroZonaLabelEdita" alignment="3" min="-2" max="-2" attributes="0"/>
-                                              <Component id="numeroZonaEdita" alignment="3" min="-2" max="-2" attributes="0"/>
-                                          </Group>
-                                          <EmptySpace max="-2" attributes="0"/>
-                                          <Group type="103" groupAlignment="3" attributes="0">
-                                              <Component id="estadoZonaLabelEdita" alignment="3" min="-2" max="-2" attributes="0"/>
-                                              <Component id="estadoZonaEdita" alignment="3" min="-2" max="-2" attributes="0"/>
-                                          </Group>
-                                          <EmptySpace pref="406" max="32767" attributes="0"/>
-                                      </Group>
-                                  </Group>
-                                </DimensionLayout>
-                              </Layout>
-                              <SubComponents>
-                                <Component class="javax.swing.JLabel" name="nroZonaLabelEdita">
-                                  <Properties>
-                                    <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                                      <Font name="Calibri" size="14" style="0"/>
-                                    </Property>
-                                    <Property name="text" type="java.lang.String" value="N&#xfa;mero da Zona Eleitoral:"/>
-                                  </Properties>
-                                </Component>
-                                <Component class="javax.swing.JLabel" name="estadoZonaLabelEdita">
-                                  <Properties>
-                                    <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                                      <Font name="Calibri" size="14" style="0"/>
-                                    </Property>
-                                    <Property name="text" type="java.lang.String" value="Estado da Zona Eleitoral:"/>
-                                  </Properties>
-                                </Component>
-                                <Component class="javax.swing.JComboBox" name="estadoZonaEdita">
-                                  <Properties>
-                                    <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-                                      <StringArray count="4">
-                                        <StringItem index="0" value="Item 1"/>
-                                        <StringItem index="1" value="Item 2"/>
-                                        <StringItem index="2" value="Item 3"/>
-                                        <StringItem index="3" value="Item 4"/>
-                                      </StringArray>
-                                    </Property>
-                                  </Properties>
-                                  <Events>
-                                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="estadoZonaEditaActionPerformed"/>
-                                  </Events>
-                                </Component>
-                                <Component class="javax.swing.JSpinner" name="numeroZonaEdita">
-                                  <Properties>
-                                    <Property name="model" type="javax.swing.SpinnerModel" editor="org.netbeans.modules.form.editors2.SpinnerModelEditor">
-                                      <SpinnerModel initial="0" maximum="999" minimum="0" numberType="java.lang.Integer" stepSize="1" type="number"/>
-                                    </Property>
-                                    <Property name="toolTipText" type="java.lang.String" value="min: 0 - max: 999"/>
-                                  </Properties>
-                                </Component>
                               </SubComponents>
                             </Container>
                           </SubComponents>
