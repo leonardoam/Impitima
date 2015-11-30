@@ -1177,21 +1177,7 @@ public class DBGUI extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Problemas ao selecionar Pessoas.\n"+ErrorTranslator.translate("Zona", ex));
             return;
         }
-        DefaultTableModel model = new myTableModel(new int[]{0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1});
-        model.setColumnIdentifiers(new String[] {
-            tabelaPessoa.getModel().getColumnName(0),
-            tabelaPessoa.getModel().getColumnName(1),
-            tabelaPessoa.getModel().getColumnName(2),
-            tabelaPessoa.getModel().getColumnName(3),
-            tabelaPessoa.getModel().getColumnName(4),
-            tabelaPessoa.getModel().getColumnName(5),
-            tabelaPessoa.getModel().getColumnName(6),
-            tabelaPessoa.getModel().getColumnName(7),
-            tabelaPessoa.getModel().getColumnName(8),
-            tabelaPessoa.getModel().getColumnName(9),
-            tabelaPessoa.getModel().getColumnName(10)
-        });
-
+       
         Action save = new AbstractAction() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -1229,36 +1215,10 @@ public class DBGUI extends javax.swing.JFrame {
             }
         };
 
-        tabelaPessoa.setModel(model);
-        try {
-            for(int i=0; res.next(); i++){
-                model.addRow(new Object[]{res.getString(1), res.getString(2), res.getString(3), res.getString(4), res.getString(5), res.getString(6), res.getInt(7), res.getString(8), res.getString(9), "Salvar", "Deletar"});
-            }
-        } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null, "Problemas ao criar tabela.\n"+ErrorTranslator.translate("Zona", ex));
-        }
-        ButtonColumn colunaSalvar = new ButtonColumn(tabelaPessoa, save, 9);
-        ButtonColumn deletarSalvar = new ButtonColumn(tabelaPessoa, delete, 10);
-        tabelaPessoa.getColumn(model.getColumnName(0)).setMinWidth(120);
-        tabelaPessoa.getColumn(model.getColumnName(1)).setMinWidth(182);
-        tabelaPessoa.getColumn(model.getColumnName(2)).setMinWidth(182);
-        tabelaPessoa.getColumn(model.getColumnName(3)).setMinWidth(120);
-        tabelaPessoa.getColumn(model.getColumnName(4)).setMinWidth(100);
-        tabelaPessoa.getColumn(model.getColumnName(5)).setMinWidth(100);
-        tabelaPessoa.getColumn(model.getColumnName(6)).setMinWidth(90);
-        tabelaPessoa.getColumn(model.getColumnName(7)).setMinWidth(90);
-        tabelaPessoa.getColumn(model.getColumnName(8)).setMinWidth(90);
-        tabelaPessoa.getColumn(model.getColumnName(9)).setMinWidth(90);
-        tabelaPessoa.getColumn(model.getColumnName(10)).setMinWidth(90);
-
-        DefaultTableCellRenderer centerRenderer = new DefaultTableCellRenderer();
-        centerRenderer.setHorizontalAlignment( JLabel.CENTER );
-        tabelaPessoa.getColumnModel().getColumn(3).setCellRenderer( centerRenderer );
-        tabelaPessoa.getColumnModel().getColumn(4).setCellRenderer( centerRenderer );
-        tabelaPessoa.getColumnModel().getColumn(5).setCellRenderer( centerRenderer );
-        tabelaPessoa.getColumnModel().getColumn(6).setCellRenderer( centerRenderer );
-        tabelaPessoa.getColumnModel().getColumn(7).setCellRenderer( centerRenderer );
-        tabelaPessoa.getColumnModel().getColumn(8).setCellRenderer( centerRenderer );
+        TableManipulator.setNewModel(tabelaPessoa, new int[]{0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1});
+        TableManipulator.fillTable(tabelaPessoa, res, new int[]{9, 10}, new String[]{"save", "delete"}, new Action[]{save, delete});
+        TableManipulator.adjustColumnWidth(tabelaPessoa, new int[]{120, 182, 182, 120, 100, 100, 90, 90, 90, 90, 90});
+        TableManipulator.centralizeColumns(tabelaSecao, new int[]{3, 4, 5, 6, 7, 8});
     }//GEN-LAST:event_atualizaPessoaMouseClicked
 
     private void tipoUrnaCria1ItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_tipoUrnaCria1ItemStateChanged
@@ -1281,17 +1241,8 @@ public class DBGUI extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Problemas ao selecionar Seções Eleitorais.\n"+ErrorTranslator.translate("Zona", ex));
             return;
         }
+        
         DefaultTableModel model = new myTableModel(new int[]{0, 0, 0, 0, 1, 1, 1, 1});
-        model.setColumnIdentifiers(new String[] {
-            tabelaUrna.getModel().getColumnName(0),
-            tabelaUrna.getModel().getColumnName(1),
-            tabelaUrna.getModel().getColumnName(2),
-            tabelaUrna.getModel().getColumnName(3),
-            tabelaUrna.getModel().getColumnName(4),
-            tabelaUrna.getModel().getColumnName(5),
-            tabelaUrna.getModel().getColumnName(6),
-            tabelaUrna.getModel().getColumnName(7)
-        });
 
         Action save = new AbstractAction() {
             @Override
@@ -1321,24 +1272,10 @@ public class DBGUI extends javax.swing.JFrame {
             }
         };
 
-        tabelaUrna.setModel(model);
-        try {
-            for(int i=0; res.next(); i++)
-            model.addRow(new Object[]{res.getInt(1), res.getString(2), res.getInt(3), res.getInt(4), res.getString(5), res.getString(6), "Salvar", "Deletar"});
-        } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null, "Problemas ao criar tabela.\n"+ErrorTranslator.translate("Zona", ex));
-        }
-        ButtonColumn colunaSalvar = new ButtonColumn(tabelaUrna, save, 6);
-        ButtonColumn deletarSalvar = new ButtonColumn(tabelaUrna, delete, 7);
-
-        DefaultTableCellRenderer centerRenderer = new DefaultTableCellRenderer();
-        centerRenderer.setHorizontalAlignment( JLabel.CENTER );
-        tabelaUrna.getColumnModel().getColumn(0).setCellRenderer( centerRenderer );
-        tabelaUrna.getColumnModel().getColumn(1).setCellRenderer( centerRenderer );
-        tabelaUrna.getColumnModel().getColumn(2).setCellRenderer( centerRenderer );
-        tabelaUrna.getColumnModel().getColumn(3).setCellRenderer( centerRenderer );
-        tabelaUrna.getColumnModel().getColumn(4).setCellRenderer( centerRenderer );
-        tabelaUrna.getColumnModel().getColumn(5).setCellRenderer( centerRenderer );
+        TableManipulator.setNewModel(tabelaUrna, new int[]{0, 0, 0, 0, 1, 1, 1, 1});
+        TableManipulator.fillTable(tabelaUrna, res, new int[]{6, 7}, new String[]{"save", "delete"}, new Action[]{save, delete});
+        TableManipulator.centralizeColumns(tabelaUrna, new int[]{0, 1, 2, 3, 4, 5});
+        //TableManipulator.adjustColumnWidth(tabelaUrna, new int[]{});
     }//GEN-LAST:event_atualizaUrnaMouseClicked
 
     private void tipoUrnaCriaItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_tipoUrnaCriaItemStateChanged
@@ -1360,35 +1297,10 @@ public class DBGUI extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Problemas ao selecionar Seções Eleitorais.\n"+ErrorTranslator.translate("Seção", ex));
             return;
         }
-        DefaultTableModel model = new myTableModel(new int[]{0, 0, 0, 0, 0});
-        model.setColumnIdentifiers(new String[] {
-            tabelaSecaoUrna.getModel().getColumnName(0),
-            tabelaSecaoUrna.getModel().getColumnName(1),
-            tabelaSecaoUrna.getModel().getColumnName(2),
-            tabelaSecaoUrna.getModel().getColumnName(3),
-            tabelaSecaoUrna.getModel().getColumnName(4)
-        });
-
-        tabelaSecaoUrna.setModel(model);
-        try {
-            for(int i=0; res.next(); i++)
-            model.addRow(new Object[]{res.getInt(1), res.getString(2), res.getInt(3), res.getString(4), res.getInt(5)});
-        } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null, "Problemas ao criar tabela.\n"+ErrorTranslator.translate("Seção", ex));
-        }
-        tabelaSecaoUrna.getColumn(model.getColumnName(0)).setMinWidth(110);
-        tabelaSecaoUrna.getColumn(model.getColumnName(1)).setMinWidth(110);
-        tabelaSecaoUrna.getColumn(model.getColumnName(2)).setMinWidth(110);
-        tabelaSecaoUrna.getColumn(model.getColumnName(3)).setMinWidth(733);
-        tabelaSecaoUrna.getColumn(model.getColumnName(4)).setMinWidth(110);
-
-        DefaultTableCellRenderer centerRenderer = new DefaultTableCellRenderer();
-        centerRenderer.setHorizontalAlignment( JLabel.CENTER );
-        tabelaSecaoUrna.getColumnModel().getColumn(0).setCellRenderer( centerRenderer );
-        tabelaSecaoUrna.getColumnModel().getColumn(1).setCellRenderer( centerRenderer );
-        tabelaSecaoUrna.getColumnModel().getColumn(2).setCellRenderer( centerRenderer );
-        tabelaSecaoUrna.getColumnModel().getColumn(4).setCellRenderer( centerRenderer );
-
+        TableManipulator.setNewModel(tabelaSecaoUrna, new int[]{0, 0, 0, 0, 0});
+        TableManipulator.fillTable(tabelaSecaoUrna, res, new int[]{}, new String[]{}, new Action[]{});
+        TableManipulator.adjustColumnWidth(tabelaSecaoUrna, new int[]{110, 110, 110, 733, 110});
+        TableManipulator.centralizeColumns(tabelaSecaoUrna, new int[]{0, 1, 2, 4});
         tabelaSecaoUrna.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
     }//GEN-LAST:event_atualizaSecaoUrnaMouseClicked
 
@@ -1413,7 +1325,6 @@ public class DBGUI extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Problemas ao selecionar Seções Eleitorais.\n"+ErrorTranslator.translate("Zona", ex));
             return;
         }
-        TableManipulator.setNewModel(tabelaSecao, new int[]{0, 0, 0, 1, 0, 1, 1});
 
         Action save = new AbstractAction() {
             @Override
@@ -1443,6 +1354,7 @@ public class DBGUI extends javax.swing.JFrame {
             }
         };
 
+        TableManipulator.setNewModel(tabelaSecao, new int[]{0, 0, 0, 1, 0, 1, 1});
         TableManipulator.fillTable(tabelaSecao, res, new int[]{5, 6}, new String[]{"Salvar", "Deletar"}, new Action[]{save, delete});
         TableManipulator.adjustColumnWidth(tabelaSecao, new int[]{110, 110, 110, 533, 110, 90, 90});
         TableManipulator.centralizeColumns(tabelaSecao, new int[]{0, 1, 2, 4});
@@ -1456,31 +1368,11 @@ public class DBGUI extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Problemas ao selecionar Zonas Eleitorais.\n"+ErrorTranslator.translate("Zona", ex));
             return;
         }
-        DefaultTableModel model = new myTableModel(new int[]{0, 0, 0, 0});
-        model.setColumnIdentifiers(new String[] {
-            tabelaZonaSecao.getModel().getColumnName(0),
-            tabelaZonaSecao.getModel().getColumnName(1),
-            tabelaZonaSecao.getModel().getColumnName(2),
-            tabelaZonaSecao.getModel().getColumnName(3)
-        });
-
-        tabelaZonaSecao.setModel(model);
-        try {
-            for(int i=0; res.next(); i++)
-            model.addRow(new Object[]{res.getInt(1), res.getString(2), res.getString(3), res.getString(4)});
-        } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null, "Problemas ao criar tabela.\n"+ErrorTranslator.translate("Zona", ex));
-        }
-        tabelaZonaSecao.getColumn(model.getColumnName(0)).setMinWidth(110);
-        tabelaZonaSecao.getColumn(model.getColumnName(1)).setMinWidth(110);
-        tabelaZonaSecao.getColumn(model.getColumnName(2)).setMinWidth(753);
-        tabelaZonaSecao.getColumn(model.getColumnName(3)).setMinWidth(110);
-
-        DefaultTableCellRenderer centerRenderer = new DefaultTableCellRenderer();
-        centerRenderer.setHorizontalAlignment( JLabel.CENTER );
-        tabelaZonaSecao.getColumnModel().getColumn(0).setCellRenderer( centerRenderer );
-        tabelaZonaSecao.getColumnModel().getColumn(1).setCellRenderer( centerRenderer );
-        tabelaZonaSecao.getColumnModel().getColumn(3).setCellRenderer( centerRenderer );
+        
+        TableManipulator.setNewModel(tabelaZonaSecao, new int[]{0, 0, 0, 0});
+        TableManipulator.fillTable(tabelaZonaSecao, res, new int[]{}, new String[]{}, new Action[]{});
+        TableManipulator.adjustColumnWidth(tabelaZonaSecao, new int[]{110, 110, 753, 110});
+        TableManipulator.centralizeColumns(tabelaZonaSecao, new int[]{0, 1, 3});
 
         tabelaZonaSecao.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
     }//GEN-LAST:event_atualizaZonaSecaoMouseClicked
@@ -1511,23 +1403,14 @@ public class DBGUI extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Problemas ao selecionar Zonas Eleitorais.\n"+ErrorTranslator.translate("Zona", ex));
             return;
         }
-        DefaultTableModel model = new myTableModel(new int[]{0, 0, 1, 0, 1, 1});
-        model.setColumnIdentifiers(new String[] {
-            tabelaZona.getModel().getColumnName(0),
-            tabelaZona.getModel().getColumnName(1),
-            tabelaZona.getModel().getColumnName(2),
-            tabelaZona.getModel().getColumnName(3),
-            tabelaZona.getModel().getColumnName(4),
-            tabelaZona.getModel().getColumnName(5)
-        });
-
+        
         Action save = new AbstractAction() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 JTable table = (JTable) e.getSource();
                 int row = Integer.valueOf(e.getActionCommand());
                 try {
-                    dml.updateZona(tabelaZona.getValueAt(row, 0), tabelaZona.getValueAt(row, 1), tabelaZona.getValueAt(row, 2));
+                    dml.updateZona(tabelaZona.getValueAt(row, 0).toString(), tabelaZona.getValueAt(row, 1).toString(), tabelaZona.getValueAt(row, 2).toString());
                     JOptionPane.showMessageDialog(null, "Valor atualizado com sucesso.\n");
                 } catch (SQLException ex) {
                     JOptionPane.showMessageDialog(null, "Problemas ao atualizar Zona Eleitoral.\n"+ErrorTranslator.translate("Zona", ex));
@@ -1549,29 +1432,10 @@ public class DBGUI extends javax.swing.JFrame {
             }
         };
 
-        tabelaZona.setModel(model);
-        try {
-            for(int i=0; res.next(); i++){
-                model.addRow(new Object[]{res.getInt(1), res.getString(2), res.getString(3), res.getInt(4), "Salvar", "Deletar"});
-                System.out.println(res.getInt(1)+" "+res.getString(2)+" "+res.getString(3)+" "+res.getInt(4));
-            }
-        } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null, "Problemas ao criar tabela.\n"+ErrorTranslator.translate("Zona", ex));
-        }
-        ButtonColumn colunaSalvar = new ButtonColumn(tabelaZona, save, 4);
-        ButtonColumn deletarSalvar = new ButtonColumn(tabelaZona, delete, 5);
-        tabelaZona.getColumn(model.getColumnName(0)).setMinWidth(110);
-        tabelaZona.getColumn(model.getColumnName(1)).setMinWidth(110);
-        tabelaZona.getColumn(model.getColumnName(2)).setMinWidth(753);
-        tabelaZona.getColumn(model.getColumnName(3)).setMinWidth(110);
-        tabelaZona.getColumn(model.getColumnName(4)).setMinWidth(90);
-        tabelaZona.getColumn(model.getColumnName(5)).setMinWidth(90);
-
-        DefaultTableCellRenderer centerRenderer = new DefaultTableCellRenderer();
-        centerRenderer.setHorizontalAlignment( JLabel.CENTER );
-        tabelaZona.getColumnModel().getColumn(0).setCellRenderer( centerRenderer );
-        tabelaZona.getColumnModel().getColumn(1).setCellRenderer( centerRenderer );
-        tabelaZona.getColumnModel().getColumn(3).setCellRenderer( centerRenderer );
+        TableManipulator.setNewModel(tabelaZona, new int[]{0, 0, 1, 0, 1, 1});
+        TableManipulator.fillTable(tabelaZona, res, new int[]{4,5}, new String[]{"save", "delete"}, new Action[]{save, delete});
+        TableManipulator.adjustColumnWidth(tabelaZona, new int[]{110, 110, 753, 110, 90, 90});
+        TableManipulator.centralizeColumns(tabelaZona, new int[]{0, 1, 3});
     }//GEN-LAST:event_atualizaZonaMouseClicked
 
     private void insereZonaBotaoCriaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_insereZonaBotaoCriaMouseClicked
@@ -1600,15 +1464,6 @@ public class DBGUI extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Problemas ao selecionar Partidos.\n"+ErrorTranslator.translate("Zona", ex));
             return;
         }
-        DefaultTableModel model = new myTableModel(new int[]{0, 1, 1, 0, 1, 1});
-        model.setColumnIdentifiers(new String[] {
-            tabelaPartido.getModel().getColumnName(0),
-            tabelaPartido.getModel().getColumnName(1),
-            tabelaPartido.getModel().getColumnName(2),
-            tabelaPartido.getModel().getColumnName(3),
-            tabelaPartido.getModel().getColumnName(4),
-            tabelaPartido.getModel().getColumnName(5)
-        });
 
         Action save = new AbstractAction() {
             @Override
@@ -1638,29 +1493,10 @@ public class DBGUI extends javax.swing.JFrame {
             }
         };
 
-        tabelaPartido.setModel(model);
-        try {
-            for(int i=0; res.next(); i++){
-                model.addRow(new Object[]{res.getInt(1), res.getString(2), res.getString(3), res.getInt(4), "Salvar", "Deletar"});
-                System.out.println(res.getInt(1)+" "+res.getString(2)+" "+res.getString(3)+" "+res.getInt(4));
-            }
-        } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null, "Problemas ao criar tabela.\n"+ErrorTranslator.translate("Zona", ex));
-        }
-        ButtonColumn colunaSalvar = new ButtonColumn(tabelaPartido, save, 4);
-        ButtonColumn deletarSalvar = new ButtonColumn(tabelaPartido, delete, 5);
-        tabelaPartido.getColumn(model.getColumnName(0)).setMinWidth(120);
-        tabelaPartido.getColumn(model.getColumnName(1)).setMinWidth(705);
-        tabelaPartido.getColumn(model.getColumnName(2)).setMinWidth(100);
-        tabelaPartido.getColumn(model.getColumnName(3)).setMinWidth(100);
-        tabelaPartido.getColumn(model.getColumnName(4)).setMinWidth(90);
-        tabelaPartido.getColumn(model.getColumnName(5)).setMinWidth(90);
-
-        DefaultTableCellRenderer centerRenderer = new DefaultTableCellRenderer();
-        centerRenderer.setHorizontalAlignment( JLabel.CENTER );
-        tabelaPartido.getColumnModel().getColumn(0).setCellRenderer( centerRenderer );
-        tabelaPartido.getColumnModel().getColumn(2).setCellRenderer( centerRenderer );
-        tabelaPartido.getColumnModel().getColumn(3).setCellRenderer( centerRenderer );
+        TableManipulator.setNewModel(tabelaPartido, new int[]{0, 1, 1, 0, 1, 1});
+        TableManipulator.fillTable(tabelaPartido, res, new int[]{4, 5}, new String[]{"save", "delete"}, new Action[]{save, delete});
+        TableManipulator.adjustColumnWidth(tabelaPartido, new int[]{120, 705, 100, 100, 90, 90});
+        TableManipulator.centralizeColumns(tabelaPartido, new int[]{0, 2, 3});
     }//GEN-LAST:event_atualizaPartidoMouseClicked
 
     private void inserePartidoBotaoCriaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_inserePartidoBotaoCriaMouseClicked
