@@ -31,6 +31,8 @@ import trabalhobd.DBConnector;
 import trabalhobd.DataManipulation;
 import trabalhobd.DataSelection;
 import trabalhobd.ErrorTranslator;
+import trabalhobd.TableManipulator;
+import trabalhobd.myTableModel;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -67,8 +69,6 @@ public class DBGUI extends javax.swing.JFrame {
         estadoZonaCria.setModel(new javax.swing.DefaultComboBoxModel(estados));
         tipoUrnaCria.setModel(new javax.swing.DefaultComboBoxModel(tiposUrna));
         modeloUrnaCria.setModel(new javax.swing.DefaultComboBoxModel(modelos));
-        
-        
         
         try{
             DBConnector connector = new DBConnector("a7987265", "a7987265", true);
@@ -1197,11 +1197,20 @@ public class DBGUI extends javax.swing.JFrame {
             public void actionPerformed(ActionEvent e) {
                 JTable table = (JTable) e.getSource();
                 int row = Integer.valueOf(e.getActionCommand());
+                
                 try {
-                    dml.updatePartido((int)tabelaPessoa.getValueAt(row, 0), (String)tabelaPessoa.getValueAt(row, 1), (String)tabelaPessoa.getValueAt(row, 2));
+                    java.util.Date date = new SimpleDateFormat("DD/MM/YYYY").parse((String)tabelaPessoa.getValueAt(row, 3));
+                } catch (Exception ex) {
+                    JOptionPane.showMessageDialog(null, "Data de Nascimento em formato inválido.\nPor favor, utilize o formato DD/MM/YYYY.\n"+ex.getMessage());
+                    return;
+                }
+                
+                try {
+                    System.out.println(tabelaPessoa.getValueAt(row, 0)+" "+tabelaPessoa.getValueAt(row, 1)+" "+tabelaPessoa.getValueAt(row, 2)+" "+tabelaPessoa.getValueAt(row, 3)+" "+tabelaPessoa.getValueAt(row, 4)+" "+tabelaPessoa.getValueAt(row, 5)+" "+tabelaPessoa.getValueAt(row, 6)+" "+tabelaPessoa.getValueAt(row, 7)+" "+tabelaPessoa.getValueAt(row, 8));
+                    dml.updatePessoa(tabelaPessoa.getValueAt(row, 0).toString(), tabelaPessoa.getValueAt(row, 1).toString(), tabelaPessoa.getValueAt(row, 2).toString(), tabelaPessoa.getValueAt(row, 3).toString(), tabelaPessoa.getValueAt(row, 4).toString(), tabelaPessoa.getValueAt(row, 5).toString(), tabelaPessoa.getValueAt(row, 6).toString(), tabelaPessoa.getValueAt(row, 7).toString(), tabelaPessoa.getValueAt(row, 8).toString());
                     JOptionPane.showMessageDialog(null, "Valor atualizado com sucesso.\n");
                 } catch (SQLException ex) {
-                    JOptionPane.showMessageDialog(null, "Problemas ao atualizar Partido.\n"+ErrorTranslator.translate("Zona", ex));
+                    JOptionPane.showMessageDialog(null, "Problemas ao atualizar Pessoa.\n"+ErrorTranslator.translate("Zona", ex));
                 }
             }
         };
@@ -1211,11 +1220,11 @@ public class DBGUI extends javax.swing.JFrame {
                 JTable table = (JTable) e.getSource();
                 int row = Integer.valueOf(e.getActionCommand());
                 try {
-                    dml.deletePessoa((int)tabelaPessoa.getValueAt(row, 0));
+                    dml.deletePessoa(tabelaPessoa.getValueAt(row, 0).toString());
                     JOptionPane.showMessageDialog(null, "Valor deletado com sucesso.\n");
                     ((DefaultTableModel)table.getModel()).removeRow(row);
                 } catch (SQLException ex) {
-                    JOptionPane.showMessageDialog(null, "Problemas ao deletar Partido.\n"+ErrorTranslator.translate("Zona", ex));
+                    JOptionPane.showMessageDialog(null, "Problemas ao deletar Pessoa.\n"+ErrorTranslator.translate("Zona", ex));
                 }
             }
         };
@@ -1250,18 +1259,6 @@ public class DBGUI extends javax.swing.JFrame {
         tabelaPessoa.getColumnModel().getColumn(6).setCellRenderer( centerRenderer );
         tabelaPessoa.getColumnModel().getColumn(7).setCellRenderer( centerRenderer );
         tabelaPessoa.getColumnModel().getColumn(8).setCellRenderer( centerRenderer );
-        
-        TableCellRenderer tableCellRenderer = new DefaultTableCellRenderer() {
-            SimpleDateFormat f = new SimpleDateFormat("DD/MM/YYYY");
-
-            public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected, boolean hasFocus, int row, int column) {
-                if( value instanceof Date) 
-                    value = f.format(value);
-                return super.getTableCellRendererComponent(table, value, isSelected, hasFocus, row, column);
-            }
-        };
-
-        tabelaPessoa.getColumnModel().getColumn(3).setCellRenderer(tableCellRenderer);
     }//GEN-LAST:event_atualizaPessoaMouseClicked
 
     private void tipoUrnaCria1ItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_tipoUrnaCria1ItemStateChanged
@@ -1302,7 +1299,7 @@ public class DBGUI extends javax.swing.JFrame {
                 JTable table = (JTable) e.getSource();
                 int row = Integer.valueOf(e.getActionCommand());
                 try {
-                    dml.updateUrna((int)tabelaUrna.getValueAt(row, 0), (String)tabelaUrna.getValueAt(row, 1), (int)tabelaUrna.getValueAt(row, 2), (int)tabelaUrna.getValueAt(row, 3), (String)tabelaUrna.getValueAt(row, 4), (String)tabelaUrna.getValueAt(row, 5));
+                    dml.updateUrna((String)tabelaUrna.getValueAt(row, 0).toString(), (String)tabelaUrna.getValueAt(row, 1).toString(), (String)tabelaUrna.getValueAt(row, 2), (String)tabelaUrna.getValueAt(row, 3).toString(), (String)tabelaUrna.getValueAt(row, 4).toString(), (String)tabelaUrna.getValueAt(row, 5).toString());
                     JOptionPane.showMessageDialog(null, "Valor atualizado com sucesso.\n");
                 } catch (SQLException ex) {
                     JOptionPane.showMessageDialog(null, "Problemas ao atualizar Seção Eleitoral.\n"+ErrorTranslator.translate("Zona", ex));
@@ -1315,7 +1312,7 @@ public class DBGUI extends javax.swing.JFrame {
                 JTable table = (JTable) e.getSource();
                 int row = Integer.valueOf(e.getActionCommand());
                 try {
-                    dml.deleteUrna((int)tabelaUrna.getValueAt(row, 0), (String)tabelaUrna.getValueAt(row, 1), (int)tabelaUrna.getValueAt(row, 2), (int)tabelaUrna.getValueAt(row, 3));
+                    dml.deleteUrna((String)tabelaUrna.getValueAt(row, 0).toString(), (String)tabelaUrna.getValueAt(row, 1).toString(), (String)tabelaUrna.getValueAt(row, 2).toString(), (String)tabelaUrna.getValueAt(row, 3).toString());
                     JOptionPane.showMessageDialog(null, "Valor deletado com sucesso.\n");
                     ((DefaultTableModel)table.getModel()).removeRow(row);
                 } catch (SQLException ex) {
@@ -1401,7 +1398,7 @@ public class DBGUI extends javax.swing.JFrame {
             return;
         }
         try {
-            dml.insereUrna((int)tabelaSecaoUrna.getValueAt(tabelaSecaoUrna.getSelectedRow(), 0), (String)tabelaSecaoUrna.getValueAt(tabelaSecaoUrna.getSelectedRow(), 1), (int)tabelaSecaoUrna.getValueAt(tabelaSecaoUrna.getSelectedRow(), 2), (String)tipoUrnaCria.getSelectedItem(), (String)modeloUrnaCria.getSelectedItem());
+            dml.insereUrna((String)tabelaSecaoUrna.getValueAt(tabelaSecaoUrna.getSelectedRow(), 0).toString(), (String)tabelaSecaoUrna.getValueAt(tabelaSecaoUrna.getSelectedRow(), 1).toString(), (String)tabelaSecaoUrna.getValueAt(tabelaSecaoUrna.getSelectedRow(), 2).toString(), (String)tipoUrnaCria.getSelectedItem().toString(), (String)modeloUrnaCria.getSelectedItem().toString());
             JOptionPane.showMessageDialog(null, "Valor inserido com sucesso.\n");
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, "Problemas ao inserir Urna Eleitoral.\n"+ErrorTranslator.translate("Zona", ex));
@@ -1416,16 +1413,7 @@ public class DBGUI extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Problemas ao selecionar Seções Eleitorais.\n"+ErrorTranslator.translate("Zona", ex));
             return;
         }
-        DefaultTableModel model = new myTableModel(new int[]{0, 0, 0, 1, 0, 1, 1});
-        model.setColumnIdentifiers(new String[] {
-            tabelaSecao.getModel().getColumnName(0),
-            tabelaSecao.getModel().getColumnName(1),
-            tabelaSecao.getModel().getColumnName(2),
-            tabelaSecao.getModel().getColumnName(3),
-            tabelaSecao.getModel().getColumnName(4),
-            tabelaSecao.getModel().getColumnName(5),
-            tabelaSecao.getModel().getColumnName(6)
-        });
+        TableManipulator.setNewModel(tabelaSecao, new int[]{0, 0, 0, 1, 0, 1, 1});
 
         Action save = new AbstractAction() {
             @Override
@@ -1433,7 +1421,7 @@ public class DBGUI extends javax.swing.JFrame {
                 JTable table = (JTable) e.getSource();
                 int row = Integer.valueOf(e.getActionCommand());
                 try {
-                    dml.updateSecao((int)tabelaSecao.getValueAt(row, 0), (String)tabelaSecao.getValueAt(row, 1), (int)tabelaSecao.getValueAt(row, 2), (String)tabelaSecao.getValueAt(row, 3));
+                    dml.updateSecao(tabelaSecao.getValueAt(row, 0).toString(), tabelaSecao.getValueAt(row, 1).toString(), tabelaSecao.getValueAt(row, 2).toString(), tabelaSecao.getValueAt(row, 3).toString());
                     JOptionPane.showMessageDialog(null, "Valor atualizado com sucesso.\n");
                 } catch (SQLException ex) {
                     JOptionPane.showMessageDialog(null, "Problemas ao atualizar Seção Eleitoral.\n"+ErrorTranslator.translate("Zona", ex));
@@ -1446,7 +1434,7 @@ public class DBGUI extends javax.swing.JFrame {
                 JTable table = (JTable) e.getSource();
                 int row = Integer.valueOf(e.getActionCommand());
                 try {
-                    dml.deleteSecao((int)tabelaSecao.getValueAt(row, 0), (String)tabelaSecao.getValueAt(row, 1), (int)tabelaSecao.getValueAt(row, 2));
+                    dml.deleteSecao((String)tabelaSecao.getValueAt(row, 0).toString(), (String)tabelaSecao.getValueAt(row, 1).toString(), (String)tabelaSecao.getValueAt(row, 2).toString());
                     JOptionPane.showMessageDialog(null, "Valor deletado com sucesso.\n");
                     ((DefaultTableModel)table.getModel()).removeRow(row);
                 } catch (SQLException ex) {
@@ -1455,29 +1443,9 @@ public class DBGUI extends javax.swing.JFrame {
             }
         };
 
-        tabelaSecao.setModel(model);
-        try {
-            for(int i=0; res.next(); i++)
-            model.addRow(new Object[]{res.getInt(1), res.getString(2), res.getInt(3), res.getString(4), res.getInt(5), "Salvar", "Deletar"});
-        } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null, "Problemas ao criar tabela.\n"+ErrorTranslator.translate("Zona", ex));
-        }
-        ButtonColumn colunaSalvar = new ButtonColumn(tabelaSecao, save, 5);
-        ButtonColumn deletarSalvar = new ButtonColumn(tabelaSecao, delete, 6);
-        tabelaSecao.getColumn(model.getColumnName(0)).setMinWidth(110);
-        tabelaSecao.getColumn(model.getColumnName(1)).setMinWidth(110);
-        tabelaSecao.getColumn(model.getColumnName(2)).setMinWidth(110);
-        tabelaSecao.getColumn(model.getColumnName(3)).setMinWidth(533);
-        tabelaSecao.getColumn(model.getColumnName(4)).setMinWidth(110);
-        tabelaSecao.getColumn(model.getColumnName(5)).setMinWidth(90);
-        tabelaSecao.getColumn(model.getColumnName(6)).setMinWidth(90);
-
-        DefaultTableCellRenderer centerRenderer = new DefaultTableCellRenderer();
-        centerRenderer.setHorizontalAlignment( JLabel.CENTER );
-        tabelaSecao.getColumnModel().getColumn(0).setCellRenderer( centerRenderer );
-        tabelaSecao.getColumnModel().getColumn(1).setCellRenderer( centerRenderer );
-        tabelaSecao.getColumnModel().getColumn(2).setCellRenderer( centerRenderer );
-        tabelaSecao.getColumnModel().getColumn(4).setCellRenderer( centerRenderer );
+        TableManipulator.fillTable(tabelaSecao, res, new int[]{5, 6}, new String[]{"Salvar", "Deletar"}, new Action[]{save, delete});
+        TableManipulator.adjustColumnWidth(tabelaSecao, new int[]{110, 110, 110, 533, 110, 90, 90});
+        TableManipulator.centralizeColumns(tabelaSecao, new int[]{0, 1, 2, 4});
     }//GEN-LAST:event_atualizaSecaoMouseClicked
 
     private void atualizaZonaSecaoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_atualizaZonaSecaoMouseClicked
@@ -1528,7 +1496,7 @@ public class DBGUI extends javax.swing.JFrame {
             return;
         }
         try {
-            dml.insereSecao((int)tabelaZonaSecao.getValueAt(tabelaZonaSecao.getSelectedRow(), 0), (String)tabelaZonaSecao.getValueAt(tabelaZonaSecao.getSelectedRow(), 1), (int)numeroSecaoCria.getValue(), (String)localSecaoCria.getText());
+            dml.insereSecao((String)tabelaZonaSecao.getValueAt(tabelaZonaSecao.getSelectedRow(), 0).toString(), (String)tabelaZonaSecao.getValueAt(tabelaZonaSecao.getSelectedRow(), 1).toString(), (String)numeroSecaoCria.getValue().toString(), (String)localSecaoCria.getText().toString());
             JOptionPane.showMessageDialog(null, "Valor inserido com sucesso.\n");
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, "Problemas ao inserir Seção Eleitoral.\n"+ErrorTranslator.translate("Zona", ex));
@@ -1559,7 +1527,7 @@ public class DBGUI extends javax.swing.JFrame {
                 JTable table = (JTable) e.getSource();
                 int row = Integer.valueOf(e.getActionCommand());
                 try {
-                    dml.updateZona((int)tabelaZona.getValueAt(row, 0), (String)tabelaZona.getValueAt(row, 1), (String)tabelaZona.getValueAt(row, 2));
+                    dml.updateZona(tabelaZona.getValueAt(row, 0), tabelaZona.getValueAt(row, 1), tabelaZona.getValueAt(row, 2));
                     JOptionPane.showMessageDialog(null, "Valor atualizado com sucesso.\n");
                 } catch (SQLException ex) {
                     JOptionPane.showMessageDialog(null, "Problemas ao atualizar Zona Eleitoral.\n"+ErrorTranslator.translate("Zona", ex));
@@ -1572,7 +1540,7 @@ public class DBGUI extends javax.swing.JFrame {
                 JTable table = (JTable) e.getSource();
                 int row = Integer.valueOf(e.getActionCommand());
                 try {
-                    dml.deleteZona((int)tabelaZona.getValueAt(row, 0), (String)tabelaZona.getValueAt(row, 1));
+                    dml.deleteZona((String)tabelaZona.getValueAt(row, 0).toString(), (String)tabelaZona.getValueAt(row, 1).toString());
                     JOptionPane.showMessageDialog(null, "Valor deletado com sucesso.\n");
                     ((DefaultTableModel)table.getModel()).removeRow(row);
                 } catch (SQLException ex) {
@@ -1613,7 +1581,7 @@ public class DBGUI extends javax.swing.JFrame {
         }
         
         try {
-            dml.insereZona((int)numeroZonaCria.getValue(), (String)estadoZonaCria.getSelectedItem(), (String)enderecoZonaCria.getText());
+            dml.insereZona((String)numeroZonaCria.getValue().toString(), (String)estadoZonaCria.getSelectedItem().toString(), (String)enderecoZonaCria.getText().toString());
             JOptionPane.showMessageDialog(null, "Valor inserido com sucesso.\n");
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, "Problemas ao inserir Zona Eleitoral.\n"+ErrorTranslator.translate("Zona", ex));
@@ -1648,7 +1616,7 @@ public class DBGUI extends javax.swing.JFrame {
                 JTable table = (JTable) e.getSource();
                 int row = Integer.valueOf(e.getActionCommand());
                 try {
-                    dml.updatePartido((int)tabelaPartido.getValueAt(row, 0), (String)tabelaPartido.getValueAt(row, 1), (String)tabelaPartido.getValueAt(row, 2));
+                    dml.updatePartido((String)tabelaPartido.getValueAt(row, 0).toString(), (String)tabelaPartido.getValueAt(row, 1).toString(), (String)tabelaPartido.getValueAt(row, 2).toString());
                     JOptionPane.showMessageDialog(null, "Valor atualizado com sucesso.\n");
                 } catch (SQLException ex) {
                     JOptionPane.showMessageDialog(null, "Problemas ao atualizar Partido.\n"+ErrorTranslator.translate("Zona", ex));
@@ -1661,7 +1629,7 @@ public class DBGUI extends javax.swing.JFrame {
                 JTable table = (JTable) e.getSource();
                 int row = Integer.valueOf(e.getActionCommand());
                 try {
-                    dml.deletePartido((int)tabelaPartido.getValueAt(row, 0));
+                    dml.deletePartido((String)tabelaPartido.getValueAt(row, 0).toString());
                     JOptionPane.showMessageDialog(null, "Valor deletado com sucesso.\n");
                     ((DefaultTableModel)table.getModel()).removeRow(row);
                 } catch (SQLException ex) {
@@ -1706,7 +1674,7 @@ public class DBGUI extends javax.swing.JFrame {
         }
         
         try {
-            dml.inserePartido((int)numeroPartidoCria.getValue(), nomePartidoCria.getText(), siglaPartidoCria.getText());
+            dml.inserePartido((String)numeroPartidoCria.getValue().toString(), nomePartidoCria.getText().toString(), siglaPartidoCria.getText().toString());
             JOptionPane.showMessageDialog(null, "Valor inserido com sucesso.\n");
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, "Problemas ao inserir Zona Eleitoral.\n"+ErrorTranslator.translate("Zona", ex));
@@ -1839,19 +1807,4 @@ public class DBGUI extends javax.swing.JFrame {
     private javax.swing.JTabbedPane zonaPane;
     private javax.swing.JTabbedPane zonaPane1;
     // End of variables declaration//GEN-END:variables
-
-    private static class myTableModel  extends DefaultTableModel{
-        private int[] iseditable;
-        public myTableModel(int[] iseditable){
-            super();
-            this.iseditable = iseditable;
-        }
-        public boolean isCellEditable(int row, int column) {
-            if (iseditable[column] == 1){
-               return true;
-            }else{
-               return false;
-            }
-        }
-    }
 }
