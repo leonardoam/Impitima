@@ -304,13 +304,17 @@ public class DataManipulation {
     public void updateFuncionario(String nroTitEleitor, String cargoFunc) throws SQLException{
         updateFuncionarioStatement.setString(2, nroTitEleitor);
         updateFuncionarioStatement.setString(1, cargoFunc);
-        updateFuncionarioStatement.execute();
+        int count = updateFuncionarioStatement.executeUpdate();
+        if (count == 0)
+            throw new SQLException("Não é um funcionário.\n", null, 0);
         conn.commit();
     }
     
     public void deleteFuncionario(String nroTitEleitor) throws SQLException{
         deleteFuncionarioStatement.setString(1, nroTitEleitor);
-        deleteFuncionarioStatement.execute();
+        int count = deleteFuncionarioStatement.executeUpdate();
+        if (count == 0)
+            throw new SQLException("Não é um funcionário.\n", null, 0);
         conn.commit();
     }
 }
