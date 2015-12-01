@@ -12,13 +12,26 @@ import java.sql.SQLException;
  * @author leonardo
  */
 public class ErrorTranslator {
-    public static String translate(String entity, SQLException ex){
-        /*switch(code){
-            case 1:
-                return "Tentativa de inserção de uma "+entity+" já existente.";
-            default:
-                return "Erro desconhecido - Código: "+code+".";
-        }*/
-        return ex.getMessage()+"\n"+ex.getLocalizedMessage();
+    public static String translate(SQLException ex){
+        String erro = "";
+        while(true){
+            switch(ex.getErrorCode()){
+                case 0:
+                    erro += ex.getMessage();
+                    break;
+                case 1:
+                    erro += "Valor já existente.\n";
+                    break;
+                case 4091:
+                    erro += "Valor não pode ser removido, pois outros valores dependem dele.\n";
+                    break;
+                default:
+                    erro += "Erro desconhecido - Código: "+ex.getErrorCode()+".\n"+ex.getMessage()+"\n";
+            }
+            ex = ex.getNextException();
+            if (ex == null)
+                break;
+        }
+        return erro;
     }
 }
