@@ -58,6 +58,9 @@ public class DBGUI extends javax.swing.JFrame {
     public static String[] estados = {"AC", "AL", "AP", "AM", "BA", "CE", "DF", "ES", "GO", "MA", "MT", "MS", "MG", "PA", "PB", "PR", "PE", "PI", "RJ", "RN", "RS", "RO", "RR", "SC", "SP", "SE", "TO"};
     public static String[] tiposUrna = {"Eletrônica", "Manual"};
     public static String[] modelos = {"DRE", "VVPAT", "E2E"};
+    public static String[] escolaridade = {null, "Ensino Fundamental Incompleto", "Ensino Fundamental Completo", "Ensino Médio Incompleto", "Ensino Médio Completo", "Ensino Superior Incompleto", "Ensino Superior Completo"};
+    public static String[] tiposPessoa = {null, "Funcionário", "Candidato"};
+    public static String[] cargosFuncionario = {"Mesário", "Presidente", "Secretário", "Suplente"};
     public DataManipulation dml;
     public DataSelection ds;
     
@@ -69,6 +72,9 @@ public class DBGUI extends javax.swing.JFrame {
         estadoZonaCria.setModel(new javax.swing.DefaultComboBoxModel(estados));
         tipoUrnaCria.setModel(new javax.swing.DefaultComboBoxModel(tiposUrna));
         modeloUrnaCria.setModel(new javax.swing.DefaultComboBoxModel(modelos));
+        escolaridadePessoa.setModel(new javax.swing.DefaultComboBoxModel(escolaridade));
+        tipoPessoa.setModel(new javax.swing.DefaultComboBoxModel(tiposPessoa));
+        cargoFuncionario.setModel(new javax.swing.DefaultComboBoxModel(cargosFuncionario));
         
         try{
             DBConnector connector = new DBConnector("a7987265", "a7987265", true);
@@ -155,15 +161,23 @@ public class DBGUI extends javax.swing.JFrame {
         tabelaUrna = new javax.swing.JTable();
         jTabbedPane1 = new javax.swing.JTabbedPane();
         CriaPane3 = new javax.swing.JPanel();
-        tipoUrnaLabelCria1 = new javax.swing.JLabel();
-        insereUrnaBotaoCria1 = new javax.swing.JButton();
-        modeloUrnaLabelCria1 = new javax.swing.JLabel();
-        atualizaSecaoUrna1 = new javax.swing.JButton();
+        inserePessoaCria = new javax.swing.JButton();
+        atualizaSecaoPessoa = new javax.swing.JButton();
         jScrollPane8 = new javax.swing.JScrollPane();
-        tabelaSecaoUrna1 = new javax.swing.JTable();
+        tabelaSecaoPessoa = new javax.swing.JTable();
         estadoZonaCria2 = new javax.swing.JComboBox();
-        tipoUrnaCria1 = new javax.swing.JComboBox();
-        modeloUrnaCria1 = new javax.swing.JComboBox();
+        nroZonaLabelCria1 = new javax.swing.JLabel();
+        nroZonaLabelCria2 = new javax.swing.JLabel();
+        nroZonaLabelCria3 = new javax.swing.JLabel();
+        nroZonaLabelCria4 = new javax.swing.JLabel();
+        nroZonaLabelCria5 = new javax.swing.JLabel();
+        nroZonaLabelCria6 = new javax.swing.JLabel();
+        nroTitEleitorPessoa = new javax.swing.JFormattedTextField();
+        nomePessoa = new javax.swing.JTextField();
+        endPessoa = new javax.swing.JTextField();
+        dataNascPessoa = new javax.swing.JFormattedTextField();
+        escolaridadePessoa = new javax.swing.JComboBox();
+        tipoPessoa = new javax.swing.JComboBox();
         CriaPane4 = new javax.swing.JPanel();
         atualizaPessoa = new javax.swing.JButton();
         jScrollPane9 = new javax.swing.JScrollPane();
@@ -184,6 +198,28 @@ public class DBGUI extends javax.swing.JFrame {
         tabelaPartido = new javax.swing.JTable();
         estadoZonaCria5 = new javax.swing.JComboBox();
         pessoasPane = new javax.swing.JTabbedPane();
+        filiacaoPane = new javax.swing.JTabbedPane();
+        jPanel2 = new javax.swing.JPanel();
+        jScrollPane4 = new javax.swing.JScrollPane();
+        tabelaPessoaFilia = new javax.swing.JTable();
+        jScrollPane7 = new javax.swing.JScrollPane();
+        tabelaPartidoFilia = new javax.swing.JTable();
+        filiaButton = new javax.swing.JButton();
+        atualizaFilia = new javax.swing.JButton();
+        jPanel4 = new javax.swing.JPanel();
+        jScrollPane10 = new javax.swing.JScrollPane();
+        tabelaFilia = new javax.swing.JTable();
+        atualizarTabelaFilia = new javax.swing.JButton();
+        jPanel6 = new javax.swing.JPanel();
+        jScrollPane12 = new javax.swing.JScrollPane();
+        tabelaFuncionario = new javax.swing.JTable();
+        atualizaFuncionario = new javax.swing.JButton();
+        cargoFuncionario = new javax.swing.JComboBox();
+        jLabel1 = new javax.swing.JLabel();
+        insereFuncionario = new javax.swing.JButton();
+        alteraFuncionario = new javax.swing.JButton();
+        deletaFuncionario = new javax.swing.JButton();
+        jPanel7 = new javax.swing.JPanel();
         votosPane = new javax.swing.JTabbedPane();
         relatoriosPane = new javax.swing.JTabbedPane();
 
@@ -450,7 +486,7 @@ public class DBGUI extends javax.swing.JFrame {
                                 .addComponent(endSecaoLabelCria)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(localSecaoCria, javax.swing.GroupLayout.PREFERRED_SIZE, 610, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                .addContainerGap(465, Short.MAX_VALUE))
+                .addContainerGap(495, Short.MAX_VALUE))
             .addComponent(jScrollPane3)
         );
         CriaPane1Layout.setVerticalGroup(
@@ -725,14 +761,14 @@ public class DBGUI extends javax.swing.JFrame {
 
             },
             new String [] {
-                "Número da Zona*", "Estado da Zona*", "Número da Seção*", "Número da Urna", "Modelo da Urna", "Tipo da Urna", "", ""
+                "Número da Zona*", "Estado da Zona*", "Número da Seção*", "Número da Urna", "Modelo da Urna", "Tipo da Urna", ""
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.Integer.class, java.lang.String.class, java.lang.Integer.class, java.lang.Integer.class, java.lang.String.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class
+                java.lang.Integer.class, java.lang.String.class, java.lang.Integer.class, java.lang.Integer.class, java.lang.String.class, java.lang.Object.class, java.lang.Object.class
             };
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false, false, false
+                false, false, false, false, false, false, false
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -786,27 +822,31 @@ public class DBGUI extends javax.swing.JFrame {
 
         registroPane.addTab("Urna", urnaPane);
 
-        tipoUrnaLabelCria1.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
-        tipoUrnaLabelCria1.setText("Tipo da Urna Eleitoral:");
-
-        insereUrnaBotaoCria1.setText("Insere");
-        insereUrnaBotaoCria1.addMouseListener(new java.awt.event.MouseAdapter() {
+        inserePessoaCria.setText("Insere");
+        inserePessoaCria.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                insereUrnaBotaoCria1MouseClicked(evt);
+                inserePessoaCriaMouseClicked(evt);
+            }
+        });
+        inserePessoaCria.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                inserePessoaCriaActionPerformed(evt);
             }
         });
 
-        modeloUrnaLabelCria1.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
-        modeloUrnaLabelCria1.setText("Modelo da Urna Eleitoral:");
-
-        atualizaSecaoUrna1.setText("Procurar Dados");
-        atualizaSecaoUrna1.addMouseListener(new java.awt.event.MouseAdapter() {
+        atualizaSecaoPessoa.setText("Procurar Dados");
+        atualizaSecaoPessoa.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                atualizaSecaoUrna1MouseClicked(evt);
+                atualizaSecaoPessoaMouseClicked(evt);
+            }
+        });
+        atualizaSecaoPessoa.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                atualizaSecaoPessoaActionPerformed(evt);
             }
         });
 
-        tabelaSecaoUrna1.setModel(new javax.swing.table.DefaultTableModel(
+        tabelaSecaoPessoa.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
@@ -829,53 +869,120 @@ public class DBGUI extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
-        jScrollPane8.setViewportView(tabelaSecaoUrna1);
-        if (tabelaSecaoUrna1.getColumnModel().getColumnCount() > 0) {
-            tabelaSecaoUrna1.getColumnModel().getColumn(0).setMinWidth(120);
-            tabelaSecaoUrna1.getColumnModel().getColumn(1).setMinWidth(182);
-            tabelaSecaoUrna1.getColumnModel().getColumn(2).setMinWidth(182);
-            tabelaSecaoUrna1.getColumnModel().getColumn(3).setMinWidth(100);
-            tabelaSecaoUrna1.getColumnModel().getColumn(4).setMinWidth(100);
+        jScrollPane8.setViewportView(tabelaSecaoPessoa);
+        if (tabelaSecaoPessoa.getColumnModel().getColumnCount() > 0) {
+            tabelaSecaoPessoa.getColumnModel().getColumn(0).setMinWidth(120);
+            tabelaSecaoPessoa.getColumnModel().getColumn(1).setMinWidth(182);
+            tabelaSecaoPessoa.getColumnModel().getColumn(2).setMinWidth(182);
+            tabelaSecaoPessoa.getColumnModel().getColumn(3).setMinWidth(100);
+            tabelaSecaoPessoa.getColumnModel().getColumn(4).setMinWidth(100);
         }
 
         estadoZonaCria2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
-        tipoUrnaCria1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        tipoUrnaCria1.addItemListener(new java.awt.event.ItemListener() {
-            public void itemStateChanged(java.awt.event.ItemEvent evt) {
-                tipoUrnaCria1ItemStateChanged(evt);
+        nroZonaLabelCria1.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
+        nroZonaLabelCria1.setText("Número de Título de Eleitor*:");
+
+        nroZonaLabelCria2.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
+        nroZonaLabelCria2.setText("Nome:");
+
+        nroZonaLabelCria3.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
+        nroZonaLabelCria3.setText("Endereço:");
+
+        nroZonaLabelCria4.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
+        nroZonaLabelCria4.setText("Data de Nascimento:");
+
+        nroZonaLabelCria5.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
+        nroZonaLabelCria5.setText("Escolaridade:");
+
+        nroZonaLabelCria6.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
+        nroZonaLabelCria6.setText("Tipo:");
+
+        try {
+            nroTitEleitorPessoa.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("############")));
+        } catch (java.text.ParseException ex) {
+            ex.printStackTrace();
+        }
+        nroTitEleitorPessoa.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                nroTitEleitorPessoaActionPerformed(evt);
             }
         });
 
-        modeloUrnaCria1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        nomePessoa.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                nomePessoaActionPerformed(evt);
+            }
+        });
+
+        endPessoa.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                endPessoaActionPerformed(evt);
+            }
+        });
+
+        dataNascPessoa.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.DateFormatter(new java.text.SimpleDateFormat("d/M/yyyy"))));
+        dataNascPessoa.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                dataNascPessoaActionPerformed(evt);
+            }
+        });
+
+        escolaridadePessoa.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        escolaridadePessoa.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                escolaridadePessoaActionPerformed(evt);
+            }
+        });
+
+        tipoPessoa.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        tipoPessoa.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                tipoPessoaActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout CriaPane3Layout = new javax.swing.GroupLayout(CriaPane3);
         CriaPane3.setLayout(CriaPane3Layout);
         CriaPane3Layout.setHorizontalGroup(
             CriaPane3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, CriaPane3Layout.createSequentialGroup()
+                .addComponent(jScrollPane8, javax.swing.GroupLayout.PREFERRED_SIZE, 1255, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
+            .addGroup(CriaPane3Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(inserePessoaCria)
+                .addContainerGap())
             .addGroup(CriaPane3Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(CriaPane3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(CriaPane3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(CriaPane3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                         .addGroup(CriaPane3Layout.createSequentialGroup()
-                            .addComponent(atualizaSecaoUrna1)
-                            .addGap(620, 620, 620))
-                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, CriaPane3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, CriaPane3Layout.createSequentialGroup()
-                                .addComponent(tipoUrnaLabelCria1)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(tipoUrnaCria1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, CriaPane3Layout.createSequentialGroup()
-                                .addComponent(modeloUrnaLabelCria1)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(modeloUrnaCria1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                    .addGroup(CriaPane3Layout.createSequentialGroup()
-                        .addGap(155, 155, 155)
-                        .addComponent(insereUrnaBotaoCria1)))
+                            .addComponent(nroZonaLabelCria4)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addComponent(dataNascPessoa, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(CriaPane3Layout.createSequentialGroup()
+                            .addComponent(nroZonaLabelCria5)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addComponent(escolaridadePessoa, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(CriaPane3Layout.createSequentialGroup()
+                            .addComponent(nroZonaLabelCria6)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addComponent(tipoPessoa, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(CriaPane3Layout.createSequentialGroup()
+                            .addComponent(nroZonaLabelCria1)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addComponent(nroTitEleitorPessoa, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(CriaPane3Layout.createSequentialGroup()
+                            .addComponent(nroZonaLabelCria3)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addComponent(endPessoa))
+                        .addGroup(CriaPane3Layout.createSequentialGroup()
+                            .addComponent(nroZonaLabelCria2)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addComponent(nomePessoa, javax.swing.GroupLayout.PREFERRED_SIZE, 546, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addComponent(atualizaSecaoPessoa))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(CriaPane3Layout.createSequentialGroup()
-                .addComponent(jScrollPane8, javax.swing.GroupLayout.PREFERRED_SIZE, 1255, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
             .addGroup(CriaPane3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(CriaPane3Layout.createSequentialGroup()
                     .addGap(0, 0, Short.MAX_VALUE)
@@ -886,20 +993,36 @@ public class DBGUI extends javax.swing.JFrame {
             CriaPane3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, CriaPane3Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(atualizaSecaoUrna1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane8, javax.swing.GroupLayout.DEFAULT_SIZE, 328, Short.MAX_VALUE)
+                .addGroup(CriaPane3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(nroZonaLabelCria1)
+                    .addComponent(nroTitEleitorPessoa, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(CriaPane3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(tipoUrnaCria1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(tipoUrnaLabelCria1))
-                .addGap(7, 7, 7)
+                    .addComponent(nroZonaLabelCria2)
+                    .addComponent(nomePessoa, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(CriaPane3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(modeloUrnaCria1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(modeloUrnaLabelCria1))
+                    .addComponent(nroZonaLabelCria3)
+                    .addComponent(endPessoa, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(CriaPane3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(nroZonaLabelCria4)
+                    .addComponent(dataNascPessoa, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(CriaPane3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(nroZonaLabelCria5)
+                    .addComponent(escolaridadePessoa, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(CriaPane3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(nroZonaLabelCria6)
+                    .addComponent(tipoPessoa, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(atualizaSecaoPessoa)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane8, javax.swing.GroupLayout.DEFAULT_SIZE, 220, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(insereUrnaBotaoCria1)
-                .addGap(8, 8, 8))
+                .addComponent(inserePessoaCria)
+                .addGap(13, 13, 13))
             .addGroup(CriaPane3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(CriaPane3Layout.createSequentialGroup()
                     .addGap(0, 0, Short.MAX_VALUE)
@@ -952,6 +1075,7 @@ public class DBGUI extends javax.swing.JFrame {
             tabelaPessoa.getColumnModel().getColumn(8).setMinWidth(90);
             tabelaPessoa.getColumnModel().getColumn(9).setMinWidth(90);
             tabelaPessoa.getColumnModel().getColumn(10).setMinWidth(90);
+            tabelaPessoa.getColumnModel().getColumn(10).setHeaderValue("");
         }
 
         estadoZonaCria3.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
@@ -1034,7 +1158,7 @@ public class DBGUI extends javax.swing.JFrame {
                             .addGroup(CriaPane5Layout.createSequentialGroup()
                                 .addComponent(siglaPartidoCria, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                            .addComponent(nomePartidoCria, javax.swing.GroupLayout.DEFAULT_SIZE, 576, Short.MAX_VALUE)
+                            .addComponent(nomePartidoCria, javax.swing.GroupLayout.DEFAULT_SIZE, 606, Short.MAX_VALUE)
                             .addGroup(CriaPane5Layout.createSequentialGroup()
                                 .addComponent(numeroPartidoCria, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(0, 0, Short.MAX_VALUE)))))
@@ -1111,7 +1235,7 @@ public class DBGUI extends javax.swing.JFrame {
             .addGroup(CriaPane6Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(atualizaPartido)
-                .addContainerGap(1138, Short.MAX_VALUE))
+                .addContainerGap(1168, Short.MAX_VALUE))
             .addComponent(jScrollPane11)
             .addGroup(CriaPane6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(CriaPane6Layout.createSequentialGroup()
@@ -1149,7 +1273,308 @@ public class DBGUI extends javax.swing.JFrame {
         );
 
         MainPane.addTab("Registro", jPanel1);
-        MainPane.addTab("Pessoas", pessoasPane);
+
+        tabelaPessoaFilia.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "Número Título Eleitor", "Nome", "Zona", "Estado", "Seção"
+            }
+        ) {
+            Class[] types = new Class [] {
+                java.lang.String.class, java.lang.String.class, java.lang.Integer.class, java.lang.String.class, java.lang.Integer.class
+            };
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jScrollPane4.setViewportView(tabelaPessoaFilia);
+        if (tabelaPessoaFilia.getColumnModel().getColumnCount() > 0) {
+            tabelaPessoaFilia.getColumnModel().getColumn(0).setMinWidth(120);
+            tabelaPessoaFilia.getColumnModel().getColumn(1).setMinWidth(410);
+            tabelaPessoaFilia.getColumnModel().getColumn(2).setMinWidth(120);
+            tabelaPessoaFilia.getColumnModel().getColumn(3).setMinWidth(100);
+            tabelaPessoaFilia.getColumnModel().getColumn(4).setMinWidth(410);
+        }
+
+        tabelaPartidoFilia.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "Número Partido", "Nome Partido", "Sigla"
+            }
+        ) {
+            Class[] types = new Class [] {
+                java.lang.Integer.class, java.lang.Object.class, java.lang.Object.class
+            };
+            boolean[] canEdit = new boolean [] {
+                false, false, false
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jScrollPane7.setViewportView(tabelaPartidoFilia);
+        if (tabelaPartidoFilia.getColumnModel().getColumnCount() > 0) {
+            tabelaPartidoFilia.getColumnModel().getColumn(0).setMinWidth(100);
+            tabelaPartidoFilia.getColumnModel().getColumn(1).setMinWidth(380);
+            tabelaPartidoFilia.getColumnModel().getColumn(2).setMinWidth(100);
+        }
+
+        filiaButton.setText("Filiar");
+        filiaButton.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                filiaButtonMouseClicked(evt);
+            }
+        });
+
+        atualizaFilia.setText("Procurar Dados");
+        atualizaFilia.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                atualizaFiliaMouseClicked(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
+        jPanel2.setLayout(jPanel2Layout);
+        jPanel2Layout.setHorizontalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 580, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(atualizaFilia))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGap(36, 36, 36)
+                        .addComponent(filiaButton)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jScrollPane7, javax.swing.GroupLayout.PREFERRED_SIZE, 582, javax.swing.GroupLayout.PREFERRED_SIZE))
+        );
+        jPanel2Layout.setVerticalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jScrollPane4)
+            .addComponent(jScrollPane7, javax.swing.GroupLayout.DEFAULT_SIZE, 463, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(atualizaFilia)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(filiaButton)
+                .addGap(199, 199, 199))
+        );
+
+        filiacaoPane.addTab("Filiar", jPanel2);
+
+        tabelaFilia.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "Número Título Eleitor", "Nome do Eleitor", "Número Partido", "Sigla Partido", "Nome do Partido", ""
+            }
+        ) {
+            Class[] types = new Class [] {
+                java.lang.String.class, java.lang.String.class, java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.Object.class
+            };
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false, false
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jScrollPane10.setViewportView(tabelaFilia);
+        if (tabelaFilia.getColumnModel().getColumnCount() > 0) {
+            tabelaFilia.getColumnModel().getColumn(0).setMinWidth(120);
+            tabelaFilia.getColumnModel().getColumn(1).setMinWidth(410);
+            tabelaFilia.getColumnModel().getColumn(2).setMinWidth(120);
+            tabelaFilia.getColumnModel().getColumn(3).setMinWidth(100);
+            tabelaFilia.getColumnModel().getColumn(4).setMinWidth(410);
+            tabelaFilia.getColumnModel().getColumn(5).setMinWidth(100);
+        }
+
+        atualizarTabelaFilia.setText("Procurar Dados");
+        atualizarTabelaFilia.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                atualizarTabelaFiliaMouseClicked(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
+        jPanel4.setLayout(jPanel4Layout);
+        jPanel4Layout.setHorizontalGroup(
+            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel4Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(atualizarTabelaFilia)
+                .addContainerGap(1168, Short.MAX_VALUE))
+            .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addComponent(jScrollPane10, javax.swing.GroupLayout.DEFAULT_SIZE, 1285, Short.MAX_VALUE))
+        );
+        jPanel4Layout.setVerticalGroup(
+            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel4Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(atualizarTabelaFilia)
+                .addContainerGap(429, Short.MAX_VALUE))
+            .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
+                    .addGap(0, 50, Short.MAX_VALUE)
+                    .addComponent(jScrollPane10, javax.swing.GroupLayout.PREFERRED_SIZE, 413, javax.swing.GroupLayout.PREFERRED_SIZE)))
+        );
+
+        filiacaoPane.addTab("Consulta", jPanel4);
+
+        pessoasPane.addTab("Filiação", filiacaoPane);
+
+        tabelaFuncionario.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "Título de Eleitor", "Nome", "Endereço", "Data de Nascimento", "Escolaridade", "Tipo", "Zona", "Estado", "Seção", "Cargo"
+            }
+        ) {
+            Class[] types = new Class [] {
+                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Integer.class, java.lang.String.class, java.lang.Integer.class, java.lang.String.class
+            };
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false, false, false, false, false, false
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jScrollPane12.setViewportView(tabelaFuncionario);
+        if (tabelaFuncionario.getColumnModel().getColumnCount() > 0) {
+            tabelaFuncionario.getColumnModel().getColumn(0).setMinWidth(120);
+            tabelaFuncionario.getColumnModel().getColumn(1).setMinWidth(182);
+            tabelaFuncionario.getColumnModel().getColumn(2).setMinWidth(182);
+            tabelaFuncionario.getColumnModel().getColumn(3).setMinWidth(120);
+            tabelaFuncionario.getColumnModel().getColumn(4).setMinWidth(100);
+            tabelaFuncionario.getColumnModel().getColumn(5).setMinWidth(100);
+            tabelaFuncionario.getColumnModel().getColumn(6).setMinWidth(90);
+            tabelaFuncionario.getColumnModel().getColumn(7).setMinWidth(90);
+            tabelaFuncionario.getColumnModel().getColumn(8).setMinWidth(90);
+            tabelaFuncionario.getColumnModel().getColumn(9).setMinWidth(90);
+        }
+
+        atualizaFuncionario.setText("Procurar Dados");
+        atualizaFuncionario.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                atualizaFuncionarioMouseClicked(evt);
+            }
+        });
+
+        cargoFuncionario.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+
+        jLabel1.setText("Cargo do Funcionário:");
+
+        insereFuncionario.setText("Insere Funcionário");
+        insereFuncionario.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                insereFuncionarioMouseClicked(evt);
+            }
+        });
+
+        alteraFuncionario.setText("Altera Funcionário");
+        alteraFuncionario.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                alteraFuncionarioMouseClicked(evt);
+            }
+        });
+
+        deletaFuncionario.setText("Deleta Funcionário");
+        deletaFuncionario.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                deletaFuncionarioMouseClicked(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
+        jPanel6.setLayout(jPanel6Layout);
+        jPanel6Layout.setHorizontalGroup(
+            jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jScrollPane12)
+            .addGroup(jPanel6Layout.createSequentialGroup()
+                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel6Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(atualizaFuncionario))
+                    .addGroup(jPanel6Layout.createSequentialGroup()
+                        .addGap(18, 18, 18)
+                        .addComponent(jLabel1)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(cargoFuncionario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel6Layout.createSequentialGroup()
+                        .addGap(109, 109, 109)
+                        .addComponent(insereFuncionario)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(alteraFuncionario)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(deletaFuncionario)))
+                .addContainerGap(808, Short.MAX_VALUE))
+        );
+        jPanel6Layout.setVerticalGroup(
+            jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel6Layout.createSequentialGroup()
+                .addGap(0, 15, Short.MAX_VALUE)
+                .addComponent(atualizaFuncionario)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jScrollPane12, javax.swing.GroupLayout.PREFERRED_SIZE, 324, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(cargoFuncionario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel1))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(insereFuncionario)
+                    .addComponent(alteraFuncionario)
+                    .addComponent(deletaFuncionario))
+                .addGap(46, 46, 46))
+        );
+
+        pessoasPane.addTab("Funcionários", jPanel6);
+
+        javax.swing.GroupLayout jPanel7Layout = new javax.swing.GroupLayout(jPanel7);
+        jPanel7.setLayout(jPanel7Layout);
+        jPanel7Layout.setHorizontalGroup(
+            jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 1290, Short.MAX_VALUE)
+        );
+        jPanel7Layout.setVerticalGroup(
+            jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 491, Short.MAX_VALUE)
+        );
+
+        pessoasPane.addTab("Candidatos", jPanel7);
+
+        MainPane.addTab("Gerenciamento da Eleição", pessoasPane);
         MainPane.addTab("Votos", votosPane);
         MainPane.addTab("Relatórios", relatoriosPane);
 
@@ -1157,9 +1582,7 @@ public class DBGUI extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(MainPane)
-                .addGap(0, 0, 0))
+            .addComponent(MainPane)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1184,16 +1607,18 @@ public class DBGUI extends javax.swing.JFrame {
                 JTable table = (JTable) e.getSource();
                 int row = Integer.valueOf(e.getActionCommand());
                 
-                try {
-                    java.util.Date date = new SimpleDateFormat("DD/MM/YYYY").parse((String)tabelaPessoa.getValueAt(row, 3));
-                } catch (Exception ex) {
-                    JOptionPane.showMessageDialog(null, "Data de Nascimento em formato inválido.\nPor favor, utilize o formato DD/MM/YYYY.\n"+ex.getMessage());
-                    return;
+                if (((String)tabelaPessoa.getValueAt(row, 3)) != null){
+                    try {
+                        java.util.Date date = new SimpleDateFormat("DD/MM/YYYY").parse((String)tabelaPessoa.getValueAt(row, 3));
+                    } catch (Exception ex) {
+                        JOptionPane.showMessageDialog(null, "Data de Nascimento em formato inválido.\nPor favor, utilize o formato DD/MM/YYYY.\n"+ex.getMessage());
+                        return;
+                    }
                 }
                 
                 try {
                     System.out.println(tabelaPessoa.getValueAt(row, 0)+" "+tabelaPessoa.getValueAt(row, 1)+" "+tabelaPessoa.getValueAt(row, 2)+" "+tabelaPessoa.getValueAt(row, 3)+" "+tabelaPessoa.getValueAt(row, 4)+" "+tabelaPessoa.getValueAt(row, 5)+" "+tabelaPessoa.getValueAt(row, 6)+" "+tabelaPessoa.getValueAt(row, 7)+" "+tabelaPessoa.getValueAt(row, 8));
-                    dml.updatePessoa(tabelaPessoa.getValueAt(row, 0).toString(), tabelaPessoa.getValueAt(row, 1).toString(), tabelaPessoa.getValueAt(row, 2).toString(), tabelaPessoa.getValueAt(row, 3).toString(), tabelaPessoa.getValueAt(row, 4).toString(), tabelaPessoa.getValueAt(row, 5).toString(), tabelaPessoa.getValueAt(row, 6).toString(), tabelaPessoa.getValueAt(row, 7).toString(), tabelaPessoa.getValueAt(row, 8).toString());
+                    dml.updatePessoa((String)tabelaPessoa.getValueAt(row, 0), (String)tabelaPessoa.getValueAt(row, 1), (String)tabelaPessoa.getValueAt(row, 2), (String)tabelaPessoa.getValueAt(row, 3), (String)tabelaPessoa.getValueAt(row, 4), (String)tabelaPessoa.getValueAt(row, 5), (String)tabelaPessoa.getValueAt(row, 6), (String)tabelaPessoa.getValueAt(row, 7), (String)tabelaPessoa.getValueAt(row, 8));
                     JOptionPane.showMessageDialog(null, "Valor atualizado com sucesso.\n");
                 } catch (SQLException ex) {
                     JOptionPane.showMessageDialog(null, "Problemas ao atualizar Pessoa.\n"+ErrorTranslator.translate("Zona", ex));
@@ -1206,7 +1631,7 @@ public class DBGUI extends javax.swing.JFrame {
                 JTable table = (JTable) e.getSource();
                 int row = Integer.valueOf(e.getActionCommand());
                 try {
-                    dml.deletePessoa(tabelaPessoa.getValueAt(row, 0).toString());
+                    dml.deletePessoa((String)tabelaPessoa.getValueAt(row, 0));
                     JOptionPane.showMessageDialog(null, "Valor deletado com sucesso.\n");
                     ((DefaultTableModel)table.getModel()).removeRow(row);
                 } catch (SQLException ex) {
@@ -1215,23 +1640,53 @@ public class DBGUI extends javax.swing.JFrame {
             }
         };
 
-        TableManipulator.setNewModel(tabelaPessoa, new int[]{0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1});
+        TableManipulator.setNewModel(tabelaPessoa, new int[]{0, 1, 1, 1, 1, 1, 0, 0, 0, 1, 1});
         TableManipulator.fillTable(tabelaPessoa, res, new int[]{9, 10}, new String[]{"save", "delete"}, new Action[]{save, delete});
         TableManipulator.adjustColumnWidth(tabelaPessoa, new int[]{120, 182, 182, 120, 100, 100, 90, 90, 90, 90, 90});
-        TableManipulator.centralizeColumns(tabelaSecao, new int[]{3, 4, 5, 6, 7, 8});
+        TableManipulator.centralizeColumns(tabelaPessoa, new int[]{3, 4, 5, 6, 7, 8});
     }//GEN-LAST:event_atualizaPessoaMouseClicked
 
-    private void tipoUrnaCria1ItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_tipoUrnaCria1ItemStateChanged
-        // TODO add your handling code here:
-    }//GEN-LAST:event_tipoUrnaCria1ItemStateChanged
+    private void atualizaSecaoPessoaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_atualizaSecaoPessoaMouseClicked
+        ResultSet res;
+        try {
+            res = ds.selectAllSecao();
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Problemas ao selecionar Seções Eleitorais.\n"+ErrorTranslator.translate("Zona", ex));
+            return;
+        }
+        
+        TableManipulator.setNewModel(tabelaSecaoPessoa, new int[]{0, 0, 0, 0, 0});
+        TableManipulator.fillTable(tabelaSecaoPessoa, res, new int[]{}, new String[]{}, new Action[]{});
+        TableManipulator.centralizeColumns(tabelaSecaoPessoa, new int[]{0, 1, 2, 4});
+        TableManipulator.adjustColumnWidth(tabelaSecaoPessoa, new int[]{120, 182, 182, 100, 100});
+        tabelaSecaoPessoa.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+    }//GEN-LAST:event_atualizaSecaoPessoaMouseClicked
 
-    private void atualizaSecaoUrna1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_atualizaSecaoUrna1MouseClicked
-        // TODO add your handling code here:
-    }//GEN-LAST:event_atualizaSecaoUrna1MouseClicked
-
-    private void insereUrnaBotaoCria1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_insereUrnaBotaoCria1MouseClicked
-        // TODO add your handling code here:
-    }//GEN-LAST:event_insereUrnaBotaoCria1MouseClicked
+    private void inserePessoaCriaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_inserePessoaCriaMouseClicked
+        if (!dataNascPessoa.getText().isEmpty()){
+            try {
+                java.util.Date date = new SimpleDateFormat("DD/MM/YYYY").parse(dataNascPessoa.getText());
+            } catch (Exception ex) {
+                JOptionPane.showMessageDialog(null, "Data de Nascimento em formato inválido.\nPor favor, utilize o formato DD/MM/YYYY.\n"+ex.getMessage());
+                return;
+            }
+        }
+        if (!nroTitEleitorPessoa.getText().matches("^\\d{12}$")){
+            JOptionPane.showMessageDialog(null, "Numero de título de eleitor inválido.\n");
+            return;
+        }
+        if (tabelaSecaoPessoa.getSelectedRowCount() != 1){
+            JOptionPane.showMessageDialog(null, "Selecione uma Seção Eleitoral, antes de prosseguir.\n");
+            return;
+        }
+        
+        try {
+            dml.inserePessoa(nroTitEleitorPessoa.getText(), nomePessoa.getText(), endPessoa.getText(), (String)dataNascPessoa.getText(), (String)escolaridadePessoa.getSelectedItem(), (String)tipoPessoa.getSelectedItem(), (String)tabelaSecaoPessoa.getValueAt(tabelaSecaoPessoa.getSelectedRow(), 0), (String)tabelaSecaoPessoa.getValueAt(tabelaSecaoPessoa.getSelectedRow(), 1), (String)tabelaSecaoPessoa.getValueAt(tabelaSecaoPessoa.getSelectedRow(), 2));
+            JOptionPane.showMessageDialog(null, "Pessoa inserida com sucesso.\n");
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Problemas ao inserir Pessoa.\n"+ErrorTranslator.translate("Zona", ex));
+        }
+    }//GEN-LAST:event_inserePessoaCriaMouseClicked
 
     private void atualizaUrnaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_atualizaUrnaMouseClicked
         ResultSet res;
@@ -1244,26 +1699,13 @@ public class DBGUI extends javax.swing.JFrame {
         
         DefaultTableModel model = new myTableModel(new int[]{0, 0, 0, 0, 1, 1, 1, 1});
 
-        Action save = new AbstractAction() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                JTable table = (JTable) e.getSource();
-                int row = Integer.valueOf(e.getActionCommand());
-                try {
-                    dml.updateUrna((String)tabelaUrna.getValueAt(row, 0).toString(), (String)tabelaUrna.getValueAt(row, 1).toString(), (String)tabelaUrna.getValueAt(row, 2), (String)tabelaUrna.getValueAt(row, 3).toString(), (String)tabelaUrna.getValueAt(row, 4).toString(), (String)tabelaUrna.getValueAt(row, 5).toString());
-                    JOptionPane.showMessageDialog(null, "Valor atualizado com sucesso.\n");
-                } catch (SQLException ex) {
-                    JOptionPane.showMessageDialog(null, "Problemas ao atualizar Seção Eleitoral.\n"+ErrorTranslator.translate("Zona", ex));
-                }
-            }
-        };
         Action delete = new AbstractAction() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 JTable table = (JTable) e.getSource();
                 int row = Integer.valueOf(e.getActionCommand());
                 try {
-                    dml.deleteUrna((String)tabelaUrna.getValueAt(row, 0).toString(), (String)tabelaUrna.getValueAt(row, 1).toString(), (String)tabelaUrna.getValueAt(row, 2).toString(), (String)tabelaUrna.getValueAt(row, 3).toString());
+                    dml.deleteUrna((String)tabelaUrna.getValueAt(row, 0), (String)tabelaUrna.getValueAt(row, 1), (String)tabelaUrna.getValueAt(row, 2), (String)tabelaUrna.getValueAt(row, 3));
                     JOptionPane.showMessageDialog(null, "Valor deletado com sucesso.\n");
                     ((DefaultTableModel)table.getModel()).removeRow(row);
                 } catch (SQLException ex) {
@@ -1272,8 +1714,8 @@ public class DBGUI extends javax.swing.JFrame {
             }
         };
 
-        TableManipulator.setNewModel(tabelaUrna, new int[]{0, 0, 0, 0, 1, 1, 1, 1});
-        TableManipulator.fillTable(tabelaUrna, res, new int[]{6, 7}, new String[]{"save", "delete"}, new Action[]{save, delete});
+        TableManipulator.setNewModel(tabelaUrna, new int[]{0, 0, 0, 0, 0, 0, 1});
+        TableManipulator.fillTable(tabelaUrna, res, new int[]{6}, new String[]{"delete"}, new Action[]{delete});
         TableManipulator.centralizeColumns(tabelaUrna, new int[]{0, 1, 2, 3, 4, 5});
         //TableManipulator.adjustColumnWidth(tabelaUrna, new int[]{});
     }//GEN-LAST:event_atualizaUrnaMouseClicked
@@ -1310,7 +1752,7 @@ public class DBGUI extends javax.swing.JFrame {
             return;
         }
         try {
-            dml.insereUrna((String)tabelaSecaoUrna.getValueAt(tabelaSecaoUrna.getSelectedRow(), 0).toString(), (String)tabelaSecaoUrna.getValueAt(tabelaSecaoUrna.getSelectedRow(), 1).toString(), (String)tabelaSecaoUrna.getValueAt(tabelaSecaoUrna.getSelectedRow(), 2).toString(), (String)tipoUrnaCria.getSelectedItem().toString(), (String)modeloUrnaCria.getSelectedItem().toString());
+            dml.insereUrna((String)tabelaSecaoUrna.getValueAt(tabelaSecaoUrna.getSelectedRow(), 0), (String)tabelaSecaoUrna.getValueAt(tabelaSecaoUrna.getSelectedRow(), 1), (String)tabelaSecaoUrna.getValueAt(tabelaSecaoUrna.getSelectedRow(), 2), (String)tipoUrnaCria.getSelectedItem(), (String)modeloUrnaCria.getSelectedItem());
             JOptionPane.showMessageDialog(null, "Valor inserido com sucesso.\n");
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, "Problemas ao inserir Urna Eleitoral.\n"+ErrorTranslator.translate("Zona", ex));
@@ -1332,7 +1774,7 @@ public class DBGUI extends javax.swing.JFrame {
                 JTable table = (JTable) e.getSource();
                 int row = Integer.valueOf(e.getActionCommand());
                 try {
-                    dml.updateSecao(tabelaSecao.getValueAt(row, 0).toString(), tabelaSecao.getValueAt(row, 1).toString(), tabelaSecao.getValueAt(row, 2).toString(), tabelaSecao.getValueAt(row, 3).toString());
+                    dml.updateSecao((String)tabelaSecao.getValueAt(row, 0), (String)tabelaSecao.getValueAt(row, 1), (String)tabelaSecao.getValueAt(row, 2), (String)tabelaSecao.getValueAt(row, 3));
                     JOptionPane.showMessageDialog(null, "Valor atualizado com sucesso.\n");
                 } catch (SQLException ex) {
                     JOptionPane.showMessageDialog(null, "Problemas ao atualizar Seção Eleitoral.\n"+ErrorTranslator.translate("Zona", ex));
@@ -1345,7 +1787,7 @@ public class DBGUI extends javax.swing.JFrame {
                 JTable table = (JTable) e.getSource();
                 int row = Integer.valueOf(e.getActionCommand());
                 try {
-                    dml.deleteSecao((String)tabelaSecao.getValueAt(row, 0).toString(), (String)tabelaSecao.getValueAt(row, 1).toString(), (String)tabelaSecao.getValueAt(row, 2).toString());
+                    dml.deleteSecao((String)tabelaSecao.getValueAt(row, 0), (String)tabelaSecao.getValueAt(row, 1), (String)tabelaSecao.getValueAt(row, 2));
                     JOptionPane.showMessageDialog(null, "Valor deletado com sucesso.\n");
                     ((DefaultTableModel)table.getModel()).removeRow(row);
                 } catch (SQLException ex) {
@@ -1388,7 +1830,7 @@ public class DBGUI extends javax.swing.JFrame {
             return;
         }
         try {
-            dml.insereSecao((String)tabelaZonaSecao.getValueAt(tabelaZonaSecao.getSelectedRow(), 0).toString(), (String)tabelaZonaSecao.getValueAt(tabelaZonaSecao.getSelectedRow(), 1).toString(), (String)numeroSecaoCria.getValue().toString(), (String)localSecaoCria.getText().toString());
+            dml.insereSecao((String)tabelaZonaSecao.getValueAt(tabelaZonaSecao.getSelectedRow(), 0), (String)tabelaZonaSecao.getValueAt(tabelaZonaSecao.getSelectedRow(), 1), numeroSecaoCria.getValue().toString(), (String)localSecaoCria.getText());
             JOptionPane.showMessageDialog(null, "Valor inserido com sucesso.\n");
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, "Problemas ao inserir Seção Eleitoral.\n"+ErrorTranslator.translate("Zona", ex));
@@ -1410,7 +1852,7 @@ public class DBGUI extends javax.swing.JFrame {
                 JTable table = (JTable) e.getSource();
                 int row = Integer.valueOf(e.getActionCommand());
                 try {
-                    dml.updateZona(tabelaZona.getValueAt(row, 0).toString(), tabelaZona.getValueAt(row, 1).toString(), tabelaZona.getValueAt(row, 2).toString());
+                    dml.updateZona((String)tabelaZona.getValueAt(row, 0), (String)tabelaZona.getValueAt(row, 1), (String)tabelaZona.getValueAt(row, 2));
                     JOptionPane.showMessageDialog(null, "Valor atualizado com sucesso.\n");
                 } catch (SQLException ex) {
                     JOptionPane.showMessageDialog(null, "Problemas ao atualizar Zona Eleitoral.\n"+ErrorTranslator.translate("Zona", ex));
@@ -1423,7 +1865,7 @@ public class DBGUI extends javax.swing.JFrame {
                 JTable table = (JTable) e.getSource();
                 int row = Integer.valueOf(e.getActionCommand());
                 try {
-                    dml.deleteZona((String)tabelaZona.getValueAt(row, 0).toString(), (String)tabelaZona.getValueAt(row, 1).toString());
+                    dml.deleteZona((String)tabelaZona.getValueAt(row, 0), (String)tabelaZona.getValueAt(row, 1));
                     JOptionPane.showMessageDialog(null, "Valor deletado com sucesso.\n");
                     ((DefaultTableModel)table.getModel()).removeRow(row);
                 } catch (SQLException ex) {
@@ -1445,7 +1887,7 @@ public class DBGUI extends javax.swing.JFrame {
         }
         
         try {
-            dml.insereZona((String)numeroZonaCria.getValue().toString(), (String)estadoZonaCria.getSelectedItem().toString(), (String)enderecoZonaCria.getText().toString());
+            dml.insereZona(numeroZonaCria.getValue().toString(), (String)estadoZonaCria.getSelectedItem(), (String)enderecoZonaCria.getText());
             JOptionPane.showMessageDialog(null, "Valor inserido com sucesso.\n");
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, "Problemas ao inserir Zona Eleitoral.\n"+ErrorTranslator.translate("Zona", ex));
@@ -1471,7 +1913,7 @@ public class DBGUI extends javax.swing.JFrame {
                 JTable table = (JTable) e.getSource();
                 int row = Integer.valueOf(e.getActionCommand());
                 try {
-                    dml.updatePartido((String)tabelaPartido.getValueAt(row, 0).toString(), (String)tabelaPartido.getValueAt(row, 1).toString(), (String)tabelaPartido.getValueAt(row, 2).toString());
+                    dml.updatePartido((String)tabelaPartido.getValueAt(row, 0), (String)tabelaPartido.getValueAt(row, 1), (String)tabelaPartido.getValueAt(row, 2));
                     JOptionPane.showMessageDialog(null, "Valor atualizado com sucesso.\n");
                 } catch (SQLException ex) {
                     JOptionPane.showMessageDialog(null, "Problemas ao atualizar Partido.\n"+ErrorTranslator.translate("Zona", ex));
@@ -1484,7 +1926,7 @@ public class DBGUI extends javax.swing.JFrame {
                 JTable table = (JTable) e.getSource();
                 int row = Integer.valueOf(e.getActionCommand());
                 try {
-                    dml.deletePartido((String)tabelaPartido.getValueAt(row, 0).toString());
+                    dml.deletePartido((String)tabelaPartido.getValueAt(row, 0));
                     JOptionPane.showMessageDialog(null, "Valor deletado com sucesso.\n");
                     ((DefaultTableModel)table.getModel()).removeRow(row);
                 } catch (SQLException ex) {
@@ -1510,12 +1952,180 @@ public class DBGUI extends javax.swing.JFrame {
         }
         
         try {
-            dml.inserePartido((String)numeroPartidoCria.getValue().toString(), nomePartidoCria.getText().toString(), siglaPartidoCria.getText().toString());
+            dml.inserePartido(numeroPartidoCria.getValue().toString(), nomePartidoCria.getText(), siglaPartidoCria.getText());
             JOptionPane.showMessageDialog(null, "Valor inserido com sucesso.\n");
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, "Problemas ao inserir Zona Eleitoral.\n"+ErrorTranslator.translate("Zona", ex));
         }
     }//GEN-LAST:event_inserePartidoBotaoCriaMouseClicked
+
+    private void nroTitEleitorPessoaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nroTitEleitorPessoaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_nroTitEleitorPessoaActionPerformed
+
+    private void nomePessoaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nomePessoaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_nomePessoaActionPerformed
+
+    private void endPessoaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_endPessoaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_endPessoaActionPerformed
+
+    private void dataNascPessoaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_dataNascPessoaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_dataNascPessoaActionPerformed
+
+    private void escolaridadePessoaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_escolaridadePessoaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_escolaridadePessoaActionPerformed
+
+    private void tipoPessoaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tipoPessoaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_tipoPessoaActionPerformed
+
+    private void atualizaSecaoPessoaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_atualizaSecaoPessoaActionPerformed
+        
+    }//GEN-LAST:event_atualizaSecaoPessoaActionPerformed
+
+    private void inserePessoaCriaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_inserePessoaCriaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_inserePessoaCriaActionPerformed
+
+    private void atualizaFiliaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_atualizaFiliaMouseClicked
+        ResultSet pessoas, partidos;
+        try {
+            pessoas = ds.selectAllPessoa();
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Problemas ao selecionar Pessoas.\n"+ErrorTranslator.translate("Seção", ex));
+            return;
+        }
+        try {
+            partidos = ds.selectAllPartido();
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Problemas ao selecionar Partidos.\n"+ErrorTranslator.translate("Seção", ex));
+            return;
+        }
+        
+        TableManipulator.setNewModel(tabelaPessoaFilia, new int[]{0, 0, 0, 0, 0});
+        TableManipulator.fillTable(tabelaPessoaFilia, pessoas, new int[]{1, 2, 7, 8, 9}, new int[]{}, new String[]{}, new Action[]{});
+        TableManipulator.adjustColumnWidth(tabelaPessoaFilia, new int[]{120, 260, 60, 60, 60});
+        TableManipulator.centralizeColumns(tabelaPessoaFilia, new int[]{0, 2, 3, 4});
+        tabelaPessoaFilia.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+        
+        TableManipulator.setNewModel(tabelaPartidoFilia, new int[]{0, 0, 0});
+        TableManipulator.fillTable(tabelaPartidoFilia, partidos, new int[]{1, 2, 3}, new int[]{}, new String[]{}, new Action[]{});
+        TableManipulator.adjustColumnWidth(tabelaPartidoFilia, new int[]{100, 380, 100});
+        TableManipulator.centralizeColumns(tabelaPartidoFilia, new int[]{0, 2});
+        tabelaPartidoFilia.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+    }//GEN-LAST:event_atualizaFiliaMouseClicked
+
+    private void filiaButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_filiaButtonMouseClicked
+        if (tabelaPessoaFilia.getSelectedRowCount() != 1){
+            JOptionPane.showMessageDialog(null, "Selecione uma pessoa antes de prosseguir.\n");
+            return;
+        }
+        if (tabelaPartidoFilia.getSelectedRowCount() != 1){
+            JOptionPane.showMessageDialog(null, "Selecione um partido antes de prosseguir.\n");
+            return;
+        }
+        try {
+            dml.insereFilia((String)tabelaPessoaFilia.getValueAt(tabelaPessoaFilia.getSelectedRow(), 0), (String)tabelaPartidoFilia.getValueAt(tabelaPartidoFilia.getSelectedRow(), 0));
+            JOptionPane.showMessageDialog(null, "Eleitor filiado com sucesso.\n");
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Problemas um filiar pessoa a partido.\n"+ErrorTranslator.translate(null, ex));
+        }
+    }//GEN-LAST:event_filiaButtonMouseClicked
+
+    private void atualizarTabelaFiliaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_atualizarTabelaFiliaMouseClicked
+        ResultSet rs;
+        try {
+            rs = ds.selectAllFilia();
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Problemas ao selecionar Filiacoes\n"+ErrorTranslator.translate("Seção", ex));
+            return;
+        }
+        
+        Action delete = new AbstractAction() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                JTable table = (JTable) e.getSource();
+                int row = Integer.valueOf(e.getActionCommand());
+                try {
+                    dml.deleteFilia((String)tabelaFilia.getValueAt(row, 0));
+                    JOptionPane.showMessageDialog(null, "Valor deletado com sucesso.\n");
+                    ((DefaultTableModel)table.getModel()).removeRow(row);
+                } catch (SQLException ex) {
+                    JOptionPane.showMessageDialog(null, "Problemas ao deletar Filiaçao.\n"+ErrorTranslator.translate("Zona", ex));
+                }
+            }
+        };
+        
+        TableManipulator.setNewModel(tabelaFilia, new int[]{0, 0, 0, 0, 0, 1});
+        TableManipulator.fillTable(tabelaFilia, rs, new int[]{5}, new String[]{"delete"}, new Action[]{delete});
+        TableManipulator.adjustColumnWidth(tabelaFilia, new int[]{120, 410, 120, 100, 410, 100});
+        TableManipulator.centralizeColumns(tabelaFilia, new int[]{0, 2, 3, 4});
+    }//GEN-LAST:event_atualizarTabelaFiliaMouseClicked
+
+    private void atualizaFuncionarioMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_atualizaFuncionarioMouseClicked
+        ResultSet rs;
+        try {
+            rs = ds.selectAllFuncionario();
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Problemas ao selecionar Funcionarios\n"+ErrorTranslator.translate("Seção", ex));
+            return;
+        }
+        
+        TableManipulator.setNewModel(tabelaFuncionario, new int[]{0, 0, 0, 0, 0, 0, 0, 0, 0, 0});
+        TableManipulator.fillTableFuncionario(tabelaFuncionario, rs, new int[]{}, new String[]{}, new Action[]{});
+        TableManipulator.adjustColumnWidth(tabelaFuncionario, new int[]{120, 182, 182, 120, 100, 100, 90, 90, 90, 90});
+        TableManipulator.centralizeColumns(tabelaFuncionario, new int[]{0, 2, 3, 4, 5, 6, 7, 8, 9});
+        tabelaFuncionario.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+    }//GEN-LAST:event_atualizaFuncionarioMouseClicked
+
+    private void insereFuncionarioMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_insereFuncionarioMouseClicked
+        int row = tabelaFuncionario.getSelectedRow();
+        if (row == -1){
+            JOptionPane.showMessageDialog(null, "Selecione pelo menos uma pessoa antes de prosseguir.\n");
+            return;
+        }
+        try {
+            dml.insereFuncionario((String)tabelaFuncionario.getValueAt(row, 0), (String)cargoFuncionario.getSelectedItem(), (String)tabelaFuncionario.getValueAt(row, 6), (String)tabelaFuncionario.getValueAt(row, 7), (String)tabelaFuncionario.getValueAt(row, 8));
+            JOptionPane.showMessageDialog(null, "Valor inserido com sucesso.\n");
+            atualizaFuncionarioMouseClicked(null);
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Problemas ao inserir Funcionário.\n"+ErrorTranslator.translate("Zona", ex));
+        }
+    }//GEN-LAST:event_insereFuncionarioMouseClicked
+
+    private void deletaFuncionarioMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_deletaFuncionarioMouseClicked
+        int row = tabelaFuncionario.getSelectedRow();
+        if (row == -1){
+            JOptionPane.showMessageDialog(null, "Selecione pelo menos uma pessoa antes de prosseguir.\n");
+            return;
+        }
+        try {
+            dml.deleteFuncionario((String)tabelaFuncionario.getValueAt(row, 0));
+            JOptionPane.showMessageDialog(null, "Valor removido com sucesso.\n");
+            atualizaFuncionarioMouseClicked(null);
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Problemas ao remover Funcionário.\n"+ErrorTranslator.translate("Zona", ex));
+        }
+    }//GEN-LAST:event_deletaFuncionarioMouseClicked
+
+    private void alteraFuncionarioMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_alteraFuncionarioMouseClicked
+        int row = tabelaFuncionario.getSelectedRow();
+        if (row == -1){
+            JOptionPane.showMessageDialog(null, "Selecione pelo menos uma pessoa antes de prosseguir.\n");
+            return;
+        }
+        try {
+            dml.updateFuncionario((String)tabelaFuncionario.getValueAt(row, 0), (String)cargoFuncionario.getSelectedItem());
+            JOptionPane.showMessageDialog(null, "Valor alterado com sucesso.\n");
+            atualizaFuncionarioMouseClicked(null);
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Problemas ao alterar Funcionário.\n"+ErrorTranslator.translate("Zona", ex));
+        }
+    }//GEN-LAST:event_alteraFuncionarioMouseClicked
 
     /**
      * @param args the command line arguments
@@ -1562,57 +2172,84 @@ public class DBGUI extends javax.swing.JFrame {
     private javax.swing.JPanel CriaPane5;
     private javax.swing.JPanel CriaPane6;
     private javax.swing.JTabbedPane MainPane;
+    private javax.swing.JButton alteraFuncionario;
+    private javax.swing.JButton atualizaFilia;
+    private javax.swing.JButton atualizaFuncionario;
     private javax.swing.JButton atualizaPartido;
     private javax.swing.JButton atualizaPessoa;
     private javax.swing.JButton atualizaSecao;
+    private javax.swing.JButton atualizaSecaoPessoa;
     private javax.swing.JButton atualizaSecaoUrna;
-    private javax.swing.JButton atualizaSecaoUrna1;
     private javax.swing.JButton atualizaUrna;
     private javax.swing.JButton atualizaZona;
     private javax.swing.JButton atualizaZonaSecao;
+    private javax.swing.JButton atualizarTabelaFilia;
+    private javax.swing.JComboBox cargoFuncionario;
     private javax.swing.JPanel consultaPane;
     private javax.swing.JPanel consultaPane1;
     private javax.swing.JPanel consultaPane2;
+    private javax.swing.JFormattedTextField dataNascPessoa;
+    private javax.swing.JButton deletaFuncionario;
+    private javax.swing.JTextField endPessoa;
     private javax.swing.JLabel endSecaoLabelCria;
     private javax.swing.JLabel endZonaLabelCria;
     private javax.swing.JTextField enderecoZonaCria;
+    private javax.swing.JComboBox escolaridadePessoa;
     private javax.swing.JComboBox estadoZonaCria;
     private javax.swing.JComboBox estadoZonaCria1;
     private javax.swing.JComboBox estadoZonaCria2;
     private javax.swing.JComboBox estadoZonaCria3;
     private javax.swing.JComboBox estadoZonaCria5;
     private javax.swing.JLabel estadoZonaLabelCria;
+    private javax.swing.JButton filiaButton;
+    private javax.swing.JTabbedPane filiacaoPane;
+    private javax.swing.JButton insereFuncionario;
     private javax.swing.JPanel inserePane;
     private javax.swing.JPanel inserePane1;
     private javax.swing.JPanel inserePane2;
     private javax.swing.JButton inserePartidoBotaoCria;
+    private javax.swing.JButton inserePessoaCria;
     private javax.swing.JButton insereSecaoBotaoCria;
     private javax.swing.JButton insereUrnaBotaoCria;
-    private javax.swing.JButton insereUrnaBotaoCria1;
     private javax.swing.JButton insereZonaBotaoCria;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
+    private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
+    private javax.swing.JPanel jPanel6;
+    private javax.swing.JPanel jPanel7;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane10;
     private javax.swing.JScrollPane jScrollPane11;
+    private javax.swing.JScrollPane jScrollPane12;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
+    private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JScrollPane jScrollPane5;
     private javax.swing.JScrollPane jScrollPane6;
+    private javax.swing.JScrollPane jScrollPane7;
     private javax.swing.JScrollPane jScrollPane8;
     private javax.swing.JScrollPane jScrollPane9;
     private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JTabbedPane jTabbedPane3;
     private javax.swing.JTextField localSecaoCria;
     private javax.swing.JComboBox modeloUrnaCria;
-    private javax.swing.JComboBox modeloUrnaCria1;
     private javax.swing.JLabel modeloUrnaLabelCria;
-    private javax.swing.JLabel modeloUrnaLabelCria1;
     private javax.swing.JLabel modeloUrnaLabelCria2;
     private javax.swing.JLabel modeloUrnaLabelCria3;
     private javax.swing.JTextField nomePartidoCria;
+    private javax.swing.JTextField nomePessoa;
     private javax.swing.JLabel nroSecaoLabelCria;
+    private javax.swing.JFormattedTextField nroTitEleitorPessoa;
     private javax.swing.JLabel nroZonaLabelCria;
+    private javax.swing.JLabel nroZonaLabelCria1;
+    private javax.swing.JLabel nroZonaLabelCria2;
+    private javax.swing.JLabel nroZonaLabelCria3;
+    private javax.swing.JLabel nroZonaLabelCria4;
+    private javax.swing.JLabel nroZonaLabelCria5;
+    private javax.swing.JLabel nroZonaLabelCria6;
     private javax.swing.JSpinner numeroPartidoCria;
     private javax.swing.JSpinner numeroSecaoCria;
     private javax.swing.JSpinner numeroZona2;
@@ -1624,18 +2261,21 @@ public class DBGUI extends javax.swing.JFrame {
     private javax.swing.JTabbedPane relatoriosPane;
     private javax.swing.JPanel secaoPane;
     private javax.swing.JTextField siglaPartidoCria;
+    private javax.swing.JTable tabelaFilia;
+    private javax.swing.JTable tabelaFuncionario;
     private javax.swing.JTable tabelaPartido;
+    private javax.swing.JTable tabelaPartidoFilia;
     private javax.swing.JTable tabelaPessoa;
+    private javax.swing.JTable tabelaPessoaFilia;
     private javax.swing.JTable tabelaSecao;
+    private javax.swing.JTable tabelaSecaoPessoa;
     private javax.swing.JTable tabelaSecaoUrna;
-    private javax.swing.JTable tabelaSecaoUrna1;
     private javax.swing.JTable tabelaUrna;
     private javax.swing.JTable tabelaZona;
     private javax.swing.JTable tabelaZonaSecao;
+    private javax.swing.JComboBox tipoPessoa;
     private javax.swing.JComboBox tipoUrnaCria;
-    private javax.swing.JComboBox tipoUrnaCria1;
     private javax.swing.JLabel tipoUrnaLabelCria;
-    private javax.swing.JLabel tipoUrnaLabelCria1;
     private javax.swing.JLabel tipoUrnaLabelCria2;
     private javax.swing.JTabbedPane urnaConsultaPane;
     private javax.swing.JPanel urnaPane;
