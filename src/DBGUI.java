@@ -61,6 +61,7 @@ public class DBGUI extends javax.swing.JFrame {
     public static String[] escolaridade = {null, "Ensino Fundamental Incompleto", "Ensino Fundamental Completo", "Ensino Médio Incompleto", "Ensino Médio Completo", "Ensino Superior Incompleto", "Ensino Superior Completo"};
     public static String[] tiposPessoa = {null, "Funcionário", "Candidato"};
     public static String[] cargosFuncionario = {"Mesário", "Presidente", "Secretário", "Suplente"};
+    public static String[] cargosCandidato = {"Prefeito", "Vice-prefeito", "Vereador", "Governador" , "Vice-governador", "Presidente", "Vice-presidente"};
     public DataManipulation dml;
     public DataSelection ds;
     
@@ -75,6 +76,7 @@ public class DBGUI extends javax.swing.JFrame {
         escolaridadePessoa.setModel(new javax.swing.DefaultComboBoxModel(escolaridade));
         tipoPessoa.setModel(new javax.swing.DefaultComboBoxModel(tiposPessoa));
         cargoFuncionario.setModel(new javax.swing.DefaultComboBoxModel(cargosFuncionario));
+        cargoCandidato.setModel(new javax.swing.DefaultComboBoxModel(cargosCandidato));
         
         try{
             DBConnector connector = new DBConnector("a7987265", "a7987265", true);
@@ -219,7 +221,24 @@ public class DBGUI extends javax.swing.JFrame {
         insereFuncionario = new javax.swing.JButton();
         alteraFuncionario = new javax.swing.JButton();
         deletaFuncionario = new javax.swing.JButton();
+        jTabbedPane2 = new javax.swing.JTabbedPane();
+        jPanel8 = new javax.swing.JPanel();
+        atualizaPessoaCandidato = new javax.swing.JButton();
+        jScrollPane13 = new javax.swing.JScrollPane();
+        tabelaPessoaCandidato = new javax.swing.JTable();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        nomeFantasia = new javax.swing.JTextField();
+        cargoCandidato = new javax.swing.JComboBox();
+        jScrollPane14 = new javax.swing.JScrollPane();
+        tabelaCandidatoTitular = new javax.swing.JTable();
+        candidatoTitularLabel = new javax.swing.JLabel();
+        insereCandidatoButton = new javax.swing.JButton();
+        atualizaCandidatoTitular = new javax.swing.JButton();
         jPanel7 = new javax.swing.JPanel();
+        jButton1 = new javax.swing.JButton();
+        jScrollPane15 = new javax.swing.JScrollPane();
+        jTable1 = new javax.swing.JTable();
         votosPane = new javax.swing.JTabbedPane();
         relatoriosPane = new javax.swing.JTabbedPane();
 
@@ -297,7 +316,7 @@ public class DBGUI extends javax.swing.JFrame {
                     .addComponent(enderecoZonaCria, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(insereZonaBotaoCria)
-                .addContainerGap(351, Short.MAX_VALUE))
+                .addContainerGap(436, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout inserePaneLayout = new javax.swing.GroupLayout(inserePane);
@@ -381,8 +400,8 @@ public class DBGUI extends javax.swing.JFrame {
                 .addGroup(consultaPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(numeroZona2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(atualizaZona))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 427, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 508, Short.MAX_VALUE))
         );
 
         zonaPane.addTab("Consulta", consultaPane);
@@ -495,7 +514,7 @@ public class DBGUI extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(atualizaZonaSecao)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 323, Short.MAX_VALUE)
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 408, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(CriaPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(nroSecaoLabelCria)
@@ -591,8 +610,8 @@ public class DBGUI extends javax.swing.JFrame {
                 .addGroup(consultaPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(numeroZona3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(atualizaSecao))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 427, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 508, Short.MAX_VALUE))
         );
 
         zonaPane1.addTab("Consulta", consultaPane1);
@@ -712,7 +731,7 @@ public class DBGUI extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(atualizaSecaoUrna)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane6, javax.swing.GroupLayout.DEFAULT_SIZE, 328, Short.MAX_VALUE)
+                .addComponent(jScrollPane6, javax.swing.GroupLayout.DEFAULT_SIZE, 413, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(CriaPane2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(tipoUrnaCria, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -802,8 +821,8 @@ public class DBGUI extends javax.swing.JFrame {
                 .addGroup(consultaPane2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(numeroZona4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(atualizaUrna))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane5, javax.swing.GroupLayout.DEFAULT_SIZE, 497, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -1019,7 +1038,7 @@ public class DBGUI extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(atualizaSecaoPessoa)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane8, javax.swing.GroupLayout.DEFAULT_SIZE, 220, Short.MAX_VALUE)
+                .addComponent(jScrollPane8, javax.swing.GroupLayout.DEFAULT_SIZE, 305, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(inserePessoaCria)
                 .addGap(13, 13, 13))
@@ -1103,7 +1122,7 @@ public class DBGUI extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(atualizaPessoa)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane9, javax.swing.GroupLayout.DEFAULT_SIZE, 423, Short.MAX_VALUE))
+                .addComponent(jScrollPane9))
             .addGroup(CriaPane4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(CriaPane4Layout.createSequentialGroup()
                     .addGap(0, 0, Short.MAX_VALUE)
@@ -1181,7 +1200,7 @@ public class DBGUI extends javax.swing.JFrame {
                     .addComponent(siglaPartidoCria, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(inserePartidoBotaoCria)
-                .addContainerGap(348, Short.MAX_VALUE))
+                .addContainerGap(433, Short.MAX_VALUE))
         );
 
         jTabbedPane3.addTab("Cria Nova", CriaPane5);
@@ -1249,7 +1268,7 @@ public class DBGUI extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(atualizaPartido)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane11, javax.swing.GroupLayout.DEFAULT_SIZE, 423, Short.MAX_VALUE))
+                .addComponent(jScrollPane11))
             .addGroup(CriaPane6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(CriaPane6Layout.createSequentialGroup()
                     .addGap(0, 0, Short.MAX_VALUE)
@@ -1369,7 +1388,7 @@ public class DBGUI extends javax.swing.JFrame {
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jScrollPane4)
-            .addComponent(jScrollPane7, javax.swing.GroupLayout.DEFAULT_SIZE, 463, Short.MAX_VALUE)
+            .addComponent(jScrollPane7, javax.swing.GroupLayout.DEFAULT_SIZE, 548, Short.MAX_VALUE)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(atualizaFilia)
@@ -1436,11 +1455,11 @@ public class DBGUI extends javax.swing.JFrame {
             .addGroup(jPanel4Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(atualizarTabelaFilia)
-                .addContainerGap(429, Short.MAX_VALUE))
+                .addContainerGap(514, Short.MAX_VALUE))
             .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
-                    .addGap(0, 50, Short.MAX_VALUE)
-                    .addComponent(jScrollPane10, javax.swing.GroupLayout.PREFERRED_SIZE, 413, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGap(0, 44, Short.MAX_VALUE)
+                    .addComponent(jScrollPane10, javax.swing.GroupLayout.PREFERRED_SIZE, 504, javax.swing.GroupLayout.PREFERRED_SIZE)))
         );
 
         filiacaoPane.addTab("Consulta", jPanel4);
@@ -1543,10 +1562,10 @@ public class DBGUI extends javax.swing.JFrame {
         jPanel6Layout.setVerticalGroup(
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel6Layout.createSequentialGroup()
-                .addGap(0, 15, Short.MAX_VALUE)
+                .addGap(21, 21, 21)
                 .addComponent(atualizaFuncionario)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jScrollPane12, javax.swing.GroupLayout.PREFERRED_SIZE, 324, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jScrollPane12, javax.swing.GroupLayout.DEFAULT_SIZE, 403, Short.MAX_VALUE)
                 .addGap(18, 18, 18)
                 .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(cargoFuncionario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -1561,18 +1580,209 @@ public class DBGUI extends javax.swing.JFrame {
 
         pessoasPane.addTab("Funcionários", jPanel6);
 
+        atualizaPessoaCandidato.setText("Procurar Dados");
+        atualizaPessoaCandidato.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                atualizaPessoaCandidatoMouseClicked(evt);
+            }
+        });
+
+        tabelaPessoaCandidato.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "Título de Eleitor", "Nome"
+            }
+        ) {
+            Class[] types = new Class [] {
+                java.lang.String.class, java.lang.String.class
+            };
+            boolean[] canEdit = new boolean [] {
+                false, false
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jScrollPane13.setViewportView(tabelaPessoaCandidato);
+        if (tabelaPessoaCandidato.getColumnModel().getColumnCount() > 0) {
+            tabelaPessoaCandidato.getColumnModel().getColumn(0).setMinWidth(100);
+            tabelaPessoaCandidato.getColumnModel().getColumn(1).setMinWidth(280);
+        }
+
+        jLabel2.setText("Nome Fantasia:");
+
+        jLabel3.setText("Cargo:");
+
+        nomeFantasia.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                nomeFantasiaActionPerformed(evt);
+            }
+        });
+
+        cargoCandidato.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        cargoCandidato.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                cargoCandidatoItemStateChanged(evt);
+            }
+        });
+
+        tabelaCandidatoTitular.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "Título de Eleitor", "Nome", "Nome Fantasia", "Cargo"
+            }
+        ) {
+            Class[] types = new Class [] {
+                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Object.class
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+        });
+        jScrollPane14.setViewportView(tabelaCandidatoTitular);
+        if (tabelaCandidatoTitular.getColumnModel().getColumnCount() > 0) {
+            tabelaCandidatoTitular.getColumnModel().getColumn(0).setMinWidth(100);
+            tabelaCandidatoTitular.getColumnModel().getColumn(1).setMinWidth(180);
+            tabelaCandidatoTitular.getColumnModel().getColumn(2).setMinWidth(120);
+            tabelaCandidatoTitular.getColumnModel().getColumn(3).setMinWidth(100);
+        }
+
+        candidatoTitularLabel.setText("Candidato Titular:");
+
+        insereCandidatoButton.setText("Registrar");
+
+        atualizaCandidatoTitular.setText("Procurar Dados");
+        atualizaCandidatoTitular.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                atualizaCandidatoTitularMouseClicked(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel8Layout = new javax.swing.GroupLayout(jPanel8);
+        jPanel8.setLayout(jPanel8Layout);
+        jPanel8Layout.setHorizontalGroup(
+            jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel8Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(atualizaPessoaCandidato)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(jPanel8Layout.createSequentialGroup()
+                .addComponent(jScrollPane13, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(35, 35, 35)
+                .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel8Layout.createSequentialGroup()
+                        .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel8Layout.createSequentialGroup()
+                                .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel2)
+                                    .addComponent(jLabel3))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(nomeFantasia, javax.swing.GroupLayout.PREFERRED_SIZE, 450, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGroup(jPanel8Layout.createSequentialGroup()
+                                        .addComponent(cargoCandidato, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 404, Short.MAX_VALUE)
+                                        .addComponent(insereCandidatoButton))))
+                            .addComponent(candidatoTitularLabel))
+                        .addGap(182, 182, 182))
+                    .addGroup(jPanel8Layout.createSequentialGroup()
+                        .addComponent(atualizaCandidatoTitular)
+                        .addContainerGap())
+                    .addComponent(jScrollPane14)))
+        );
+        jPanel8Layout.setVerticalGroup(
+            jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel8Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(atualizaPessoaCandidato)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane13)
+                    .addGroup(jPanel8Layout.createSequentialGroup()
+                        .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel2)
+                            .addComponent(nomeFantasia, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel3)
+                            .addComponent(cargoCandidato, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(insereCandidatoButton))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(atualizaCandidatoTitular)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(candidatoTitularLabel)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jScrollPane14, javax.swing.GroupLayout.PREFERRED_SIZE, 394, javax.swing.GroupLayout.PREFERRED_SIZE))))
+        );
+
+        jTabbedPane2.addTab("Registrar Candidatura", jPanel8);
+
+        jButton1.setText("Procurar Dados");
+
+        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "Título de Eleitor", "Nome Fantasia", "Número", "Cargo", "Número de Votos", ""
+            }
+        ) {
+            Class[] types = new Class [] {
+                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Integer.class, java.lang.Object.class
+            };
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false, false
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jScrollPane15.setViewportView(jTable1);
+        if (jTable1.getColumnModel().getColumnCount() > 0) {
+            jTable1.getColumnModel().getColumn(0).setMinWidth(100);
+            jTable1.getColumnModel().getColumn(1).setMinWidth(425);
+            jTable1.getColumnModel().getColumn(2).setMinWidth(425);
+            jTable1.getColumnModel().getColumn(3).setMinWidth(150);
+            jTable1.getColumnModel().getColumn(4).setMinWidth(100);
+        }
+
         javax.swing.GroupLayout jPanel7Layout = new javax.swing.GroupLayout(jPanel7);
         jPanel7.setLayout(jPanel7Layout);
         jPanel7Layout.setHorizontalGroup(
             jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1290, Short.MAX_VALUE)
+            .addGroup(jPanel7Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jButton1)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addComponent(jScrollPane15, javax.swing.GroupLayout.DEFAULT_SIZE, 1285, Short.MAX_VALUE)
         );
         jPanel7Layout.setVerticalGroup(
             jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 491, Short.MAX_VALUE)
+            .addGroup(jPanel7Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jButton1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane15, javax.swing.GroupLayout.DEFAULT_SIZE, 508, Short.MAX_VALUE))
         );
 
-        pessoasPane.addTab("Candidatos", jPanel7);
+        jTabbedPane2.addTab("Consultar", jPanel7);
+
+        pessoasPane.addTab("Candidaturas", jTabbedPane2);
 
         MainPane.addTab("Gerenciamento da Eleição", pessoasPane);
         MainPane.addTab("Votos", votosPane);
@@ -1597,7 +1807,7 @@ public class DBGUI extends javax.swing.JFrame {
         try {
             res = ds.selectAllPessoa();
         } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null, "Problemas ao selecionar Pessoas.\n"+ErrorTranslator.translate("Zona", ex));
+            JOptionPane.showMessageDialog(null, "Problemas ao selecionar Pessoas.\n"+ErrorTranslator.translate(ex));
             return;
         }
        
@@ -1621,7 +1831,7 @@ public class DBGUI extends javax.swing.JFrame {
                     dml.updatePessoa((String)tabelaPessoa.getValueAt(row, 0), (String)tabelaPessoa.getValueAt(row, 1), (String)tabelaPessoa.getValueAt(row, 2), (String)tabelaPessoa.getValueAt(row, 3), (String)tabelaPessoa.getValueAt(row, 4), (String)tabelaPessoa.getValueAt(row, 5), (String)tabelaPessoa.getValueAt(row, 6), (String)tabelaPessoa.getValueAt(row, 7), (String)tabelaPessoa.getValueAt(row, 8));
                     JOptionPane.showMessageDialog(null, "Valor atualizado com sucesso.\n");
                 } catch (SQLException ex) {
-                    JOptionPane.showMessageDialog(null, "Problemas ao atualizar Pessoa.\n"+ErrorTranslator.translate("Zona", ex));
+                    JOptionPane.showMessageDialog(null, "Problemas ao atualizar Pessoa.\n"+ErrorTranslator.translate(ex));
                 }
             }
         };
@@ -1635,7 +1845,7 @@ public class DBGUI extends javax.swing.JFrame {
                     JOptionPane.showMessageDialog(null, "Valor deletado com sucesso.\n");
                     ((DefaultTableModel)table.getModel()).removeRow(row);
                 } catch (SQLException ex) {
-                    JOptionPane.showMessageDialog(null, "Problemas ao deletar Pessoa.\n"+ErrorTranslator.translate("Zona", ex));
+                    JOptionPane.showMessageDialog(null, "Problemas ao deletar Pessoa.\n"+ErrorTranslator.translate(ex));
                 }
             }
         };
@@ -1651,7 +1861,7 @@ public class DBGUI extends javax.swing.JFrame {
         try {
             res = ds.selectAllSecao();
         } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null, "Problemas ao selecionar Seções Eleitorais.\n"+ErrorTranslator.translate("Zona", ex));
+            JOptionPane.showMessageDialog(null, "Problemas ao selecionar Seções Eleitorais.\n"+ErrorTranslator.translate(ex));
             return;
         }
         
@@ -1684,7 +1894,7 @@ public class DBGUI extends javax.swing.JFrame {
             dml.inserePessoa(nroTitEleitorPessoa.getText(), nomePessoa.getText(), endPessoa.getText(), (String)dataNascPessoa.getText(), (String)escolaridadePessoa.getSelectedItem(), (String)tipoPessoa.getSelectedItem(), (String)tabelaSecaoPessoa.getValueAt(tabelaSecaoPessoa.getSelectedRow(), 0), (String)tabelaSecaoPessoa.getValueAt(tabelaSecaoPessoa.getSelectedRow(), 1), (String)tabelaSecaoPessoa.getValueAt(tabelaSecaoPessoa.getSelectedRow(), 2));
             JOptionPane.showMessageDialog(null, "Pessoa inserida com sucesso.\n");
         } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null, "Problemas ao inserir Pessoa.\n"+ErrorTranslator.translate("Zona", ex));
+            JOptionPane.showMessageDialog(null, "Problemas ao inserir Pessoa.\n"+ErrorTranslator.translate(ex));
         }
     }//GEN-LAST:event_inserePessoaCriaMouseClicked
 
@@ -1693,7 +1903,7 @@ public class DBGUI extends javax.swing.JFrame {
         try {
             res = ds.selectAllUrna();
         } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null, "Problemas ao selecionar Seções Eleitorais.\n"+ErrorTranslator.translate("Zona", ex));
+            JOptionPane.showMessageDialog(null, "Problemas ao selecionar Seções Eleitorais.\n"+ErrorTranslator.translate(ex));
             return;
         }
         
@@ -1709,7 +1919,7 @@ public class DBGUI extends javax.swing.JFrame {
                     JOptionPane.showMessageDialog(null, "Valor deletado com sucesso.\n");
                     ((DefaultTableModel)table.getModel()).removeRow(row);
                 } catch (SQLException ex) {
-                    JOptionPane.showMessageDialog(null, "Problemas ao deletar Seção Eleitoral.\n"+ErrorTranslator.translate("Zona", ex));
+                    JOptionPane.showMessageDialog(null, "Problemas ao deletar Seção Eleitoral.\n"+ErrorTranslator.translate(ex));
                 }
             }
         };
@@ -1736,7 +1946,7 @@ public class DBGUI extends javax.swing.JFrame {
         try {
             res = ds.selectAllSecao();
         } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null, "Problemas ao selecionar Seções Eleitorais.\n"+ErrorTranslator.translate("Seção", ex));
+            JOptionPane.showMessageDialog(null, "Problemas ao selecionar Seções Eleitorais.\n"+ErrorTranslator.translate(ex));
             return;
         }
         TableManipulator.setNewModel(tabelaSecaoUrna, new int[]{0, 0, 0, 0, 0});
@@ -1755,7 +1965,7 @@ public class DBGUI extends javax.swing.JFrame {
             dml.insereUrna((String)tabelaSecaoUrna.getValueAt(tabelaSecaoUrna.getSelectedRow(), 0), (String)tabelaSecaoUrna.getValueAt(tabelaSecaoUrna.getSelectedRow(), 1), (String)tabelaSecaoUrna.getValueAt(tabelaSecaoUrna.getSelectedRow(), 2), (String)tipoUrnaCria.getSelectedItem(), (String)modeloUrnaCria.getSelectedItem());
             JOptionPane.showMessageDialog(null, "Valor inserido com sucesso.\n");
         } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null, "Problemas ao inserir Urna Eleitoral.\n"+ErrorTranslator.translate("Zona", ex));
+            JOptionPane.showMessageDialog(null, "Problemas ao inserir Urna Eleitoral.\n"+ErrorTranslator.translate(ex));
         }
     }//GEN-LAST:event_insereUrnaBotaoCriaMouseClicked
 
@@ -1764,7 +1974,7 @@ public class DBGUI extends javax.swing.JFrame {
         try {
             res = ds.selectAllSecao();
         } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null, "Problemas ao selecionar Seções Eleitorais.\n"+ErrorTranslator.translate("Zona", ex));
+            JOptionPane.showMessageDialog(null, "Problemas ao selecionar Seções Eleitorais.\n"+ErrorTranslator.translate(ex));
             return;
         }
 
@@ -1777,7 +1987,7 @@ public class DBGUI extends javax.swing.JFrame {
                     dml.updateSecao((String)tabelaSecao.getValueAt(row, 0), (String)tabelaSecao.getValueAt(row, 1), (String)tabelaSecao.getValueAt(row, 2), (String)tabelaSecao.getValueAt(row, 3));
                     JOptionPane.showMessageDialog(null, "Valor atualizado com sucesso.\n");
                 } catch (SQLException ex) {
-                    JOptionPane.showMessageDialog(null, "Problemas ao atualizar Seção Eleitoral.\n"+ErrorTranslator.translate("Zona", ex));
+                    JOptionPane.showMessageDialog(null, "Problemas ao atualizar Seção Eleitoral.\n"+ErrorTranslator.translate(ex));
                 }
             }
         };
@@ -1791,7 +2001,7 @@ public class DBGUI extends javax.swing.JFrame {
                     JOptionPane.showMessageDialog(null, "Valor deletado com sucesso.\n");
                     ((DefaultTableModel)table.getModel()).removeRow(row);
                 } catch (SQLException ex) {
-                    JOptionPane.showMessageDialog(null, "Problemas ao deletar Seção Eleitoral.\n"+ErrorTranslator.translate("Zona", ex));
+                    JOptionPane.showMessageDialog(null, "Problemas ao deletar Seção Eleitoral.\n"+ErrorTranslator.translate(ex));
                 }
             }
         };
@@ -1807,7 +2017,7 @@ public class DBGUI extends javax.swing.JFrame {
         try {
             res = ds.selectAllZonas();
         } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null, "Problemas ao selecionar Zonas Eleitorais.\n"+ErrorTranslator.translate("Zona", ex));
+            JOptionPane.showMessageDialog(null, "Problemas ao selecionar Zonas Eleitorais.\n"+ErrorTranslator.translate(ex));
             return;
         }
         
@@ -1833,7 +2043,7 @@ public class DBGUI extends javax.swing.JFrame {
             dml.insereSecao((String)tabelaZonaSecao.getValueAt(tabelaZonaSecao.getSelectedRow(), 0), (String)tabelaZonaSecao.getValueAt(tabelaZonaSecao.getSelectedRow(), 1), numeroSecaoCria.getValue().toString(), (String)localSecaoCria.getText());
             JOptionPane.showMessageDialog(null, "Valor inserido com sucesso.\n");
         } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null, "Problemas ao inserir Seção Eleitoral.\n"+ErrorTranslator.translate("Zona", ex));
+            JOptionPane.showMessageDialog(null, "Problemas ao inserir Seção Eleitoral.\n"+ErrorTranslator.translate(ex));
         }
     }//GEN-LAST:event_insereSecaoBotaoCriaMouseClicked
 
@@ -1842,7 +2052,7 @@ public class DBGUI extends javax.swing.JFrame {
         try {
             res = ds.selectAllZonas();
         } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null, "Problemas ao selecionar Zonas Eleitorais.\n"+ErrorTranslator.translate("Zona", ex));
+            JOptionPane.showMessageDialog(null, "Problemas ao selecionar Zonas Eleitorais.\n"+ErrorTranslator.translate(ex));
             return;
         }
         
@@ -1855,7 +2065,7 @@ public class DBGUI extends javax.swing.JFrame {
                     dml.updateZona((String)tabelaZona.getValueAt(row, 0), (String)tabelaZona.getValueAt(row, 1), (String)tabelaZona.getValueAt(row, 2));
                     JOptionPane.showMessageDialog(null, "Valor atualizado com sucesso.\n");
                 } catch (SQLException ex) {
-                    JOptionPane.showMessageDialog(null, "Problemas ao atualizar Zona Eleitoral.\n"+ErrorTranslator.translate("Zona", ex));
+                    JOptionPane.showMessageDialog(null, "Problemas ao atualizar Zona Eleitoral.\n"+ErrorTranslator.translate(ex));
                 }
             }
         };
@@ -1869,7 +2079,7 @@ public class DBGUI extends javax.swing.JFrame {
                     JOptionPane.showMessageDialog(null, "Valor deletado com sucesso.\n");
                     ((DefaultTableModel)table.getModel()).removeRow(row);
                 } catch (SQLException ex) {
-                    JOptionPane.showMessageDialog(null, "Problemas ao deletar Zona Eleitoral.\n"+ErrorTranslator.translate("Zona", ex));
+                    JOptionPane.showMessageDialog(null, "Problemas ao deletar Zona Eleitoral.\n"+ErrorTranslator.translate(ex));
                 }
             }
         };
@@ -1890,7 +2100,7 @@ public class DBGUI extends javax.swing.JFrame {
             dml.insereZona(numeroZonaCria.getValue().toString(), (String)estadoZonaCria.getSelectedItem(), (String)enderecoZonaCria.getText());
             JOptionPane.showMessageDialog(null, "Valor inserido com sucesso.\n");
         } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null, "Problemas ao inserir Zona Eleitoral.\n"+ErrorTranslator.translate("Zona", ex));
+            JOptionPane.showMessageDialog(null, "Problemas ao inserir Zona Eleitoral.\n"+ErrorTranslator.translate(ex));
         }
     }//GEN-LAST:event_insereZonaBotaoCriaMouseClicked
 
@@ -1903,7 +2113,7 @@ public class DBGUI extends javax.swing.JFrame {
         try {
             res = ds.selectAllPartido();
         } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null, "Problemas ao selecionar Partidos.\n"+ErrorTranslator.translate("Zona", ex));
+            JOptionPane.showMessageDialog(null, "Problemas ao selecionar Partidos.\n"+ErrorTranslator.translate(ex));
             return;
         }
 
@@ -1916,7 +2126,7 @@ public class DBGUI extends javax.swing.JFrame {
                     dml.updatePartido((String)tabelaPartido.getValueAt(row, 0), (String)tabelaPartido.getValueAt(row, 1), (String)tabelaPartido.getValueAt(row, 2));
                     JOptionPane.showMessageDialog(null, "Valor atualizado com sucesso.\n");
                 } catch (SQLException ex) {
-                    JOptionPane.showMessageDialog(null, "Problemas ao atualizar Partido.\n"+ErrorTranslator.translate("Zona", ex));
+                    JOptionPane.showMessageDialog(null, "Problemas ao atualizar Partido.\n"+ErrorTranslator.translate(ex));
                 }
             }
         };
@@ -1930,7 +2140,7 @@ public class DBGUI extends javax.swing.JFrame {
                     JOptionPane.showMessageDialog(null, "Valor deletado com sucesso.\n");
                     ((DefaultTableModel)table.getModel()).removeRow(row);
                 } catch (SQLException ex) {
-                    JOptionPane.showMessageDialog(null, "Problemas ao deletar Partido.\n"+ErrorTranslator.translate("Zona", ex));
+                    JOptionPane.showMessageDialog(null, "Problemas ao deletar Partido.\n"+ErrorTranslator.translate(ex));
                 }
             }
         };
@@ -1955,7 +2165,7 @@ public class DBGUI extends javax.swing.JFrame {
             dml.inserePartido(numeroPartidoCria.getValue().toString(), nomePartidoCria.getText(), siglaPartidoCria.getText());
             JOptionPane.showMessageDialog(null, "Valor inserido com sucesso.\n");
         } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null, "Problemas ao inserir Zona Eleitoral.\n"+ErrorTranslator.translate("Zona", ex));
+            JOptionPane.showMessageDialog(null, "Problemas ao inserir Zona Eleitoral.\n"+ErrorTranslator.translate(ex));
         }
     }//GEN-LAST:event_inserePartidoBotaoCriaMouseClicked
 
@@ -1996,13 +2206,13 @@ public class DBGUI extends javax.swing.JFrame {
         try {
             pessoas = ds.selectAllPessoa();
         } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null, "Problemas ao selecionar Pessoas.\n"+ErrorTranslator.translate("Seção", ex));
+            JOptionPane.showMessageDialog(null, "Problemas ao selecionar Pessoas.\n"+ErrorTranslator.translate(ex));
             return;
         }
         try {
             partidos = ds.selectAllPartido();
         } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null, "Problemas ao selecionar Partidos.\n"+ErrorTranslator.translate("Seção", ex));
+            JOptionPane.showMessageDialog(null, "Problemas ao selecionar Partidos.\n"+ErrorTranslator.translate(ex));
             return;
         }
         
@@ -2032,7 +2242,7 @@ public class DBGUI extends javax.swing.JFrame {
             dml.insereFilia((String)tabelaPessoaFilia.getValueAt(tabelaPessoaFilia.getSelectedRow(), 0), (String)tabelaPartidoFilia.getValueAt(tabelaPartidoFilia.getSelectedRow(), 0));
             JOptionPane.showMessageDialog(null, "Eleitor filiado com sucesso.\n");
         } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null, "Problemas um filiar pessoa a partido.\n"+ErrorTranslator.translate(null, ex));
+            JOptionPane.showMessageDialog(null, "Problemas um filiar pessoa a partido.\n"+ErrorTranslator.translate(ex));
         }
     }//GEN-LAST:event_filiaButtonMouseClicked
 
@@ -2041,7 +2251,7 @@ public class DBGUI extends javax.swing.JFrame {
         try {
             rs = ds.selectAllFilia();
         } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null, "Problemas ao selecionar Filiacoes\n"+ErrorTranslator.translate("Seção", ex));
+            JOptionPane.showMessageDialog(null, "Problemas ao selecionar Filiacoes\n"+ErrorTranslator.translate(ex));
             return;
         }
         
@@ -2055,7 +2265,7 @@ public class DBGUI extends javax.swing.JFrame {
                     JOptionPane.showMessageDialog(null, "Valor deletado com sucesso.\n");
                     ((DefaultTableModel)table.getModel()).removeRow(row);
                 } catch (SQLException ex) {
-                    JOptionPane.showMessageDialog(null, "Problemas ao deletar Filiaçao.\n"+ErrorTranslator.translate("Zona", ex));
+                    JOptionPane.showMessageDialog(null, "Problemas ao deletar Filiaçao.\n"+ErrorTranslator.translate(ex));
                 }
             }
         };
@@ -2071,7 +2281,7 @@ public class DBGUI extends javax.swing.JFrame {
         try {
             rs = ds.selectAllFuncionario();
         } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null, "Problemas ao selecionar Funcionarios\n"+ErrorTranslator.translate("Seção", ex));
+            JOptionPane.showMessageDialog(null, "Problemas ao selecionar Funcionarios\n"+ErrorTranslator.translate(ex));
             return;
         }
         
@@ -2093,7 +2303,7 @@ public class DBGUI extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Valor inserido com sucesso.\n");
             atualizaFuncionarioMouseClicked(null);
         } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null, "Problemas ao inserir Funcionário.\n"+ErrorTranslator.translate("Zona", ex));
+            JOptionPane.showMessageDialog(null, "Problemas ao inserir Funcionário.\n"+ErrorTranslator.translate(ex));
         }
     }//GEN-LAST:event_insereFuncionarioMouseClicked
 
@@ -2108,7 +2318,7 @@ public class DBGUI extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Valor removido com sucesso.\n");
             atualizaFuncionarioMouseClicked(null);
         } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null, "Problemas ao remover Funcionário.\n"+ErrorTranslator.translate("Zona", ex));
+            JOptionPane.showMessageDialog(null, "Problemas ao remover Funcionário.\n"+ErrorTranslator.translate(ex));
         }
     }//GEN-LAST:event_deletaFuncionarioMouseClicked
 
@@ -2123,9 +2333,56 @@ public class DBGUI extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Valor alterado com sucesso.\n");
             atualizaFuncionarioMouseClicked(null);
         } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null, "Problemas ao alterar Funcionário.\n"+ErrorTranslator.translate("Zona", ex));
+            JOptionPane.showMessageDialog(null, "Problemas ao alterar Funcionário.\n"+ErrorTranslator.translate(ex));
         }
     }//GEN-LAST:event_alteraFuncionarioMouseClicked
+
+    private void nomeFantasiaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nomeFantasiaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_nomeFantasiaActionPerformed
+
+    private void cargoCandidatoItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cargoCandidatoItemStateChanged
+
+    }//GEN-LAST:event_cargoCandidatoItemStateChanged
+
+    private void atualizaPessoaCandidatoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_atualizaPessoaCandidatoMouseClicked
+        ResultSet rs;
+        try {
+            rs = ds.selectAllTitNomePessoa();
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Problemas ao selecionar Filiacoes\n"+ErrorTranslator.translate(ex));
+            return;
+        }
+        
+        TableManipulator.setNewModel(tabelaPessoaCandidato, new int[]{0, 0});
+        TableManipulator.fillTable(tabelaPessoaCandidato, rs, new int[]{}, new String[]{}, new Action[]{});
+        TableManipulator.adjustColumnWidth(tabelaPessoaCandidato, new int[]{100, 280});
+        TableManipulator.centralizeColumns(tabelaPessoaCandidato, new int[]{0});
+    }//GEN-LAST:event_atualizaPessoaCandidatoMouseClicked
+
+    private void atualizaCandidatoTitularMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_atualizaCandidatoTitularMouseClicked
+        ResultSet rs;
+        try {
+            if (((String)cargoCandidato.getSelectedItem()).compareTo("Vice-prefeito") == 0)
+                rs = ds.selectCandidatoPorCargo("Prefeito");
+            else if (((String)cargoCandidato.getSelectedItem()).compareTo("Vice-governador") == 0)
+                rs = ds.selectCandidatoPorCargo("Governador");
+            else if (((String)cargoCandidato.getSelectedItem()).compareTo("Vice-presidente") == 0)
+                rs = ds.selectCandidatoPorCargo("Presidente");
+            else{
+                JOptionPane.showMessageDialog(null, "Opçao válida para candidatos a vice.\n");
+                return;
+            }
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Problemas ao selecionar Filiacoes\n"+ErrorTranslator.translate(ex));
+            return;
+        }
+        
+        TableManipulator.setNewModel(tabelaCandidatoTitular, new int[]{0, 0, 0, 0});
+        TableManipulator.fillTable(tabelaCandidatoTitular, rs, new int[]{}, new String[]{}, new Action[]{});
+        TableManipulator.adjustColumnWidth(tabelaCandidatoTitular, new int[]{100, 180, 120, 100});
+        TableManipulator.centralizeColumns(tabelaCandidatoTitular, new int[]{0});
+    }//GEN-LAST:event_atualizaCandidatoTitularMouseClicked
 
     /**
      * @param args the command line arguments
@@ -2173,10 +2430,12 @@ public class DBGUI extends javax.swing.JFrame {
     private javax.swing.JPanel CriaPane6;
     private javax.swing.JTabbedPane MainPane;
     private javax.swing.JButton alteraFuncionario;
+    private javax.swing.JButton atualizaCandidatoTitular;
     private javax.swing.JButton atualizaFilia;
     private javax.swing.JButton atualizaFuncionario;
     private javax.swing.JButton atualizaPartido;
     private javax.swing.JButton atualizaPessoa;
+    private javax.swing.JButton atualizaPessoaCandidato;
     private javax.swing.JButton atualizaSecao;
     private javax.swing.JButton atualizaSecaoPessoa;
     private javax.swing.JButton atualizaSecaoUrna;
@@ -2184,6 +2443,8 @@ public class DBGUI extends javax.swing.JFrame {
     private javax.swing.JButton atualizaZona;
     private javax.swing.JButton atualizaZonaSecao;
     private javax.swing.JButton atualizarTabelaFilia;
+    private javax.swing.JLabel candidatoTitularLabel;
+    private javax.swing.JComboBox cargoCandidato;
     private javax.swing.JComboBox cargoFuncionario;
     private javax.swing.JPanel consultaPane;
     private javax.swing.JPanel consultaPane1;
@@ -2203,6 +2464,7 @@ public class DBGUI extends javax.swing.JFrame {
     private javax.swing.JLabel estadoZonaLabelCria;
     private javax.swing.JButton filiaButton;
     private javax.swing.JTabbedPane filiacaoPane;
+    private javax.swing.JButton insereCandidatoButton;
     private javax.swing.JButton insereFuncionario;
     private javax.swing.JPanel inserePane;
     private javax.swing.JPanel inserePane1;
@@ -2212,7 +2474,10 @@ public class DBGUI extends javax.swing.JFrame {
     private javax.swing.JButton insereSecaoBotaoCria;
     private javax.swing.JButton insereUrnaBotaoCria;
     private javax.swing.JButton insereZonaBotaoCria;
+    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
@@ -2220,10 +2485,14 @@ public class DBGUI extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel5;
     private javax.swing.JPanel jPanel6;
     private javax.swing.JPanel jPanel7;
+    private javax.swing.JPanel jPanel8;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane10;
     private javax.swing.JScrollPane jScrollPane11;
     private javax.swing.JScrollPane jScrollPane12;
+    private javax.swing.JScrollPane jScrollPane13;
+    private javax.swing.JScrollPane jScrollPane14;
+    private javax.swing.JScrollPane jScrollPane15;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane4;
@@ -2233,12 +2502,15 @@ public class DBGUI extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane8;
     private javax.swing.JScrollPane jScrollPane9;
     private javax.swing.JTabbedPane jTabbedPane1;
+    private javax.swing.JTabbedPane jTabbedPane2;
     private javax.swing.JTabbedPane jTabbedPane3;
+    private javax.swing.JTable jTable1;
     private javax.swing.JTextField localSecaoCria;
     private javax.swing.JComboBox modeloUrnaCria;
     private javax.swing.JLabel modeloUrnaLabelCria;
     private javax.swing.JLabel modeloUrnaLabelCria2;
     private javax.swing.JLabel modeloUrnaLabelCria3;
+    private javax.swing.JTextField nomeFantasia;
     private javax.swing.JTextField nomePartidoCria;
     private javax.swing.JTextField nomePessoa;
     private javax.swing.JLabel nroSecaoLabelCria;
@@ -2261,11 +2533,13 @@ public class DBGUI extends javax.swing.JFrame {
     private javax.swing.JTabbedPane relatoriosPane;
     private javax.swing.JPanel secaoPane;
     private javax.swing.JTextField siglaPartidoCria;
+    private javax.swing.JTable tabelaCandidatoTitular;
     private javax.swing.JTable tabelaFilia;
     private javax.swing.JTable tabelaFuncionario;
     private javax.swing.JTable tabelaPartido;
     private javax.swing.JTable tabelaPartidoFilia;
     private javax.swing.JTable tabelaPessoa;
+    private javax.swing.JTable tabelaPessoaCandidato;
     private javax.swing.JTable tabelaPessoaFilia;
     private javax.swing.JTable tabelaSecao;
     private javax.swing.JTable tabelaSecaoPessoa;
