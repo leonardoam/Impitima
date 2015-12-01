@@ -19,6 +19,6 @@ public class ErrorTranslator {
             default:
                 return "Erro desconhecido - Código: "+code+".";
         }*/
-        return ex.getMessage();
+        return ex.getMessage()+"\n"+ex.getLocalizedMessage();
     }
 }
