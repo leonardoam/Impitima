@@ -28,10 +28,11 @@ public class ErrorTranslator {
                 default:
                     erro += "Erro desconhecido - Código: "+ex.getErrorCode()+".\n"+ex.getMessage()+"\n";
             }
+            erro += "\n"+ex.getMessage();
             ex = ex.getNextException();
             if (ex == null)
                 break;
         }
-        return erro;
+        return erro+".\n";
     }
 }
