@@ -23,10 +23,16 @@ public abstract class TableManipulator {
     public static void setNewModel(JTable table, int[] editable){
         DefaultTableModel model = new myTableModel(editable);
         Vector<String> columnName = new Vector<String>();
-        for(int i=0; i<table.getModel().getColumnCount(); i++)
+        Vector<Integer> columnWidth = new Vector<Integer>();
+        for(int i=0; i<table.getModel().getColumnCount(); i++){
             columnName.add(table.getModel().getColumnName(i));
+            columnWidth.add(table.getColumnModel().getColumn(i).getMinWidth());
+        }
         model.setColumnIdentifiers(columnName);
         table.setModel(model);
+        table.setAutoCreateRowSorter(true);
+        for(int i=0; i<table.getModel().getColumnCount(); i++)
+            table.getColumnModel().getColumn(i).setMinWidth(columnWidth.get(i));
     }
     
     public static void centralizeColumns(JTable table, int[] columns){
@@ -36,11 +42,11 @@ public abstract class TableManipulator {
             table.getColumnModel().getColumn(columns[i]).setCellRenderer( centerRenderer );
     }
     
-    public static void adjustColumnWidth(JTable table, int[] width){
+    /*public static void adjustColumnWidth(JTable table, int[] width){
         DefaultTableModel model = (DefaultTableModel) table.getModel();
         for(int i=0; i<width.length; i++)
             table.getColumn(model.getColumnName(i)).setMinWidth(width[i]);
-    }
+    }*/
     
     public static void fillTable(JTable table, ResultSet rs, int[] buttoncolumns, String[] buttonlabels, Action[] buttonactions){
         DefaultTableModel model = (DefaultTableModel) table.getModel();
@@ -54,7 +60,7 @@ public abstract class TableManipulator {
                 model.addRow(row);
             }
         } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null, "Problemas ao criar tabela.\n"+ErrorTranslator.translate("Zona", ex));
+            JOptionPane.showMessageDialog(null, "Problemas ao criar tabela.\n"+ErrorTranslator.translate(ex));
         }
         ButtonColumn button;
         for(int i=0; i<buttoncolumns.length; i++)
@@ -73,7 +79,7 @@ public abstract class TableManipulator {
                 model.addRow(row);
             }
         } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null, "Problemas ao criar tabela.\n"+ErrorTranslator.translate("Zona", ex));
+            JOptionPane.showMessageDialog(null, "Problemas ao criar tabela.\n"+ErrorTranslator.translate(ex));
         }
         ButtonColumn button;
         for(int i=0; i<buttoncolumns.length; i++)
@@ -96,7 +102,7 @@ public abstract class TableManipulator {
                 model.addRow(row);
             }
         } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null, "Problemas ao criar tabela.\n"+ErrorTranslator.translate("Zona", ex));
+            JOptionPane.showMessageDialog(null, "Problemas ao criar tabela.\n"+ErrorTranslator.translate(ex));
         }
         ButtonColumn button;
         for(int i=0; i<buttoncolumns.length; i++)
