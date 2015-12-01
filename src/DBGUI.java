@@ -61,7 +61,7 @@ public class DBGUI extends javax.swing.JFrame {
     public static String[] escolaridade = {null, "Ensino Fundamental Incompleto", "Ensino Fundamental Completo", "Ensino Médio Incompleto", "Ensino Médio Completo", "Ensino Superior Incompleto", "Ensino Superior Completo"};
     public static String[] tiposPessoa = {null, "Funcionário", "Candidato"};
     public static String[] cargosFuncionario = {"Mesário", "Presidente", "Secretário", "Suplente"};
-    public static String[] cargosCandidato = {"Prefeito", "Vice-prefeito", "Vereador", "Governador" , "Vice-governador", "Presidente", "Vice-presidente"};
+    public static String[] cargosCandidato = {"Vereador", "Prefeito", "Vice-prefeito", "Governador" , "Vice-governador", "Presidente", "Vice-presidente"};
     public DataManipulation dml;
     public DataSelection ds;
     
@@ -122,7 +122,6 @@ public class DBGUI extends javax.swing.JFrame {
         enderecoZonaCria = new javax.swing.JTextField();
         insereZonaBotaoCria = new javax.swing.JButton();
         consultaPane = new javax.swing.JPanel();
-        numeroZona2 = new javax.swing.JSpinner();
         atualizaZona = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         tabelaZona = new javax.swing.JTable();
@@ -235,14 +234,41 @@ public class DBGUI extends javax.swing.JFrame {
         candidatoTitularLabel = new javax.swing.JLabel();
         insereCandidatoButton = new javax.swing.JButton();
         atualizaCandidatoTitular = new javax.swing.JButton();
+        jLabel4 = new javax.swing.JLabel();
+        nroCandidato = new javax.swing.JTextField();
         jPanel7 = new javax.swing.JPanel();
-        jButton1 = new javax.swing.JButton();
+        atualizaTabelaCandidato = new javax.swing.JButton();
         jScrollPane15 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        tabelaCandidato = new javax.swing.JTable();
         votosPane = new javax.swing.JTabbedPane();
+        jPanel9 = new javax.swing.JPanel();
+        jLabel5 = new javax.swing.JLabel();
+        jLabel6 = new javax.swing.JLabel();
+        jLabel7 = new javax.swing.JLabel();
+        jLabel8 = new javax.swing.JLabel();
+        jTextField1 = new javax.swing.JTextField();
+        jTextField2 = new javax.swing.JTextField();
+        jTextField3 = new javax.swing.JTextField();
+        jTextField4 = new javax.swing.JTextField();
+        jButton1 = new javax.swing.JButton();
+        jButton2 = new javax.swing.JButton();
+        jButton3 = new javax.swing.JButton();
+        jButton4 = new javax.swing.JButton();
+        jLabel9 = new javax.swing.JLabel();
+        jLabel10 = new javax.swing.JLabel();
+        jLabel11 = new javax.swing.JLabel();
+        jLabel12 = new javax.swing.JLabel();
+        jButton5 = new javax.swing.JButton();
+        jButton6 = new javax.swing.JButton();
+        jButton7 = new javax.swing.JButton();
+        jButton8 = new javax.swing.JButton();
+        jPanel10 = new javax.swing.JPanel();
+        jPanel11 = new javax.swing.JPanel();
         relatoriosPane = new javax.swing.JTabbedPane();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+
+        MainPane.setPreferredSize(new java.awt.Dimension(1280, 632));
 
         nroZonaLabelCria.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
         nroZonaLabelCria.setText("Número da Zona Eleitoral*:");
@@ -334,8 +360,7 @@ public class DBGUI extends javax.swing.JFrame {
 
         zonaPane.addTab("Cria Nova", inserePane);
 
-        numeroZona2.setModel(new javax.swing.SpinnerNumberModel(0, 0, 999, 1));
-        numeroZona2.setToolTipText("min: 0 - max: 999");
+        consultaPane.setPreferredSize(new java.awt.Dimension(1280, 548));
 
         atualizaZona.setText("Procurar Dados");
         atualizaZona.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -356,7 +381,7 @@ public class DBGUI extends javax.swing.JFrame {
                 java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class
             };
             boolean[] canEdit = new boolean [] {
-                false, false, false, true, false, false
+                false, false, false, false, false, false
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -369,14 +394,9 @@ public class DBGUI extends javax.swing.JFrame {
         });
         jScrollPane1.setViewportView(tabelaZona);
         if (tabelaZona.getColumnModel().getColumnCount() > 0) {
-            tabelaZona.getColumnModel().getColumn(0).setMinWidth(110);
-            tabelaZona.getColumnModel().getColumn(1).setMinWidth(110);
-            tabelaZona.getColumnModel().getColumn(2).setMinWidth(753);
-            tabelaZona.getColumnModel().getColumn(3).setMinWidth(100);
+            tabelaZona.getColumnModel().getColumn(2).setMinWidth(553);
             tabelaZona.getColumnModel().getColumn(4).setMinWidth(90);
-            tabelaZona.getColumnModel().getColumn(4).setHeaderValue("");
-            tabelaZona.getColumnModel().getColumn(5).setMinWidth(90);
-            tabelaZona.getColumnModel().getColumn(5).setHeaderValue("");
+            tabelaZona.getColumnModel().getColumn(5).setResizable(false);
         }
 
         javax.swing.GroupLayout consultaPaneLayout = new javax.swing.GroupLayout(consultaPane);
@@ -386,20 +406,14 @@ public class DBGUI extends javax.swing.JFrame {
             .addGroup(consultaPaneLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(atualizaZona)
-                .addGap(1282, 1282, 1282)
-                .addComponent(numeroZona2, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(consultaPaneLayout.createSequentialGroup()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 1255, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 1155, Short.MAX_VALUE)
         );
         consultaPaneLayout.setVerticalGroup(
             consultaPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(consultaPaneLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(consultaPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(numeroZona2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(atualizaZona))
+                .addComponent(atualizaZona)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 508, Short.MAX_VALUE))
         );
@@ -410,7 +424,7 @@ public class DBGUI extends javax.swing.JFrame {
         jPanel5.setLayout(jPanel5Layout);
         jPanel5Layout.setHorizontalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(zonaPane, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+            .addComponent(zonaPane, javax.swing.GroupLayout.DEFAULT_SIZE, 1160, Short.MAX_VALUE)
         );
         jPanel5Layout.setVerticalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -505,7 +519,7 @@ public class DBGUI extends javax.swing.JFrame {
                                 .addComponent(endSecaoLabelCria)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(localSecaoCria, javax.swing.GroupLayout.PREFERRED_SIZE, 610, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                .addContainerGap(495, Short.MAX_VALUE))
+                .addContainerGap(365, Short.MAX_VALUE))
             .addComponent(jScrollPane3)
         );
         CriaPane1Layout.setVerticalGroup(
@@ -581,12 +595,10 @@ public class DBGUI extends javax.swing.JFrame {
             tabelaSecao.getColumnModel().getColumn(0).setMinWidth(110);
             tabelaSecao.getColumnModel().getColumn(1).setMinWidth(110);
             tabelaSecao.getColumnModel().getColumn(2).setMinWidth(110);
-            tabelaSecao.getColumnModel().getColumn(3).setMinWidth(733);
+            tabelaSecao.getColumnModel().getColumn(3).setMinWidth(533);
             tabelaSecao.getColumnModel().getColumn(4).setMinWidth(110);
             tabelaSecao.getColumnModel().getColumn(5).setMinWidth(90);
-            tabelaSecao.getColumnModel().getColumn(5).setHeaderValue("");
             tabelaSecao.getColumnModel().getColumn(6).setMinWidth(90);
-            tabelaSecao.getColumnModel().getColumn(6).setHeaderValue("");
         }
 
         javax.swing.GroupLayout consultaPane1Layout = new javax.swing.GroupLayout(consultaPane1);
@@ -600,7 +612,7 @@ public class DBGUI extends javax.swing.JFrame {
                 .addComponent(numeroZona3, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(consultaPane1Layout.createSequentialGroup()
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 1255, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 1150, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, Short.MAX_VALUE))
         );
         consultaPane1Layout.setVerticalGroup(
@@ -674,11 +686,11 @@ public class DBGUI extends javax.swing.JFrame {
         });
         jScrollPane6.setViewportView(tabelaSecaoUrna);
         if (tabelaSecaoUrna.getColumnModel().getColumnCount() > 0) {
-            tabelaSecaoUrna.getColumnModel().getColumn(0).setMinWidth(120);
-            tabelaSecaoUrna.getColumnModel().getColumn(1).setMinWidth(182);
-            tabelaSecaoUrna.getColumnModel().getColumn(2).setMinWidth(182);
+            tabelaSecaoUrna.getColumnModel().getColumn(0).setMinWidth(100);
+            tabelaSecaoUrna.getColumnModel().getColumn(1).setMinWidth(200);
+            tabelaSecaoUrna.getColumnModel().getColumn(2).setMinWidth(100);
             tabelaSecaoUrna.getColumnModel().getColumn(3).setMinWidth(100);
-            tabelaSecaoUrna.getColumnModel().getColumn(4).setMinWidth(100);
+            tabelaSecaoUrna.getColumnModel().getColumn(4).setMinWidth(90);
         }
 
         estadoZonaCria1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
@@ -715,10 +727,8 @@ public class DBGUI extends javax.swing.JFrame {
                     .addGroup(CriaPane2Layout.createSequentialGroup()
                         .addGap(155, 155, 155)
                         .addComponent(insereUrnaBotaoCria)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(CriaPane2Layout.createSequentialGroup()
-                .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, 1255, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+                .addContainerGap(418, Short.MAX_VALUE))
+            .addComponent(jScrollPane6)
             .addGroup(CriaPane2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(CriaPane2Layout.createSequentialGroup()
                     .addGap(0, 0, Short.MAX_VALUE)
@@ -811,7 +821,7 @@ public class DBGUI extends javax.swing.JFrame {
                 .addComponent(numeroZona4, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(consultaPane2Layout.createSequentialGroup()
-                .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 1255, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 1154, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, Short.MAX_VALUE))
         );
         consultaPane2Layout.setVerticalGroup(
@@ -822,8 +832,7 @@ public class DBGUI extends javax.swing.JFrame {
                     .addComponent(numeroZona4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(atualizaUrna))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane5, javax.swing.GroupLayout.DEFAULT_SIZE, 497, Short.MAX_VALUE)
-                .addContainerGap())
+                .addComponent(jScrollPane5, javax.swing.GroupLayout.DEFAULT_SIZE, 508, Short.MAX_VALUE))
         );
 
         urnaConsultaPane.addTab("Consulta", consultaPane2);
@@ -890,11 +899,11 @@ public class DBGUI extends javax.swing.JFrame {
         });
         jScrollPane8.setViewportView(tabelaSecaoPessoa);
         if (tabelaSecaoPessoa.getColumnModel().getColumnCount() > 0) {
-            tabelaSecaoPessoa.getColumnModel().getColumn(0).setMinWidth(120);
-            tabelaSecaoPessoa.getColumnModel().getColumn(1).setMinWidth(182);
-            tabelaSecaoPessoa.getColumnModel().getColumn(2).setMinWidth(182);
+            tabelaSecaoPessoa.getColumnModel().getColumn(0).setMinWidth(100);
+            tabelaSecaoPessoa.getColumnModel().getColumn(1).setMinWidth(200);
+            tabelaSecaoPessoa.getColumnModel().getColumn(2).setMinWidth(100);
             tabelaSecaoPessoa.getColumnModel().getColumn(3).setMinWidth(100);
-            tabelaSecaoPessoa.getColumnModel().getColumn(4).setMinWidth(100);
+            tabelaSecaoPessoa.getColumnModel().getColumn(4).setMinWidth(90);
         }
 
         estadoZonaCria2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
@@ -965,9 +974,6 @@ public class DBGUI extends javax.swing.JFrame {
         CriaPane3.setLayout(CriaPane3Layout);
         CriaPane3Layout.setHorizontalGroup(
             CriaPane3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, CriaPane3Layout.createSequentialGroup()
-                .addComponent(jScrollPane8, javax.swing.GroupLayout.PREFERRED_SIZE, 1255, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
             .addGroup(CriaPane3Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(inserePessoaCria)
@@ -1001,7 +1007,8 @@ public class DBGUI extends javax.swing.JFrame {
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                             .addComponent(nomePessoa, javax.swing.GroupLayout.PREFERRED_SIZE, 546, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addComponent(atualizaSecaoPessoa))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(557, Short.MAX_VALUE))
+            .addComponent(jScrollPane8)
             .addGroup(CriaPane3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(CriaPane3Layout.createSequentialGroup()
                     .addGap(0, 0, Short.MAX_VALUE)
@@ -1083,18 +1090,15 @@ public class DBGUI extends javax.swing.JFrame {
         });
         jScrollPane9.setViewportView(tabelaPessoa);
         if (tabelaPessoa.getColumnModel().getColumnCount() > 0) {
-            tabelaPessoa.getColumnModel().getColumn(0).setMinWidth(120);
-            tabelaPessoa.getColumnModel().getColumn(1).setMinWidth(182);
-            tabelaPessoa.getColumnModel().getColumn(2).setMinWidth(182);
+            tabelaPessoa.getColumnModel().getColumn(0).setMinWidth(100);
+            tabelaPessoa.getColumnModel().getColumn(1).setMinWidth(200);
+            tabelaPessoa.getColumnModel().getColumn(2).setMinWidth(100);
             tabelaPessoa.getColumnModel().getColumn(3).setMinWidth(120);
             tabelaPessoa.getColumnModel().getColumn(4).setMinWidth(100);
-            tabelaPessoa.getColumnModel().getColumn(5).setMinWidth(100);
-            tabelaPessoa.getColumnModel().getColumn(6).setMinWidth(90);
-            tabelaPessoa.getColumnModel().getColumn(7).setMinWidth(90);
-            tabelaPessoa.getColumnModel().getColumn(8).setMinWidth(90);
-            tabelaPessoa.getColumnModel().getColumn(9).setMinWidth(90);
-            tabelaPessoa.getColumnModel().getColumn(10).setMinWidth(90);
-            tabelaPessoa.getColumnModel().getColumn(10).setHeaderValue("");
+            tabelaPessoa.getColumnModel().getColumn(5).setMinWidth(90);
+            tabelaPessoa.getColumnModel().getColumn(6).setMinWidth(80);
+            tabelaPessoa.getColumnModel().getColumn(7).setMinWidth(80);
+            tabelaPessoa.getColumnModel().getColumn(8).setMinWidth(80);
         }
 
         estadoZonaCria3.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
@@ -1106,10 +1110,8 @@ public class DBGUI extends javax.swing.JFrame {
             .addGroup(CriaPane4Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(atualizaPessoa)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(CriaPane4Layout.createSequentialGroup()
-                .addComponent(jScrollPane9, javax.swing.GroupLayout.PREFERRED_SIZE, 1255, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+                .addContainerGap(1038, Short.MAX_VALUE))
+            .addComponent(jScrollPane9)
             .addGroup(CriaPane4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(CriaPane4Layout.createSequentialGroup()
                     .addGap(0, 0, Short.MAX_VALUE)
@@ -1164,24 +1166,18 @@ public class DBGUI extends javax.swing.JFrame {
             .addGroup(CriaPane5Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(CriaPane5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(inserePartidoBotaoCria)
                     .addGroup(CriaPane5Layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(inserePartidoBotaoCria))
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, CriaPane5Layout.createSequentialGroup()
                         .addGroup(CriaPane5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(modeloUrnaLabelCria2)
                             .addComponent(tipoUrnaLabelCria2)
                             .addComponent(modeloUrnaLabelCria3))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(CriaPane5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(CriaPane5Layout.createSequentialGroup()
-                                .addComponent(siglaPartidoCria, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                            .addComponent(nomePartidoCria, javax.swing.GroupLayout.DEFAULT_SIZE, 606, Short.MAX_VALUE)
-                            .addGroup(CriaPane5Layout.createSequentialGroup()
-                                .addComponent(numeroPartidoCria, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(0, 0, Short.MAX_VALUE)))))
-                .addGap(547, 547, 547))
+                            .addComponent(siglaPartidoCria, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(numeroPartidoCria, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(nomePartidoCria, javax.swing.GroupLayout.PREFERRED_SIZE, 870, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addContainerGap(153, Short.MAX_VALUE))
         );
         CriaPane5Layout.setVerticalGroup(
             CriaPane5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1195,9 +1191,9 @@ public class DBGUI extends javax.swing.JFrame {
                     .addComponent(modeloUrnaLabelCria2)
                     .addComponent(nomePartidoCria, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(8, 8, 8)
-                .addGroup(CriaPane5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(modeloUrnaLabelCria3)
-                    .addComponent(siglaPartidoCria, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(CriaPane5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(siglaPartidoCria, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(modeloUrnaLabelCria3))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(inserePartidoBotaoCria)
                 .addContainerGap(433, Short.MAX_VALUE))
@@ -1237,10 +1233,10 @@ public class DBGUI extends javax.swing.JFrame {
         });
         jScrollPane11.setViewportView(tabelaPartido);
         if (tabelaPartido.getColumnModel().getColumnCount() > 0) {
-            tabelaPartido.getColumnModel().getColumn(0).setMinWidth(120);
-            tabelaPartido.getColumnModel().getColumn(1).setMinWidth(182);
-            tabelaPartido.getColumnModel().getColumn(2).setMinWidth(182);
-            tabelaPartido.getColumnModel().getColumn(3).setMinWidth(100);
+            tabelaPartido.getColumnModel().getColumn(0).setMinWidth(100);
+            tabelaPartido.getColumnModel().getColumn(1).setMinWidth(200);
+            tabelaPartido.getColumnModel().getColumn(2).setMinWidth(100);
+            tabelaPartido.getColumnModel().getColumn(3).setMinWidth(90);
             tabelaPartido.getColumnModel().getColumn(4).setMinWidth(90);
             tabelaPartido.getColumnModel().getColumn(5).setMinWidth(90);
         }
@@ -1254,7 +1250,7 @@ public class DBGUI extends javax.swing.JFrame {
             .addGroup(CriaPane6Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(atualizaPartido)
-                .addContainerGap(1168, Short.MAX_VALUE))
+                .addContainerGap(1038, Short.MAX_VALUE))
             .addComponent(jScrollPane11)
             .addGroup(CriaPane6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(CriaPane6Layout.createSequentialGroup()
@@ -1293,6 +1289,8 @@ public class DBGUI extends javax.swing.JFrame {
 
         MainPane.addTab("Registro", jPanel1);
 
+        pessoasPane.setPreferredSize(new java.awt.Dimension(1280, 604));
+
         tabelaPessoaFilia.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
@@ -1318,11 +1316,11 @@ public class DBGUI extends javax.swing.JFrame {
         });
         jScrollPane4.setViewportView(tabelaPessoaFilia);
         if (tabelaPessoaFilia.getColumnModel().getColumnCount() > 0) {
-            tabelaPessoaFilia.getColumnModel().getColumn(0).setMinWidth(120);
-            tabelaPessoaFilia.getColumnModel().getColumn(1).setMinWidth(410);
-            tabelaPessoaFilia.getColumnModel().getColumn(2).setMinWidth(120);
-            tabelaPessoaFilia.getColumnModel().getColumn(3).setMinWidth(100);
-            tabelaPessoaFilia.getColumnModel().getColumn(4).setMinWidth(410);
+            tabelaPessoaFilia.getColumnModel().getColumn(0).setMinWidth(130);
+            tabelaPessoaFilia.getColumnModel().getColumn(1).setMinWidth(200);
+            tabelaPessoaFilia.getColumnModel().getColumn(2).setMinWidth(50);
+            tabelaPessoaFilia.getColumnModel().getColumn(3).setMinWidth(50);
+            tabelaPessoaFilia.getColumnModel().getColumn(4).setMinWidth(50);
         }
 
         tabelaPartidoFilia.setModel(new javax.swing.table.DefaultTableModel(
@@ -1351,7 +1349,7 @@ public class DBGUI extends javax.swing.JFrame {
         jScrollPane7.setViewportView(tabelaPartidoFilia);
         if (tabelaPartidoFilia.getColumnModel().getColumnCount() > 0) {
             tabelaPartidoFilia.getColumnModel().getColumn(0).setMinWidth(100);
-            tabelaPartidoFilia.getColumnModel().getColumn(1).setMinWidth(380);
+            tabelaPartidoFilia.getColumnModel().getColumn(1).setMinWidth(300);
             tabelaPartidoFilia.getColumnModel().getColumn(2).setMinWidth(100);
         }
 
@@ -1374,27 +1372,28 @@ public class DBGUI extends javax.swing.JFrame {
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 580, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 500, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(atualizaFilia))
+                        .addGap(18, 18, 18)
+                        .addComponent(atualizaFilia, javax.swing.GroupLayout.DEFAULT_SIZE, 118, Short.MAX_VALUE)
+                        .addGap(18, 18, 18))
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(36, 36, 36)
-                        .addComponent(filiaButton)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jScrollPane7, javax.swing.GroupLayout.PREFERRED_SIZE, 582, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(48, 48, 48)
+                        .addComponent(filiaButton)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                .addComponent(jScrollPane7, javax.swing.GroupLayout.PREFERRED_SIZE, 501, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jScrollPane4)
-            .addComponent(jScrollPane7, javax.swing.GroupLayout.DEFAULT_SIZE, 548, Short.MAX_VALUE)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(atualizaFilia)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(filiaButton)
                 .addGap(199, 199, 199))
+            .addComponent(jScrollPane7, javax.swing.GroupLayout.DEFAULT_SIZE, 548, Short.MAX_VALUE)
         );
 
         filiacaoPane.addTab("Filiar", jPanel2);
@@ -1424,11 +1423,11 @@ public class DBGUI extends javax.swing.JFrame {
         });
         jScrollPane10.setViewportView(tabelaFilia);
         if (tabelaFilia.getColumnModel().getColumnCount() > 0) {
-            tabelaFilia.getColumnModel().getColumn(0).setMinWidth(120);
-            tabelaFilia.getColumnModel().getColumn(1).setMinWidth(410);
-            tabelaFilia.getColumnModel().getColumn(2).setMinWidth(120);
-            tabelaFilia.getColumnModel().getColumn(3).setMinWidth(100);
-            tabelaFilia.getColumnModel().getColumn(4).setMinWidth(410);
+            tabelaFilia.getColumnModel().getColumn(0).setMinWidth(130);
+            tabelaFilia.getColumnModel().getColumn(1).setMinWidth(200);
+            tabelaFilia.getColumnModel().getColumn(2).setMinWidth(50);
+            tabelaFilia.getColumnModel().getColumn(3).setMinWidth(50);
+            tabelaFilia.getColumnModel().getColumn(4).setMinWidth(50);
             tabelaFilia.getColumnModel().getColumn(5).setMinWidth(100);
         }
 
@@ -1446,9 +1445,9 @@ public class DBGUI extends javax.swing.JFrame {
             .addGroup(jPanel4Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(atualizarTabelaFilia)
-                .addContainerGap(1168, Short.MAX_VALUE))
+                .addContainerGap(1038, Short.MAX_VALUE))
             .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addComponent(jScrollPane10, javax.swing.GroupLayout.DEFAULT_SIZE, 1285, Short.MAX_VALUE))
+                .addComponent(jScrollPane10, javax.swing.GroupLayout.DEFAULT_SIZE, 1155, Short.MAX_VALUE))
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1491,16 +1490,15 @@ public class DBGUI extends javax.swing.JFrame {
         });
         jScrollPane12.setViewportView(tabelaFuncionario);
         if (tabelaFuncionario.getColumnModel().getColumnCount() > 0) {
-            tabelaFuncionario.getColumnModel().getColumn(0).setMinWidth(120);
-            tabelaFuncionario.getColumnModel().getColumn(1).setMinWidth(182);
-            tabelaFuncionario.getColumnModel().getColumn(2).setMinWidth(182);
+            tabelaFuncionario.getColumnModel().getColumn(0).setMinWidth(100);
+            tabelaFuncionario.getColumnModel().getColumn(1).setMinWidth(200);
+            tabelaFuncionario.getColumnModel().getColumn(2).setMinWidth(100);
             tabelaFuncionario.getColumnModel().getColumn(3).setMinWidth(120);
             tabelaFuncionario.getColumnModel().getColumn(4).setMinWidth(100);
-            tabelaFuncionario.getColumnModel().getColumn(5).setMinWidth(100);
-            tabelaFuncionario.getColumnModel().getColumn(6).setMinWidth(90);
-            tabelaFuncionario.getColumnModel().getColumn(7).setMinWidth(90);
-            tabelaFuncionario.getColumnModel().getColumn(8).setMinWidth(90);
-            tabelaFuncionario.getColumnModel().getColumn(9).setMinWidth(90);
+            tabelaFuncionario.getColumnModel().getColumn(5).setMinWidth(90);
+            tabelaFuncionario.getColumnModel().getColumn(6).setMinWidth(80);
+            tabelaFuncionario.getColumnModel().getColumn(7).setMinWidth(80);
+            tabelaFuncionario.getColumnModel().getColumn(8).setMinWidth(80);
         }
 
         atualizaFuncionario.setText("Procurar Dados");
@@ -1539,7 +1537,6 @@ public class DBGUI extends javax.swing.JFrame {
         jPanel6.setLayout(jPanel6Layout);
         jPanel6Layout.setHorizontalGroup(
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane12)
             .addGroup(jPanel6Layout.createSequentialGroup()
                 .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel6Layout.createSequentialGroup()
@@ -1557,7 +1554,8 @@ public class DBGUI extends javax.swing.JFrame {
                         .addComponent(alteraFuncionario)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(deletaFuncionario)))
-                .addContainerGap(808, Short.MAX_VALUE))
+                .addContainerGap(678, Short.MAX_VALUE))
+            .addComponent(jScrollPane12)
         );
         jPanel6Layout.setVerticalGroup(
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1579,6 +1577,8 @@ public class DBGUI extends javax.swing.JFrame {
         );
 
         pessoasPane.addTab("Funcionários", jPanel6);
+
+        jPanel8.setPreferredSize(new java.awt.Dimension(1280, 548));
 
         atualizaPessoaCandidato.setText("Procurar Dados");
         atualizaPessoaCandidato.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -1638,15 +1638,22 @@ public class DBGUI extends javax.swing.JFrame {
 
             },
             new String [] {
-                "Título de Eleitor", "Nome", "Nome Fantasia", "Cargo"
+                "Título de Eleitor", "Nome", "Nome Fantasia", "Cargo", "Número"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Object.class
+                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
+            };
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false
             };
 
             public Class getColumnClass(int columnIndex) {
                 return types [columnIndex];
+            }
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
             }
         });
         jScrollPane14.setViewportView(tabelaCandidatoTitular);
@@ -1660,11 +1667,24 @@ public class DBGUI extends javax.swing.JFrame {
         candidatoTitularLabel.setText("Candidato Titular:");
 
         insereCandidatoButton.setText("Registrar");
+        insereCandidatoButton.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                insereCandidatoButtonMouseClicked(evt);
+            }
+        });
 
         atualizaCandidatoTitular.setText("Procurar Dados");
         atualizaCandidatoTitular.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 atualizaCandidatoTitularMouseClicked(evt);
+            }
+        });
+
+        jLabel4.setText("Número:");
+
+        nroCandidato.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                nroCandidatoActionPerformed(evt);
             }
         });
 
@@ -1682,23 +1702,24 @@ public class DBGUI extends javax.swing.JFrame {
                 .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel8Layout.createSequentialGroup()
                         .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel2)
+                            .addComponent(jLabel3))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(nomeFantasia, javax.swing.GroupLayout.PREFERRED_SIZE, 450, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(jPanel8Layout.createSequentialGroup()
-                                .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel2)
-                                    .addComponent(jLabel3))
+                                .addComponent(cargoCandidato, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(61, 61, 61)
+                                .addComponent(jLabel4)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(nomeFantasia, javax.swing.GroupLayout.PREFERRED_SIZE, 450, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGroup(jPanel8Layout.createSequentialGroup()
-                                        .addComponent(cargoCandidato, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 404, Short.MAX_VALUE)
-                                        .addComponent(insereCandidatoButton))))
-                            .addComponent(candidatoTitularLabel))
-                        .addGap(182, 182, 182))
+                                .addComponent(nroCandidato, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(insereCandidatoButton))
+                    .addComponent(candidatoTitularLabel)
+                    .addComponent(atualizaCandidatoTitular)
                     .addGroup(jPanel8Layout.createSequentialGroup()
-                        .addComponent(atualizaCandidatoTitular)
-                        .addContainerGap())
-                    .addComponent(jScrollPane14)))
+                        .addComponent(jScrollPane14, javax.swing.GroupLayout.DEFAULT_SIZE, 658, Short.MAX_VALUE)
+                        .addContainerGap())))
         );
         jPanel8Layout.setVerticalGroup(
             jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1716,7 +1737,9 @@ public class DBGUI extends javax.swing.JFrame {
                         .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel3)
                             .addComponent(cargoCandidato, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(insereCandidatoButton))
+                            .addComponent(insereCandidatoButton)
+                            .addComponent(jLabel4)
+                            .addComponent(nroCandidato, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(atualizaCandidatoTitular)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -1727,21 +1750,28 @@ public class DBGUI extends javax.swing.JFrame {
 
         jTabbedPane2.addTab("Registrar Candidatura", jPanel8);
 
-        jButton1.setText("Procurar Dados");
+        jPanel7.setPreferredSize(new java.awt.Dimension(1280, 548));
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        atualizaTabelaCandidato.setText("Procurar Dados");
+        atualizaTabelaCandidato.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                atualizaTabelaCandidatoMouseClicked(evt);
+            }
+        });
+
+        tabelaCandidato.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
             new String [] {
-                "Título de Eleitor", "Nome Fantasia", "Número", "Cargo", "Número de Votos", ""
+                "Título de Eleitor", "Nome Fantasia", "Número", "Cargo", "Número de Votos", "", ""
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Integer.class, java.lang.Object.class
+                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Integer.class, java.lang.Object.class, java.lang.Object.class
             };
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false
+                false, false, false, false, false, false, true
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -1752,13 +1782,13 @@ public class DBGUI extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
-        jScrollPane15.setViewportView(jTable1);
-        if (jTable1.getColumnModel().getColumnCount() > 0) {
-            jTable1.getColumnModel().getColumn(0).setMinWidth(100);
-            jTable1.getColumnModel().getColumn(1).setMinWidth(425);
-            jTable1.getColumnModel().getColumn(2).setMinWidth(425);
-            jTable1.getColumnModel().getColumn(3).setMinWidth(150);
-            jTable1.getColumnModel().getColumn(4).setMinWidth(100);
+        jScrollPane15.setViewportView(tabelaCandidato);
+        if (tabelaCandidato.getColumnModel().getColumnCount() > 0) {
+            tabelaCandidato.getColumnModel().getColumn(0).setMinWidth(100);
+            tabelaCandidato.getColumnModel().getColumn(1).setMinWidth(525);
+            tabelaCandidato.getColumnModel().getColumn(2).setMinWidth(100);
+            tabelaCandidato.getColumnModel().getColumn(3).setMinWidth(150);
+            tabelaCandidato.getColumnModel().getColumn(4).setMinWidth(100);
         }
 
         javax.swing.GroupLayout jPanel7Layout = new javax.swing.GroupLayout(jPanel7);
@@ -1767,15 +1797,15 @@ public class DBGUI extends javax.swing.JFrame {
             jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel7Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jButton1)
+                .addComponent(atualizaTabelaCandidato)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addComponent(jScrollPane15, javax.swing.GroupLayout.DEFAULT_SIZE, 1285, Short.MAX_VALUE)
+            .addComponent(jScrollPane15, javax.swing.GroupLayout.DEFAULT_SIZE, 1155, Short.MAX_VALUE)
         );
         jPanel7Layout.setVerticalGroup(
             jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel7Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jButton1)
+                .addComponent(atualizaTabelaCandidato)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane15, javax.swing.GroupLayout.DEFAULT_SIZE, 508, Short.MAX_VALUE))
         );
@@ -1785,6 +1815,177 @@ public class DBGUI extends javax.swing.JFrame {
         pessoasPane.addTab("Candidaturas", jTabbedPane2);
 
         MainPane.addTab("Gerenciamento da Eleição", pessoasPane);
+
+        jLabel5.setText("Vereador:");
+
+        jLabel6.setText("Prefeito:");
+
+        jLabel7.setText("Governador:");
+
+        jLabel8.setText("Presidente:");
+
+        jTextField1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextField1ActionPerformed(evt);
+            }
+        });
+
+        jTextField2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextField2ActionPerformed(evt);
+            }
+        });
+
+        jTextField3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextField3ActionPerformed(evt);
+            }
+        });
+
+        jTextField4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextField4ActionPerformed(evt);
+            }
+        });
+
+        jButton1.setText("Procurar");
+
+        jButton2.setText("Procurar");
+
+        jButton3.setText("Procurar");
+
+        jButton4.setText("Procurar");
+
+        jLabel9.setText("Seu candidato irá aparecer aqui.");
+
+        jLabel10.setText("Seu candidato irá aparecer aqui.");
+
+        jLabel11.setText("Seu candidato irá aparecer aqui.");
+
+        jLabel12.setText("Seu candidato irá aparecer aqui.");
+
+        jButton5.setText("Votar");
+
+        jButton6.setText("Votar");
+
+        jButton7.setText("Votar");
+
+        jButton8.setText("Votar");
+
+        javax.swing.GroupLayout jPanel9Layout = new javax.swing.GroupLayout(jPanel9);
+        jPanel9.setLayout(jPanel9Layout);
+        jPanel9Layout.setHorizontalGroup(
+            jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel9Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel9Layout.createSequentialGroup()
+                        .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel5)
+                            .addComponent(jLabel6))
+                        .addGap(18, 18, 18)
+                        .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel9Layout.createSequentialGroup()
+                                .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jButton2)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 731, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(jButton6))
+                            .addGroup(jPanel9Layout.createSequentialGroup()
+                                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jButton1)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 731, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(jButton5))))
+                    .addGroup(jPanel9Layout.createSequentialGroup()
+                        .addComponent(jLabel7)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jButton3)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 731, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jButton7))
+                    .addGroup(jPanel9Layout.createSequentialGroup()
+                        .addComponent(jLabel8)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jButton4)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLabel12, javax.swing.GroupLayout.PREFERRED_SIZE, 731, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jButton8)))
+                .addContainerGap(131, Short.MAX_VALUE))
+        );
+        jPanel9Layout.setVerticalGroup(
+            jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel9Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel5)
+                    .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jButton1)
+                        .addComponent(jLabel9)
+                        .addComponent(jButton5)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel6)
+                    .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButton2)
+                    .addComponent(jLabel10)
+                    .addComponent(jButton6))
+                .addGap(47, 47, 47)
+                .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel7)
+                    .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButton3)
+                    .addComponent(jLabel11)
+                    .addComponent(jButton7))
+                .addGap(50, 50, 50)
+                .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel8)
+                    .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButton4)
+                    .addComponent(jLabel12)
+                    .addComponent(jButton8))
+                .addContainerGap(370, Short.MAX_VALUE))
+        );
+
+        votosPane.addTab("Votar", jPanel9);
+
+        javax.swing.GroupLayout jPanel10Layout = new javax.swing.GroupLayout(jPanel10);
+        jPanel10.setLayout(jPanel10Layout);
+        jPanel10Layout.setHorizontalGroup(
+            jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 1160, Short.MAX_VALUE)
+        );
+        jPanel10Layout.setVerticalGroup(
+            jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 576, Short.MAX_VALUE)
+        );
+
+        votosPane.addTab("Consulta Candidato", jPanel10);
+
+        javax.swing.GroupLayout jPanel11Layout = new javax.swing.GroupLayout(jPanel11);
+        jPanel11.setLayout(jPanel11Layout);
+        jPanel11Layout.setHorizontalGroup(
+            jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 1160, Short.MAX_VALUE)
+        );
+        jPanel11Layout.setVerticalGroup(
+            jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 576, Short.MAX_VALUE)
+        );
+
+        votosPane.addTab("Consulta Partido", jPanel11);
+
         MainPane.addTab("Votos", votosPane);
         MainPane.addTab("Relatórios", relatoriosPane);
 
@@ -1792,11 +1993,11 @@ public class DBGUI extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(MainPane)
+            .addComponent(MainPane, javax.swing.GroupLayout.DEFAULT_SIZE, 1170, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(MainPane)
+            .addComponent(MainPane, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         pack();
@@ -1852,7 +2053,7 @@ public class DBGUI extends javax.swing.JFrame {
 
         TableManipulator.setNewModel(tabelaPessoa, new int[]{0, 1, 1, 1, 1, 1, 0, 0, 0, 1, 1});
         TableManipulator.fillTable(tabelaPessoa, res, new int[]{9, 10}, new String[]{"save", "delete"}, new Action[]{save, delete});
-        TableManipulator.adjustColumnWidth(tabelaPessoa, new int[]{120, 182, 182, 120, 100, 100, 90, 90, 90, 90, 90});
+        //TableManipulator.adjustColumnWidth(tabelaPessoa, new int[]{120, 182, 182, 120, 100, 100, 90, 90, 90, 90, 90});
         TableManipulator.centralizeColumns(tabelaPessoa, new int[]{3, 4, 5, 6, 7, 8});
     }//GEN-LAST:event_atualizaPessoaMouseClicked
 
@@ -1868,7 +2069,7 @@ public class DBGUI extends javax.swing.JFrame {
         TableManipulator.setNewModel(tabelaSecaoPessoa, new int[]{0, 0, 0, 0, 0});
         TableManipulator.fillTable(tabelaSecaoPessoa, res, new int[]{}, new String[]{}, new Action[]{});
         TableManipulator.centralizeColumns(tabelaSecaoPessoa, new int[]{0, 1, 2, 4});
-        TableManipulator.adjustColumnWidth(tabelaSecaoPessoa, new int[]{120, 182, 182, 100, 100});
+        //TableManipulator.adjustColumnWidth(tabelaSecaoPessoa, new int[]{120, 182, 182, 100, 100});
         tabelaSecaoPessoa.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
     }//GEN-LAST:event_atualizaSecaoPessoaMouseClicked
 
@@ -1951,7 +2152,7 @@ public class DBGUI extends javax.swing.JFrame {
         }
         TableManipulator.setNewModel(tabelaSecaoUrna, new int[]{0, 0, 0, 0, 0});
         TableManipulator.fillTable(tabelaSecaoUrna, res, new int[]{}, new String[]{}, new Action[]{});
-        TableManipulator.adjustColumnWidth(tabelaSecaoUrna, new int[]{110, 110, 110, 733, 110});
+        //TableManipulator.adjustColumnWidth(tabelaSecaoUrna, new int[]{110, 110, 110, 733, 110});
         TableManipulator.centralizeColumns(tabelaSecaoUrna, new int[]{0, 1, 2, 4});
         tabelaSecaoUrna.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
     }//GEN-LAST:event_atualizaSecaoUrnaMouseClicked
@@ -2008,7 +2209,7 @@ public class DBGUI extends javax.swing.JFrame {
 
         TableManipulator.setNewModel(tabelaSecao, new int[]{0, 0, 0, 1, 0, 1, 1});
         TableManipulator.fillTable(tabelaSecao, res, new int[]{5, 6}, new String[]{"Salvar", "Deletar"}, new Action[]{save, delete});
-        TableManipulator.adjustColumnWidth(tabelaSecao, new int[]{110, 110, 110, 533, 110, 90, 90});
+        //TableManipulator.adjustColumnWidth(tabelaSecao, new int[]{110, 110, 110, 533, 110, 90, 90});
         TableManipulator.centralizeColumns(tabelaSecao, new int[]{0, 1, 2, 4});
     }//GEN-LAST:event_atualizaSecaoMouseClicked
 
@@ -2023,7 +2224,7 @@ public class DBGUI extends javax.swing.JFrame {
         
         TableManipulator.setNewModel(tabelaZonaSecao, new int[]{0, 0, 0, 0});
         TableManipulator.fillTable(tabelaZonaSecao, res, new int[]{}, new String[]{}, new Action[]{});
-        TableManipulator.adjustColumnWidth(tabelaZonaSecao, new int[]{110, 110, 753, 110});
+        //TableManipulator.adjustColumnWidth(tabelaZonaSecao, new int[]{110, 110, 753, 110});
         TableManipulator.centralizeColumns(tabelaZonaSecao, new int[]{0, 1, 3});
 
         tabelaZonaSecao.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
@@ -2086,7 +2287,7 @@ public class DBGUI extends javax.swing.JFrame {
 
         TableManipulator.setNewModel(tabelaZona, new int[]{0, 0, 1, 0, 1, 1});
         TableManipulator.fillTable(tabelaZona, res, new int[]{4,5}, new String[]{"save", "delete"}, new Action[]{save, delete});
-        TableManipulator.adjustColumnWidth(tabelaZona, new int[]{110, 110, 753, 110, 90, 90});
+        //TableManipulator.adjustColumnWidth(tabelaZona, new int[]{110, 110, 753, 110, 90, 90});
         TableManipulator.centralizeColumns(tabelaZona, new int[]{0, 1, 3});
     }//GEN-LAST:event_atualizaZonaMouseClicked
 
@@ -2147,7 +2348,7 @@ public class DBGUI extends javax.swing.JFrame {
 
         TableManipulator.setNewModel(tabelaPartido, new int[]{0, 1, 1, 0, 1, 1});
         TableManipulator.fillTable(tabelaPartido, res, new int[]{4, 5}, new String[]{"save", "delete"}, new Action[]{save, delete});
-        TableManipulator.adjustColumnWidth(tabelaPartido, new int[]{120, 705, 100, 100, 90, 90});
+        //TableManipulator.adjustColumnWidth(tabelaPartido, new int[]{120, 705, 100, 100, 90, 90});
         TableManipulator.centralizeColumns(tabelaPartido, new int[]{0, 2, 3});
     }//GEN-LAST:event_atualizaPartidoMouseClicked
 
@@ -2218,13 +2419,13 @@ public class DBGUI extends javax.swing.JFrame {
         
         TableManipulator.setNewModel(tabelaPessoaFilia, new int[]{0, 0, 0, 0, 0});
         TableManipulator.fillTable(tabelaPessoaFilia, pessoas, new int[]{1, 2, 7, 8, 9}, new int[]{}, new String[]{}, new Action[]{});
-        TableManipulator.adjustColumnWidth(tabelaPessoaFilia, new int[]{120, 260, 60, 60, 60});
+        //TableManipulator.adjustColumnWidth(tabelaPessoaFilia, new int[]{120, 260, 60, 60, 60});
         TableManipulator.centralizeColumns(tabelaPessoaFilia, new int[]{0, 2, 3, 4});
         tabelaPessoaFilia.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
         
         TableManipulator.setNewModel(tabelaPartidoFilia, new int[]{0, 0, 0});
         TableManipulator.fillTable(tabelaPartidoFilia, partidos, new int[]{1, 2, 3}, new int[]{}, new String[]{}, new Action[]{});
-        TableManipulator.adjustColumnWidth(tabelaPartidoFilia, new int[]{100, 380, 100});
+        //TableManipulator.adjustColumnWidth(tabelaPartidoFilia, new int[]{100, 380, 100});
         TableManipulator.centralizeColumns(tabelaPartidoFilia, new int[]{0, 2});
         tabelaPartidoFilia.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
     }//GEN-LAST:event_atualizaFiliaMouseClicked
@@ -2272,7 +2473,7 @@ public class DBGUI extends javax.swing.JFrame {
         
         TableManipulator.setNewModel(tabelaFilia, new int[]{0, 0, 0, 0, 0, 1});
         TableManipulator.fillTable(tabelaFilia, rs, new int[]{5}, new String[]{"delete"}, new Action[]{delete});
-        TableManipulator.adjustColumnWidth(tabelaFilia, new int[]{120, 410, 120, 100, 410, 100});
+        //TableManipulator.adjustColumnWidth(tabelaFilia, new int[]{120, 410, 120, 100, 410, 100});
         TableManipulator.centralizeColumns(tabelaFilia, new int[]{0, 2, 3, 4});
     }//GEN-LAST:event_atualizarTabelaFiliaMouseClicked
 
@@ -2287,7 +2488,7 @@ public class DBGUI extends javax.swing.JFrame {
         
         TableManipulator.setNewModel(tabelaFuncionario, new int[]{0, 0, 0, 0, 0, 0, 0, 0, 0, 0});
         TableManipulator.fillTableFuncionario(tabelaFuncionario, rs, new int[]{}, new String[]{}, new Action[]{});
-        TableManipulator.adjustColumnWidth(tabelaFuncionario, new int[]{120, 182, 182, 120, 100, 100, 90, 90, 90, 90});
+        //TableManipulator.adjustColumnWidth(tabelaFuncionario, new int[]{120, 182, 182, 120, 100, 100, 90, 90, 90, 90});
         TableManipulator.centralizeColumns(tabelaFuncionario, new int[]{0, 2, 3, 4, 5, 6, 7, 8, 9});
         tabelaFuncionario.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
     }//GEN-LAST:event_atualizaFuncionarioMouseClicked
@@ -2356,21 +2557,21 @@ public class DBGUI extends javax.swing.JFrame {
         
         TableManipulator.setNewModel(tabelaPessoaCandidato, new int[]{0, 0});
         TableManipulator.fillTable(tabelaPessoaCandidato, rs, new int[]{}, new String[]{}, new Action[]{});
-        TableManipulator.adjustColumnWidth(tabelaPessoaCandidato, new int[]{100, 280});
+        //TableManipulator.adjustColumnWidth(tabelaPessoaCandidato, new int[]{100, 280});
         TableManipulator.centralizeColumns(tabelaPessoaCandidato, new int[]{0});
     }//GEN-LAST:event_atualizaPessoaCandidatoMouseClicked
 
     private void atualizaCandidatoTitularMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_atualizaCandidatoTitularMouseClicked
         ResultSet rs;
         try {
-            if (((String)cargoCandidato.getSelectedItem()).compareTo("Vice-prefeito") == 0)
+            if (cargoCandidato.getSelectedIndex() == 2)    
                 rs = ds.selectCandidatoPorCargo("Prefeito");
-            else if (((String)cargoCandidato.getSelectedItem()).compareTo("Vice-governador") == 0)
+            else if (cargoCandidato.getSelectedIndex() == 4)
                 rs = ds.selectCandidatoPorCargo("Governador");
-            else if (((String)cargoCandidato.getSelectedItem()).compareTo("Vice-presidente") == 0)
+            else if (cargoCandidato.getSelectedIndex() == 6)
                 rs = ds.selectCandidatoPorCargo("Presidente");
             else{
-                JOptionPane.showMessageDialog(null, "Opçao válida para candidatos a vice.\n");
+                JOptionPane.showMessageDialog(null, "Opçao válida apenas para candidatos a vice.\n");
                 return;
             }
         } catch (SQLException ex) {
@@ -2378,11 +2579,113 @@ public class DBGUI extends javax.swing.JFrame {
             return;
         }
         
-        TableManipulator.setNewModel(tabelaCandidatoTitular, new int[]{0, 0, 0, 0});
+        TableManipulator.setNewModel(tabelaCandidatoTitular, new int[]{0, 0, 0, 0, 0});
         TableManipulator.fillTable(tabelaCandidatoTitular, rs, new int[]{}, new String[]{}, new Action[]{});
-        TableManipulator.adjustColumnWidth(tabelaCandidatoTitular, new int[]{100, 180, 120, 100});
-        TableManipulator.centralizeColumns(tabelaCandidatoTitular, new int[]{0});
+        //TableManipulator.adjustColumnWidth(tabelaCandidatoTitular, new int[]{100, 180, 120, 100});
+        TableManipulator.centralizeColumns(tabelaCandidatoTitular, new int[]{0, 4});
     }//GEN-LAST:event_atualizaCandidatoTitularMouseClicked
+
+    private void atualizaTabelaCandidatoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_atualizaTabelaCandidatoMouseClicked
+        ResultSet rs;
+        try {
+            rs = ds.selectAllCandidato();
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Problemas ao selecionar Candidatos.\n"+ErrorTranslator.translate(ex));
+            return;
+        }
+        
+        Action edit = new AbstractAction() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                JTable table = (JTable) e.getSource();
+                int row = Integer.valueOf(e.getActionCommand());
+                try {
+                    dml.updateCandidato((String)tabelaCandidato.getValueAt(row, 0), (String)tabelaPartido.getValueAt(row, 1));
+                    JOptionPane.showMessageDialog(null, "Valor atualizado com sucesso.\n");
+                } catch (SQLException ex) {
+                    JOptionPane.showMessageDialog(null, "Problemas ao atualizar Candidato.\n"+ErrorTranslator.translate(ex));
+                }
+            }
+        };
+        Action delete = new AbstractAction() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                JTable table = (JTable) e.getSource();
+                int row = Integer.valueOf(e.getActionCommand());
+                try {
+                    dml.deleteCandidato((String)tabelaCandidato.getValueAt(row, 0));
+                    JOptionPane.showMessageDialog(null, "Valor deletado com sucesso.\n");
+                    ((DefaultTableModel)table.getModel()).removeRow(row);
+                } catch (SQLException ex) {
+                    JOptionPane.showMessageDialog(null, "Problemas ao deletar Filiaçao.\n"+ErrorTranslator.translate(ex));
+                }
+            }
+        };
+        
+        TableManipulator.setNewModel(tabelaCandidato, new int[]{0, 1, 0, 0, 0, 1, 1});
+        TableManipulator.fillTable(tabelaCandidato, rs, new int[]{5, 6}, new String[]{"edit", "delete"}, new Action[]{edit, delete});
+        //TableManipulator.adjustColumnWidth(tabelaCandidato, new int[]{100, 525, 100, 150, 100});
+        TableManipulator.centralizeColumns(tabelaCandidato, new int[]{0, 3, 4});
+    }//GEN-LAST:event_atualizaTabelaCandidatoMouseClicked
+
+    private void insereCandidatoButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_insereCandidatoButtonMouseClicked
+        int row = tabelaPessoaCandidato.getSelectedRow();
+        if (row == -1){
+            JOptionPane.showMessageDialog(null, "Selecione pelo menos uma pessoa antes de prosseguir.\n");
+            return;
+        }
+        
+        if (nomeFantasia.getText().isEmpty() || (nroCandidato.getText().isEmpty() && cargoCandidato.getSelectedIndex()%2 != 0)){
+            JOptionPane.showMessageDialog(null, "Preencha todos os campos antes de prosseguir.\n");
+            return;
+        }
+        
+        try {
+            if (cargoCandidato.getSelectedIndex() == 0 && nroCandidato.getText().length() != 5){
+                JOptionPane.showMessageDialog(null, "Número do candidato deve conter 5 números.\n");
+                return;
+            }
+            if (cargoCandidato.getSelectedIndex()%2 != 0 && nroCandidato.getText().length() != 2){
+                JOptionPane.showMessageDialog(null, "Número do candidato deve conter 2 números.\n");
+                return;
+            }
+            if (cargoCandidato.getSelectedIndex() == 0 || cargoCandidato.getSelectedIndex()%2 != 0)
+                dml.insereCandidato((String)tabelaPessoaCandidato.getValueAt(row, 0), nomeFantasia.getText(), (String)nroCandidato.getText(), (String)cargoCandidato.getSelectedItem());
+            else{
+                System.out.println("Candidato a vice");
+                int rowcand = tabelaCandidatoTitular.getSelectedRow();
+                    if (rowcand == -1){
+                        JOptionPane.showMessageDialog(null, "Selecione pelo menos uma candidato titular antes de prosseguir.\n");
+                        return;
+                }
+                dml.insereCandidato((String)tabelaPessoaCandidato.getValueAt(row, 0), nomeFantasia.getText(), (String)tabelaCandidatoTitular.getValueAt(rowcand, 4), (String)cargoCandidato.getSelectedItem(), (String)tabelaCandidatoTitular.getValueAt(rowcand, 0));
+            }
+                
+            JOptionPane.showMessageDialog(null, "Valor inserido com sucesso.\n");
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Problemas ao inserir Candidato.\n"+ErrorTranslator.translate(ex));
+        }
+    }//GEN-LAST:event_insereCandidatoButtonMouseClicked
+
+    private void nroCandidatoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nroCandidatoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_nroCandidatoActionPerformed
+
+    private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextField1ActionPerformed
+
+    private void jTextField2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField2ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextField2ActionPerformed
+
+    private void jTextField3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField3ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextField3ActionPerformed
+
+    private void jTextField4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField4ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextField4ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -2439,6 +2742,7 @@ public class DBGUI extends javax.swing.JFrame {
     private javax.swing.JButton atualizaSecao;
     private javax.swing.JButton atualizaSecaoPessoa;
     private javax.swing.JButton atualizaSecaoUrna;
+    private javax.swing.JButton atualizaTabelaCandidato;
     private javax.swing.JButton atualizaUrna;
     private javax.swing.JButton atualizaZona;
     private javax.swing.JButton atualizaZonaSecao;
@@ -2475,10 +2779,28 @@ public class DBGUI extends javax.swing.JFrame {
     private javax.swing.JButton insereUrnaBotaoCria;
     private javax.swing.JButton insereZonaBotaoCria;
     private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
+    private javax.swing.JButton jButton3;
+    private javax.swing.JButton jButton4;
+    private javax.swing.JButton jButton5;
+    private javax.swing.JButton jButton6;
+    private javax.swing.JButton jButton7;
+    private javax.swing.JButton jButton8;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel11;
+    private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel10;
+    private javax.swing.JPanel jPanel11;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
@@ -2486,6 +2808,7 @@ public class DBGUI extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel6;
     private javax.swing.JPanel jPanel7;
     private javax.swing.JPanel jPanel8;
+    private javax.swing.JPanel jPanel9;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane10;
     private javax.swing.JScrollPane jScrollPane11;
@@ -2504,7 +2827,10 @@ public class DBGUI extends javax.swing.JFrame {
     private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JTabbedPane jTabbedPane2;
     private javax.swing.JTabbedPane jTabbedPane3;
-    private javax.swing.JTable jTable1;
+    private javax.swing.JTextField jTextField1;
+    private javax.swing.JTextField jTextField2;
+    private javax.swing.JTextField jTextField3;
+    private javax.swing.JTextField jTextField4;
     private javax.swing.JTextField localSecaoCria;
     private javax.swing.JComboBox modeloUrnaCria;
     private javax.swing.JLabel modeloUrnaLabelCria;
@@ -2513,6 +2839,7 @@ public class DBGUI extends javax.swing.JFrame {
     private javax.swing.JTextField nomeFantasia;
     private javax.swing.JTextField nomePartidoCria;
     private javax.swing.JTextField nomePessoa;
+    private javax.swing.JTextField nroCandidato;
     private javax.swing.JLabel nroSecaoLabelCria;
     private javax.swing.JFormattedTextField nroTitEleitorPessoa;
     private javax.swing.JLabel nroZonaLabelCria;
@@ -2524,7 +2851,6 @@ public class DBGUI extends javax.swing.JFrame {
     private javax.swing.JLabel nroZonaLabelCria6;
     private javax.swing.JSpinner numeroPartidoCria;
     private javax.swing.JSpinner numeroSecaoCria;
-    private javax.swing.JSpinner numeroZona2;
     private javax.swing.JSpinner numeroZona3;
     private javax.swing.JSpinner numeroZona4;
     private javax.swing.JSpinner numeroZonaCria;
@@ -2533,6 +2859,7 @@ public class DBGUI extends javax.swing.JFrame {
     private javax.swing.JTabbedPane relatoriosPane;
     private javax.swing.JPanel secaoPane;
     private javax.swing.JTextField siglaPartidoCria;
+    private javax.swing.JTable tabelaCandidato;
     private javax.swing.JTable tabelaCandidatoTitular;
     private javax.swing.JTable tabelaFilia;
     private javax.swing.JTable tabelaFuncionario;
