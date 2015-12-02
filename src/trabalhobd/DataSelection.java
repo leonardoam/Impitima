@@ -5,6 +5,7 @@
  */
 package trabalhobd;
 
+import java.sql.CallableStatement;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -31,8 +32,17 @@ public class DataSelection {
     private PreparedStatement selectPartidoStatement;
     private PreparedStatement selectViceStatement;
     
-    private PreparedStatement selectAllVotoCandidato;
-    private PreparedStatement selectAllVotoPartido;
+    private PreparedStatement selectVotoPorCidadeCandidato;
+    private PreparedStatement selectVotoPorCidadePartido;
+    
+    private CallableStatement executeCandidatosEleitos;
+    private PreparedStatement selectAllCandidatosEleitos;
+    
+    private PreparedStatement rollupCandidato;
+    private PreparedStatement rollupPartido;
+    
+    private PreparedStatement partidoInclusivo;
+    private PreparedStatement maisVotados;
     
     public DataSelection(DBConnector conn) throws SQLException{
         this.conn = conn.getConnection();
@@ -78,10 +88,71 @@ public class DataSelection {
                                                                 "    ON FILIA.NROTITELEITOR = CANDIDATO.NROTITELEITOR" +
                                                                 "    JOIN PARTIDO" +
                                                                 "    ON PARTIDO.NROPARTIDO = FILIA.NROPARTIDO");
+        selectVotoPorCidadeCandidato = this.conn.prepareStatement("SELECT candidato.nomeFantasia, CANDIDATO.NROCANDIDATO, PARTIDO.SIGLAPARTIDO, COUNT(candidato.NROTITELEITOR)\n" +
+                                                            "  FROM candidato, zona, secao, votocandidato, pessoa, partido, filia\n" +
+                                                            "   WHERE\n" +
+                                                            "     candidato.NROTITELEITOR = pessoa.nroTitEleitor AND\n" +
+                                                            "     candidato.nrotiteleitor = filia.nrotiteleitor AND\n" +
+                                                            "     partido.nropartido = filia.nropartido AND\n" +
+                                                            "     votocandidato.nrotiteleitor = candidato.nrotiteleitor AND\n" +
+                                                            "     votocandidato.nroZona = secao.nroZona AND\n" +
+                                                            "     votocandidato.nroSecao = secao.nroSecao AND\n" +
+                                                            "     votocandidato.estadoZona = secao.estadoZona AND\n" +
+                                                            "     zona.nroZona = secao.nroZona AND\n" +
+                                                            "     zona.estadoZona = secao.estadoZona AND\n" +
+                                                            "     (UPPER(secao.LOCALSECAO) LIKE UPPER(?) OR\n" +
+                                                            "     UPPER(zona.ENDZONA) LIKE UPPER(?)) AND\n" +
+                                                            "     UPPER(CANDIDATO.CARGOCANDIDATO) LIKE UPPER(?)\n" +
+                                                            "    GROUP BY(candidato.nomeFantasia, CANDIDATO.NROCANDIDATO, PARTIDO.SIGLAPARTIDO)\n" +
+                                                            "    ORDER BY(COUNT(candidato.NROTITELEITOR)) DESC");
         
-        /*TODO*/
-        /*selectAllVotoCandidato = this.conn.prepareStatement("");
-        selectAllVotoPartido = this.conn.prepareStatement("");*/
+        selectVotoPorCidadePartido = this.conn.prepareStatement("SELECT PARTIDO.NOMEPARTIDO, PARTIDO.SIGLAPARTIDO, PARTIDO.NROPARTIDO, COUNT(PARTIDO.NROPARTIDO)\n" +
+                                                            "  FROM zona, secao, votopartido, partido\n" +
+                                                            "   WHERE\n" +
+                                                            "     votopartido.nropartido = partido.nropartido AND\n" +
+                                                            "     votopartido.nroZona = secao.nroZona AND\n" +
+                                                            "     votopartido.nroSecao = secao.nroSecao AND\n" +
+                                                            "     votopartido.estadoZona = secao.estadoZona AND\n" +
+                                                            "     zona.nrozona = secao.nrozona AND\n" +
+                                                            "     zona.estadozona = secao.estadozona AND\n" +
+                                                            "     (UPPER(secao.LOCALSECAO) LIKE UPPER(?) OR\n" +
+                                                            "     UPPER(zona.ENDZONA) LIKE UPPER(?))\n" +
+                                                            "    GROUP BY(PARTIDO.NOMEPARTIDO, PARTIDO.SIGLAPARTIDO, PARTIDO.NROPARTIDO)\n" +
+                                                            "    ORDER BY(COUNT(PARTIDO.NROPARTIDO)) DESC");     
+        executeCandidatosEleitos = this.conn.prepareCall("{ call eleicoes.atualiza_eleitos(?, ?) }");
+        selectAllCandidatosEleitos = this.conn.prepareStatement("SELECT * FROM candidatos_eleitos ORDER BY DECODE(CARGOCANDIDATO, 'PREFEITO', 1, 'VICE-PREFEITO', 2, 'VEREADOR', 3), NROVOTOS DESC");
+        rollupCandidato = this.conn.prepareStatement("SELECT * from TABLE(eleicoes.relatorio_votos_candidatos)");
+        rollupPartido = this.conn.prepareStatement("SELECT * from TABLE(eleicoes.relatorio_votos_partidos(?))");
+        maisVotados = this.conn.prepareStatement("SELECT CANDIDATO.NOMEFANTASIA AS \"CANDIDATO\", CANDIDATO.CARGOCANDIDATO AS \"CARGO\", PARTIDO.SIGLAPARTIDO AS \"PARTIDO\", COUNT(VOTOCANDIDATO.NROTITELEITOR) \"NUMERO DE VOTOS\"\n" +
+                                                "        FROM CANDIDATO\n" +
+                                                "        LEFT JOIN VOTOCANDIDATO\n" +
+                                                "               ON CANDIDATO.NROTITELEITOR = VOTOCANDIDATO.NROTITELEITOR\n" +
+                                                "        LEFT JOIN FILIA\n" +
+                                                "               ON CANDIDATO.NROTITELEITOR = FILIA.NROTITELEITOR\n" +
+                                                "        LEFT JOIN PARTIDO\n" +
+                                                "               ON FILIA.NROPARTIDO = PARTIDO.NROPARTIDO\n" +
+                                                "        GROUP BY CANDIDATO.NOMEFANTASIA, CANDIDATO.CARGOCANDIDATO, PARTIDO.SIGLAPARTIDO\n" +
+                                                "        HAVING COUNT(VOTOCANDIDATO.NROTITELEITOR) > ?\n" +
+                                                "        ORDER BY \"NUMERO DE VOTOS\" DESC");
+        partidoInclusivo = this.conn.prepareStatement("SELECT siglaPartido, nomePartido\n" +
+                                                    "    FROM partido\n" +
+                                                    "      WHERE NOT EXISTS(\n" +
+                                                    "       (\n" +
+                                                    "        SELECT DISTINCT escolaridade\n" +
+                                                    "          FROM pessoa\n" +
+                                                    "       )\n" +
+                                                    "        MINUS\n" +
+                                                    "       (\n" +
+                                                    "        SELECT escolaridade\n" +
+                                                    "         FROM candidato, pessoa, filia\n" +
+                                                    "          WHERE(\n" +
+                                                    "            candidato.NROTITELEITOR = pessoa.NROTITELEITOR AND\n" +
+                                                    "            candidato.NROTITELEITOR = filia.NROTITELEITOR AND\n" +
+                                                    "            filia.NROPARTIDO = partido.NROPARTIDO\n" +
+                                                    "          )\n" +
+                                                    "          GROUP BY (nroPartido, escolaridade)\n" +
+                                                    "        )\n" +
+                                                    "      )");
     }
     
     public ResultSet selectAllZonas() throws SQLException{
@@ -136,5 +207,42 @@ public class DataSelection {
     public ResultSet selectVice(String nroTitEleitor) throws SQLException{
         selectViceStatement.setString(1, nroTitEleitor);
         return selectViceStatement.executeQuery();
+    }
+    public ResultSet selectVotoCandidatoPorCidade(String cidade, String cargo) throws SQLException{
+        selectVotoPorCidadeCandidato.setString(1, "%"+cidade);
+        selectVotoPorCidadeCandidato.setString(2, "%"+cidade);
+        selectVotoPorCidadeCandidato.setString(3, cargo);
+        return selectVotoPorCidadeCandidato.executeQuery();
+    }
+    public ResultSet selectVotoPartidoPorCidade(String cidade) throws SQLException{
+        selectVotoPorCidadePartido.setString(1, "%"+cidade);
+        selectVotoPorCidadePartido.setString(2, "%"+cidade);
+        return selectVotoPorCidadePartido.executeQuery();
+    }
+    
+    public ResultSet selectAllEleitos(int nver, String cidade) throws SQLException{
+        executeCandidatosEleitos.setInt(1, nver);
+        executeCandidatosEleitos.setString(2, cidade);
+        executeCandidatosEleitos.executeQuery();
+        conn.commit();
+        return selectAllCandidatosEleitos.executeQuery();
+    }
+    
+    public ResultSet selectResumoCandidato() throws SQLException{
+        return rollupCandidato.executeQuery();
+    }
+    
+    public ResultSet selectResumoPartido(int nvotos) throws SQLException{
+        rollupPartido.setInt(1, nvotos);
+        return rollupPartido.executeQuery();
+    }
+    
+    public ResultSet selectMaisVotados(int nvotos) throws SQLException{
+        maisVotados.setInt(1, nvotos);
+        return maisVotados.executeQuery();
+    }
+    
+    public ResultSet selectPartidoInclusivo() throws SQLException{
+        return partidoInclusivo.executeQuery();
     }
 }
