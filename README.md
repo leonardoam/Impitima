@@ -1,4 +1,5 @@
-# TrabalhoLabBD
+# Sistema de Gerenciamento de Eleições
+(aceitamos sugestões de nome ;) )
 
 Projeto referente a disciplina SCC0241 - Laboratório de Bases de Dados.
 
