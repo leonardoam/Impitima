@@ -28,6 +28,30 @@ public class ErrorTranslator {
                 case 12899:
                     erro += "Valor de campo inserido é muito grande.\n";
                     break;
+                case 2291:
+                    erro += "Valor não atende aos requisitos de registro.\n";
+                    break;
+                case 1403:
+                    erro += "Nenhum dado encontrado.\n";
+                    break;
+                case 6512:
+                    erro += "Nenhum dado encontrado.\n";
+                    break;
+                case 1422:
+                    erro += "Erro interno.\n";
+                    break;
+                case 1722:
+                    erro += "Entrada inválida.\n";
+                    break;
+                case 1841:
+                    erro += "Data inválida.\n";
+                    break;
+                case 1843:
+                    erro += "Data inválida.\n";
+                    break;
+                case 1847:
+                    erro += "Data inválida.\n";
+                    break;
                 default:
                     erro += "Erro desconhecido - Código: "+ex.getErrorCode()+".\n"+ex.getMessage()+"\n";
             }
@@ -36,6 +60,6 @@ public class ErrorTranslator {
             if (ex == null)
                 break;
         }
-        return erro+".\n";
+        return erro+"\n";
     }
 }
