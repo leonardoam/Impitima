@@ -45,6 +45,13 @@ public class DataManipulation {
     private PreparedStatement updateFuncionarioStatement;
     private PreparedStatement deleteFuncionarioStatement;
     
+    private PreparedStatement insertCandidatoStatement;
+    private PreparedStatement updateCandidatoStatement;
+    private PreparedStatement deleteCandidatoStatement;
+    private PreparedStatement insertEhViceDeStatement;
+    
+    private PreparedStatement insertVotoCandidatoStatement;
+    
     public DataManipulation(DBConnector conn) throws SQLException{
         this.conn = conn.getConnection();
         
@@ -74,6 +81,13 @@ public class DataManipulation {
         insertFuncionarioStatement = this.conn.prepareStatement("INSERT INTO funcionario (nroTitEleitor, cargoFunc, nroZona, estadoZona, nroSecao) VALUES (?, ?, ?, ?, ?)");
         updateFuncionarioStatement = this.conn.prepareStatement("UPDATE funcionario SET cargofunc = ? WHERE nroTitEleitor = ?");
         deleteFuncionarioStatement = this.conn.prepareStatement("DELETE FROM funcionario WHERE nroTitEleitor = ?");
+        
+        insertCandidatoStatement = this.conn.prepareStatement("INSERT INTO candidato (nroTitEleitor, nomeFantasia, nroCandidato, cargoCandidato) VALUES (?, ?, ?, ?)");
+        updateCandidatoStatement = this.conn.prepareStatement("UPDATE candidato SET nomeFantasia = ? WHERE nroTitEleitor = ?");
+        deleteCandidatoStatement = this.conn.prepareStatement("DELETE FROM candidato WHERE nroTitEleitor = ?");
+        insertEhViceDeStatement = this.conn.prepareStatement("INSERT INTO ehViceDe (nroTitEleitorPrincipal, nroTitEleitorVice) VALUES (?, ?)");
+        
+        insertVotoCandidatoStatement = this.conn.prepareStatement("INSERT INTO votoCandidato (nroTitEleitor, nroZona, estadoZona, nroSecao, nroUrna, idVotoC) VALUES (?, ?, ?, ?, ?, seq_voto.NEXTVAL)");
     }
     
     public void insereZona(String nroZona, String estadoZona, String endZona) throws SQLException{
@@ -315,6 +329,64 @@ public class DataManipulation {
         int count = deleteFuncionarioStatement.executeUpdate();
         if (count == 0)
             throw new SQLException("Não é um funcionário.\n", null, 0);
+        conn.commit();
+    }
+    
+    public void insereCandidato(String nroTitEleitor, String nomeFantasia, String nroCandidato, String cargoCandidato) throws SQLException{
+        insertCandidatoStatement.setString(1, nroTitEleitor);
+        if (nomeFantasia.isEmpty())
+            insertCandidatoStatement.setNull(2, Types.VARCHAR);
+        else
+            insertCandidatoStatement.setString(2, nomeFantasia);
+        if (nroCandidato.isEmpty())
+            insertCandidatoStatement.setNull(3, Types.INTEGER);
+        else
+            insertCandidatoStatement.setInt(3, Integer.parseInt(nroCandidato));
+        insertCandidatoStatement.setString(4, cargoCandidato);
+        insertCandidatoStatement.execute();
+        conn.commit();
+    }
+    public void insereCandidato(String nroTitEleitor, String nomeFantasia, String nroCandidato, String cargoCandidato, String nroTitEleitorTitular) throws SQLException{
+        System.out.println(nroTitEleitor+" "+nomeFantasia+" "+nroCandidato+" "+cargoCandidato);
+        
+        insertCandidatoStatement.setString(1, nroTitEleitor);
+        if (nomeFantasia.isEmpty())
+            insertCandidatoStatement.setNull(2, Types.VARCHAR);
+        else
+            insertCandidatoStatement.setString(2, nomeFantasia);
+        if (nroCandidato.isEmpty())
+            insertCandidatoStatement.setNull(3, Types.INTEGER);
+        else
+            insertCandidatoStatement.setInt(3, Integer.parseInt(nroCandidato));
+        insertCandidatoStatement.setString(4, cargoCandidato);
+        insertCandidatoStatement.execute();
+        
+        insertEhViceDeStatement.setString(1, nroTitEleitorTitular);
+        insertEhViceDeStatement.setString(2, nroTitEleitor);
+        insertEhViceDeStatement.execute();
+        conn.commit();
+    }
+    
+    public void updateCandidato(String nroTitEleitor, String nomeFantasia) throws SQLException{
+        updateCandidatoStatement.setString(2, nroTitEleitor);
+        updateCandidatoStatement.setString(1, nomeFantasia);
+        updateCandidatoStatement.executeUpdate();
+        conn.commit();
+    }
+    
+    public void deleteCandidato(String nroTitEleitor) throws SQLException{
+        deleteCandidatoStatement.setString(1, nroTitEleitor);
+        deleteCandidatoStatement.execute();
+        conn.commit();
+    }
+    
+    public void insereVoto(String nroTitEleitor, String nroZona, String estadoZona, String nroSecao, String nroUrna) throws SQLException{
+        insertVotoCandidatoStatement.setString(1, nroTitEleitor);
+        insertVotoCandidatoStatement.setInt(2, Integer.parseInt(nroZona));
+        insertVotoCandidatoStatement.setString(3, estadoZona);
+        insertVotoCandidatoStatement.setInt(4, Integer.parseInt(nroSecao));
+        insertVotoCandidatoStatement.setInt(5, Integer.parseInt(nroUrna));
+        insertVotoCandidatoStatement.execute();
         conn.commit();
     }
 }
