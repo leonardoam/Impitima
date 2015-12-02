@@ -50,6 +50,7 @@ public abstract class TableManipulator {
     
     public static void fillTable(JTable table, ResultSet rs, int[] buttoncolumns, String[] buttonlabels, Action[] buttonactions){
         DefaultTableModel model = (DefaultTableModel) table.getModel();
+        int count = 0;
         try {
             for(int i=0; rs.next(); i++){
                 Vector<Object> row = new Vector<Object>();
@@ -58,10 +59,13 @@ public abstract class TableManipulator {
                 for(int j=0; j<buttonlabels.length; j++)
                     row.add(buttonlabels[j]);
                 model.addRow(row);
+                count++;
             }
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, "Problemas ao criar tabela.\n"+ErrorTranslator.translate(ex));
         }
+        if (count == 0)
+            model.addRow(new String[]{"Nenhuma linha selecionada."});
         ButtonColumn button;
         for(int i=0; i<buttoncolumns.length; i++)
             button = new ButtonColumn(table, buttonactions[i], buttoncolumns[i]);
