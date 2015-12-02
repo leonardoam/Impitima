@@ -77,6 +77,7 @@ public class DBGUI extends javax.swing.JFrame {
         tipoPessoa.setModel(new javax.swing.DefaultComboBoxModel(tiposPessoa));
         cargoFuncionario.setModel(new javax.swing.DefaultComboBoxModel(cargosFuncionario));
         cargoCandidato.setModel(new javax.swing.DefaultComboBoxModel(cargosCandidato));
+        cargoVotoCandidato.setModel(new javax.swing.DefaultComboBoxModel(cargosCandidato));
         
         try{
             DBConnector connector = new DBConnector("a7987265", "a7987265", true);
@@ -246,24 +247,32 @@ public class DBGUI extends javax.swing.JFrame {
         jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
-        jTextField2 = new javax.swing.JTextField();
-        jTextField3 = new javax.swing.JTextField();
-        jTextField4 = new javax.swing.JTextField();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
-        jButton4 = new javax.swing.JButton();
-        jLabel9 = new javax.swing.JLabel();
-        jLabel10 = new javax.swing.JLabel();
-        jLabel11 = new javax.swing.JLabel();
-        jLabel12 = new javax.swing.JLabel();
-        jButton5 = new javax.swing.JButton();
-        jButton6 = new javax.swing.JButton();
-        jButton7 = new javax.swing.JButton();
-        jButton8 = new javax.swing.JButton();
+        vereadorInput = new javax.swing.JTextField();
+        prefeitoInput = new javax.swing.JTextField();
+        governadorInput = new javax.swing.JTextField();
+        presidenteInput = new javax.swing.JTextField();
+        atualizaVereador = new javax.swing.JButton();
+        atualizaPrefeito = new javax.swing.JButton();
+        atualizaGovernador = new javax.swing.JButton();
+        atualizaPresidente = new javax.swing.JButton();
+        vereadorVoto = new javax.swing.JButton();
+        prefeitoVoto = new javax.swing.JButton();
+        governadorVoto = new javax.swing.JButton();
+        presidenteVoto = new javax.swing.JButton();
+        jScrollPane17 = new javax.swing.JScrollPane();
+        tabelaZonaVoto = new javax.swing.JTable();
+        atualizaZonaVoto = new javax.swing.JButton();
+        jScrollPane16 = new javax.swing.JScrollPane();
+        tabelaVoto = new javax.swing.JTable();
         jPanel10 = new javax.swing.JPanel();
+        jScrollPane18 = new javax.swing.JScrollPane();
+        tabelaVotoCandidato = new javax.swing.JTable();
+        atualizaVotoCandidato = new javax.swing.JButton();
+        cargoVotoCandidato = new javax.swing.JComboBox();
         jPanel11 = new javax.swing.JPanel();
+        jScrollPane19 = new javax.swing.JScrollPane();
+        jTable2 = new javax.swing.JTable();
+        jButton2 = new javax.swing.JButton();
         relatoriosPane = new javax.swing.JTabbedPane();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -1824,104 +1833,203 @@ public class DBGUI extends javax.swing.JFrame {
 
         jLabel8.setText("Presidente:");
 
-        jTextField1.addActionListener(new java.awt.event.ActionListener() {
+        vereadorInput.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField1ActionPerformed(evt);
+                vereadorInputActionPerformed(evt);
             }
         });
 
-        jTextField2.addActionListener(new java.awt.event.ActionListener() {
+        prefeitoInput.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField2ActionPerformed(evt);
+                prefeitoInputActionPerformed(evt);
             }
         });
 
-        jTextField3.addActionListener(new java.awt.event.ActionListener() {
+        governadorInput.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField3ActionPerformed(evt);
+                governadorInputActionPerformed(evt);
             }
         });
 
-        jTextField4.addActionListener(new java.awt.event.ActionListener() {
+        presidenteInput.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField4ActionPerformed(evt);
+                presidenteInputActionPerformed(evt);
             }
         });
 
-        jButton1.setText("Procurar");
+        atualizaVereador.setText("Procurar");
+        atualizaVereador.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                atualizaVereadorMouseClicked(evt);
+            }
+        });
 
-        jButton2.setText("Procurar");
+        atualizaPrefeito.setText("Procurar");
+        atualizaPrefeito.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                atualizaPrefeitoMouseClicked(evt);
+            }
+        });
 
-        jButton3.setText("Procurar");
+        atualizaGovernador.setText("Procurar");
+        atualizaGovernador.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                atualizaGovernadorMouseClicked(evt);
+            }
+        });
 
-        jButton4.setText("Procurar");
+        atualizaPresidente.setText("Procurar");
+        atualizaPresidente.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                atualizaPresidenteMouseClicked(evt);
+            }
+        });
 
-        jLabel9.setText("Seu candidato irá aparecer aqui.");
+        vereadorVoto.setText("Votar");
+        vereadorVoto.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                vereadorVotoMouseClicked(evt);
+            }
+        });
 
-        jLabel10.setText("Seu candidato irá aparecer aqui.");
+        prefeitoVoto.setText("Votar");
+        prefeitoVoto.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                prefeitoVotoMouseClicked(evt);
+            }
+        });
 
-        jLabel11.setText("Seu candidato irá aparecer aqui.");
+        governadorVoto.setText("Votar");
+        governadorVoto.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                governadorVotoMouseClicked(evt);
+            }
+        });
 
-        jLabel12.setText("Seu candidato irá aparecer aqui.");
+        presidenteVoto.setText("Votar");
+        presidenteVoto.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                presidenteVotoMouseClicked(evt);
+            }
+        });
 
-        jButton5.setText("Votar");
+        tabelaZonaVoto.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
 
-        jButton6.setText("Votar");
+            },
+            new String [] {
+                "Zona Eleitoral", "Estado", "Seção Eleitoral", "Número da Urna"
+            }
+        ) {
+            Class[] types = new Class [] {
+                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
+            };
+            boolean[] canEdit = new boolean [] {
+                false, false, true, true
+            };
 
-        jButton7.setText("Votar");
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
 
-        jButton8.setText("Votar");
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jScrollPane17.setViewportView(tabelaZonaVoto);
+
+        atualizaZonaVoto.setText("Procurar Dados");
+        atualizaZonaVoto.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                atualizaZonaVotoMouseClicked(evt);
+            }
+        });
+
+        tabelaVoto.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Nome Fantasia", "Cargo", "Título de Eleitor", "Sigla Partido"
+            }
+        ) {
+            Class[] types = new Class [] {
+                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
+            };
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jScrollPane16.setViewportView(tabelaVoto);
+        if (tabelaVoto.getColumnModel().getColumnCount() > 0) {
+            tabelaVoto.getColumnModel().getColumn(0).setMinWidth(385);
+            tabelaVoto.getColumnModel().getColumn(1).setMinWidth(120);
+            tabelaVoto.getColumnModel().getColumn(2).setMinWidth(100);
+            tabelaVoto.getColumnModel().getColumn(3).setMinWidth(120);
+        }
 
         javax.swing.GroupLayout jPanel9Layout = new javax.swing.GroupLayout(jPanel9);
         jPanel9.setLayout(jPanel9Layout);
         jPanel9Layout.setHorizontalGroup(
             jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jScrollPane17)
             .addGroup(jPanel9Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(atualizaZonaVoto)
                     .addGroup(jPanel9Layout.createSequentialGroup()
                         .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel5)
-                            .addComponent(jLabel6))
+                            .addGroup(jPanel9Layout.createSequentialGroup()
+                                .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(jPanel9Layout.createSequentialGroup()
+                                        .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(jLabel5)
+                                            .addComponent(jLabel6))
+                                        .addGap(18, 18, 18)
+                                        .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addGroup(jPanel9Layout.createSequentialGroup()
+                                                .addComponent(vereadorInput, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                                .addComponent(atualizaVereador))
+                                            .addGroup(jPanel9Layout.createSequentialGroup()
+                                                .addComponent(prefeitoInput, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                                .addComponent(atualizaPrefeito))))
+                                    .addGroup(jPanel9Layout.createSequentialGroup()
+                                        .addComponent(jLabel7)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(governadorInput, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(atualizaGovernador)))
+                                .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(jPanel9Layout.createSequentialGroup()
+                                        .addGap(18, 18, 18)
+                                        .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(vereadorVoto)
+                                            .addComponent(prefeitoVoto)))
+                                    .addGroup(jPanel9Layout.createSequentialGroup()
+                                        .addGap(17, 17, 17)
+                                        .addComponent(governadorVoto))))
+                            .addGroup(jPanel9Layout.createSequentialGroup()
+                                .addComponent(jLabel8)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(presidenteInput, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(atualizaPresidente)
+                                .addGap(18, 18, 18)
+                                .addComponent(presidenteVoto)))
                         .addGap(18, 18, 18)
-                        .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel9Layout.createSequentialGroup()
-                                .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jButton2)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 731, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jButton6))
-                            .addGroup(jPanel9Layout.createSequentialGroup()
-                                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jButton1)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 731, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jButton5))))
-                    .addGroup(jPanel9Layout.createSequentialGroup()
-                        .addComponent(jLabel7)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButton3)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 731, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jButton7))
-                    .addGroup(jPanel9Layout.createSequentialGroup()
-                        .addComponent(jLabel8)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButton4)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabel12, javax.swing.GroupLayout.PREFERRED_SIZE, 731, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jButton8)))
-                .addContainerGap(131, Short.MAX_VALUE))
+                        .addComponent(jScrollPane16, javax.swing.GroupLayout.PREFERRED_SIZE, 711, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(139, Short.MAX_VALUE))
         );
         jPanel9Layout.setVerticalGroup(
             jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1930,58 +2038,138 @@ public class DBGUI extends javax.swing.JFrame {
                 .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel5)
                     .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jButton1)
-                        .addComponent(jLabel9)
-                        .addComponent(jButton5)))
+                        .addComponent(vereadorInput, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(atualizaVereador)
+                        .addComponent(vereadorVoto)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel6)
-                    .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton2)
-                    .addComponent(jLabel10)
-                    .addComponent(jButton6))
-                .addGap(47, 47, 47)
-                .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel7)
-                    .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton3)
-                    .addComponent(jLabel11)
-                    .addComponent(jButton7))
-                .addGap(50, 50, 50)
-                .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel8)
-                    .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton4)
-                    .addComponent(jLabel12)
-                    .addComponent(jButton8))
-                .addContainerGap(370, Short.MAX_VALUE))
+                .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel9Layout.createSequentialGroup()
+                        .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel6)
+                            .addComponent(prefeitoInput, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(atualizaPrefeito)
+                            .addComponent(prefeitoVoto))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(atualizaGovernador)
+                                .addComponent(governadorVoto))
+                            .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(governadorInput, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(jLabel7)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel8)
+                            .addComponent(presidenteInput, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(atualizaPresidente)
+                            .addComponent(presidenteVoto)))
+                    .addComponent(jScrollPane16, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(11, 11, 11)
+                .addComponent(atualizaZonaVoto)
+                .addGap(18, 18, 18)
+                .addComponent(jScrollPane17, javax.swing.GroupLayout.PREFERRED_SIZE, 403, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
         votosPane.addTab("Votar", jPanel9);
+
+        tabelaVotoCandidato.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "Nome do Candidato", "Número", "Partido", "# Votos"
+            }
+        ) {
+            Class[] types = new Class [] {
+                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
+            };
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jScrollPane18.setViewportView(tabelaVotoCandidato);
+
+        atualizaVotoCandidato.setText("Procurar Dados");
+
+        cargoVotoCandidato.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
         javax.swing.GroupLayout jPanel10Layout = new javax.swing.GroupLayout(jPanel10);
         jPanel10.setLayout(jPanel10Layout);
         jPanel10Layout.setHorizontalGroup(
             jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1160, Short.MAX_VALUE)
+            .addComponent(jScrollPane18, javax.swing.GroupLayout.DEFAULT_SIZE, 1160, Short.MAX_VALUE)
+            .addGroup(jPanel10Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(atualizaVotoCandidato)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(cargoVotoCandidato, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel10Layout.setVerticalGroup(
             jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 576, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel10Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(atualizaVotoCandidato)
+                    .addComponent(cargoVotoCandidato, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jScrollPane18, javax.swing.GroupLayout.DEFAULT_SIZE, 531, Short.MAX_VALUE))
         );
 
         votosPane.addTab("Consulta Candidato", jPanel10);
+
+        jTable2.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "Nome do Partido", "Sigla", "Número", "# Votos"
+            }
+        ) {
+            Class[] types = new Class [] {
+                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
+            };
+            boolean[] canEdit = new boolean [] {
+                false, false, true, false
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jScrollPane19.setViewportView(jTable2);
+
+        jButton2.setText("Procurar Dados");
 
         javax.swing.GroupLayout jPanel11Layout = new javax.swing.GroupLayout(jPanel11);
         jPanel11.setLayout(jPanel11Layout);
         jPanel11Layout.setHorizontalGroup(
             jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1160, Short.MAX_VALUE)
+            .addComponent(jScrollPane19, javax.swing.GroupLayout.DEFAULT_SIZE, 1160, Short.MAX_VALUE)
+            .addGroup(jPanel11Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jButton2)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel11Layout.setVerticalGroup(
             jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 576, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel11Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jButton2)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 11, Short.MAX_VALUE)
+                .addComponent(jScrollPane19, javax.swing.GroupLayout.PREFERRED_SIZE, 531, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
         votosPane.addTab("Consulta Partido", jPanel11);
@@ -2565,11 +2753,11 @@ public class DBGUI extends javax.swing.JFrame {
         ResultSet rs;
         try {
             if (cargoCandidato.getSelectedIndex() == 2)    
-                rs = ds.selectCandidatoPorCargo("Prefeito");
+                rs = ds.selectAllCandidatoPorCargo("Prefeito");
             else if (cargoCandidato.getSelectedIndex() == 4)
-                rs = ds.selectCandidatoPorCargo("Governador");
+                rs = ds.selectAllCandidatoPorCargo("Governador");
             else if (cargoCandidato.getSelectedIndex() == 6)
-                rs = ds.selectCandidatoPorCargo("Presidente");
+                rs = ds.selectAllCandidatoPorCargo("Presidente");
             else{
                 JOptionPane.showMessageDialog(null, "Opçao válida apenas para candidatos a vice.\n");
                 return;
@@ -2671,21 +2859,260 @@ public class DBGUI extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_nroCandidatoActionPerformed
 
-    private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
+    private void vereadorInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_vereadorInputActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField1ActionPerformed
+    }//GEN-LAST:event_vereadorInputActionPerformed
 
-    private void jTextField2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField2ActionPerformed
+    private void prefeitoInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_prefeitoInputActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField2ActionPerformed
+    }//GEN-LAST:event_prefeitoInputActionPerformed
 
-    private void jTextField3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField3ActionPerformed
+    private void governadorInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_governadorInputActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField3ActionPerformed
+    }//GEN-LAST:event_governadorInputActionPerformed
 
-    private void jTextField4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField4ActionPerformed
+    private void presidenteInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_presidenteInputActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField4ActionPerformed
+    }//GEN-LAST:event_presidenteInputActionPerformed
+
+    private void atualizaVereadorMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_atualizaVereadorMouseClicked
+        ResultSet rs;
+        if (vereadorInput.getText().length() != 2 && vereadorInput.getText().length() != 5){
+            JOptionPane.showMessageDialog(null, "Número de dígitos inválido.\n");
+            return;
+        }
+        System.out.println(vereadorInput.getText());
+        if (vereadorInput.getText().length() == 2){
+            try {
+                rs = ds.selectPartido((String)vereadorInput.getText());
+            } catch (SQLException ex) {
+                JOptionPane.showMessageDialog(null, "Problemas ao selecionar Partido.\n"+ErrorTranslator.translate(ex));
+                return;
+            }
+            try {
+                if (!rs.next()){
+                    JOptionPane.showMessageDialog(null, "Partido inexistente.\n");
+                    return;
+                }
+                tabelaVoto.setValueAt(rs.getString(2), 0, 0);
+                tabelaVoto.setValueAt("Voto em legenda", 0, 1);
+                tabelaVoto.setValueAt(rs.getString(1), 0, 2);
+                tabelaVoto.setValueAt(rs.getString(3), 0, 3);
+            } catch (SQLException ex) {
+                JOptionPane.showMessageDialog(null, "Problemas ao selecionar Partido.\n"+ErrorTranslator.translate(ex));
+            }
+        }else{
+            try {
+                rs = ds.selectCandidato((String)vereadorInput.getText(), "vereador");
+            } catch (SQLException ex) {
+                JOptionPane.showMessageDialog(null, "Problemas ao selecionar Candidato.\n"+ErrorTranslator.translate(ex));
+                return;
+            }
+            try {
+                if (!rs.next()){
+                    JOptionPane.showMessageDialog(null, "Candidato inexistente.\n");
+                    return;
+                }
+                tabelaVoto.setValueAt(rs.getString(1), 0, 0);
+                tabelaVoto.setValueAt(rs.getString(2), 0, 1);
+                tabelaVoto.setValueAt(rs.getString(3), 0, 2);
+                tabelaVoto.setValueAt(rs.getString(4), 0, 3);
+            } catch (SQLException ex) {
+                JOptionPane.showMessageDialog(null, "Problemas ao executar busca.\n"+ErrorTranslator.translate(ex));
+            }
+        }
+    }//GEN-LAST:event_atualizaVereadorMouseClicked
+
+    private void atualizaPrefeitoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_atualizaPrefeitoMouseClicked
+        ResultSet rstit, rsvice;
+        if (prefeitoInput.getText().length() != 2){
+            JOptionPane.showMessageDialog(null, "Número de dígitos inválido.\n");
+            return;
+        }   
+        
+        try {
+            rstit = ds.selectCandidato((String)prefeitoInput.getText(), "prefeito");
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Problemas ao selecionar Candidato.\n"+ErrorTranslator.translate(ex));
+            return;
+        }
+        try {
+            if (!rstit.next()){
+                JOptionPane.showMessageDialog(null, "Candidato inexistente.\n");
+                return;
+            }
+            tabelaVoto.setValueAt(rstit.getString(1), 0, 0);
+            tabelaVoto.setValueAt(rstit.getString(2), 0, 1);
+            tabelaVoto.setValueAt(rstit.getString(3), 0, 2);
+            tabelaVoto.setValueAt(rstit.getString(4), 0, 3);
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Problemas ao executar busca.\n"+ErrorTranslator.translate(ex));
+            return;
+        }
+        
+        try {
+            rsvice = ds.selectVice(rstit.getString(3));
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Problemas ao selecionar Vice.\n"+ErrorTranslator.translate(ex));
+            return;
+        }
+        try {
+            if (!rsvice.next()){
+                tabelaVoto.setValueAt("Candidato não possui vice.", 1, 0);
+                return;
+            }
+            tabelaVoto.setValueAt(rsvice.getString(1), 1, 0);
+            tabelaVoto.setValueAt(rsvice.getString(2), 1, 1);
+            tabelaVoto.setValueAt(rsvice.getString(3), 1, 2);
+            tabelaVoto.setValueAt(rsvice.getString(4), 1, 3);
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Problemas ao executar busca.\n"+ErrorTranslator.translate(ex));
+        }
+    }//GEN-LAST:event_atualizaPrefeitoMouseClicked
+
+    private void atualizaGovernadorMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_atualizaGovernadorMouseClicked
+        ResultSet rstit, rsvice;
+        if (governadorInput.getText().length() != 2){
+            JOptionPane.showMessageDialog(null, "Número de dígitos inválido.\n");
+            return;
+        }   
+        
+        try {
+            rstit = ds.selectCandidato((String)governadorInput.getText(), "governador");
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Problemas ao selecionar Candidato.\n"+ErrorTranslator.translate(ex));
+            return;
+        }
+        try {
+            if (!rstit.next()){
+                JOptionPane.showMessageDialog(null, "Candidato inexistente.\n");
+                return;
+            }
+            tabelaVoto.setValueAt(rstit.getString(1), 0, 0);
+            tabelaVoto.setValueAt(rstit.getString(2), 0, 1);
+            tabelaVoto.setValueAt(rstit.getString(3), 0, 2);
+            tabelaVoto.setValueAt(rstit.getString(4), 0, 3);
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Problemas ao executar busca.\n"+ErrorTranslator.translate(ex));
+            return;
+        }
+        
+        try {
+            rsvice = ds.selectVice(rstit.getString(3));
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Problemas ao selecionar Vice.\n"+ErrorTranslator.translate(ex));
+            return;
+        }
+        try {
+            if (!rsvice.next()){
+                tabelaVoto.setValueAt("Candidato não possui vice.", 1, 0);
+                return;
+            }
+            tabelaVoto.setValueAt(rsvice.getString(1), 1, 0);
+            tabelaVoto.setValueAt(rsvice.getString(2), 1, 1);
+            tabelaVoto.setValueAt(rsvice.getString(3), 1, 2);
+            tabelaVoto.setValueAt(rsvice.getString(4), 1, 3);
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Problemas ao executar busca.\n"+ErrorTranslator.translate(ex));
+        }
+    }//GEN-LAST:event_atualizaGovernadorMouseClicked
+
+    private void atualizaPresidenteMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_atualizaPresidenteMouseClicked
+        ResultSet rstit, rsvice;
+        if (presidenteInput.getText().length() != 2){
+            JOptionPane.showMessageDialog(null, "Número de dígitos inválido.\n");
+            return;
+        }   
+        
+        try {
+            rstit = ds.selectCandidato((String)presidenteInput.getText(), "presidente");
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Problemas ao selecionar Candidato.\n"+ErrorTranslator.translate(ex));
+            return;
+        }
+        try {
+            if (!rstit.next()){
+                JOptionPane.showMessageDialog(null, "Candidato inexistente.\n");
+                return;
+            }
+            tabelaVoto.setValueAt(rstit.getString(1), 0, 0);
+            tabelaVoto.setValueAt(rstit.getString(2), 0, 1);
+            tabelaVoto.setValueAt(rstit.getString(3), 0, 2);
+            tabelaVoto.setValueAt(rstit.getString(4), 0, 3);
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Problemas ao executar busca.\n"+ErrorTranslator.translate(ex));
+            return;
+        }
+        
+        try {
+            rsvice = ds.selectVice(rstit.getString(3));
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Problemas ao selecionar Vice.\n"+ErrorTranslator.translate(ex));
+            return;
+        }
+        try {
+            if (!rsvice.next()){
+                tabelaVoto.setValueAt("Candidato não possui vice.", 1, 0);
+                return;
+            }
+            tabelaVoto.setValueAt(rsvice.getString(1), 1, 0);
+            tabelaVoto.setValueAt(rsvice.getString(2), 1, 1);
+            tabelaVoto.setValueAt(rsvice.getString(3), 1, 2);
+            tabelaVoto.setValueAt(rsvice.getString(4), 1, 3);
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Problemas ao executar busca.\n"+ErrorTranslator.translate(ex));
+        }
+    }//GEN-LAST:event_atualizaPresidenteMouseClicked
+
+    private void atualizaZonaVotoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_atualizaZonaVotoMouseClicked
+        ResultSet rs;
+        try {
+            rs = ds.selectAllUrna();
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Problemas ao executar busca.\n"+ErrorTranslator.translate(ex));
+            return;
+        }
+        
+        TableManipulator.setNewModel(tabelaZonaVoto, new int[]{0, 0, 0, 0});
+        TableManipulator.fillTable(tabelaZonaVoto, rs, new int[]{}, new String[]{}, new Action[]{});
+        TableManipulator.centralizeColumns(tabelaZonaVoto, new int[]{0, 1, 2, 3});
+        tabelaZonaVoto.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+    }//GEN-LAST:event_atualizaZonaVotoMouseClicked
+
+    private void computarVoto(){
+        if (tabelaZonaVoto.getSelectedRow() == -1){
+            JOptionPane.showMessageDialog(null, "Selecione uma urna primeiro.\n");
+            return;
+        }
+        if (tabelaVoto.getValueAt(0, 2) == null){
+            JOptionPane.showMessageDialog(null, "Informe o candidato e clique em Procurar antes de prosseguir.\n");
+            return;
+        }
+        
+        int row = tabelaZonaVoto.getSelectedRow();
+        try {
+            dml.insereVoto((String)tabelaVoto.getValueAt(0, 2), (String)tabelaZonaVoto.getValueAt(row, 0), (String)tabelaZonaVoto.getValueAt(row, 1), (String)tabelaZonaVoto.getValueAt(row, 2), (String)tabelaZonaVoto.getValueAt(row, 3));
+            JOptionPane.showMessageDialog(null, "Voto inserido com sucesso.\n");
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Problemas ao inserir voto.\n"+ErrorTranslator.translate(ex));
+        }
+    }
+    
+    private void vereadorVotoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_vereadorVotoMouseClicked
+        computarVoto();
+    }//GEN-LAST:event_vereadorVotoMouseClicked
+
+    private void prefeitoVotoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_prefeitoVotoMouseClicked
+        computarVoto();
+    }//GEN-LAST:event_prefeitoVotoMouseClicked
+
+    private void governadorVotoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_governadorVotoMouseClicked
+        computarVoto();
+    }//GEN-LAST:event_governadorVotoMouseClicked
+
+    private void presidenteVotoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_presidenteVotoMouseClicked
+        computarVoto();
+    }//GEN-LAST:event_presidenteVotoMouseClicked
 
     /**
      * @param args the command line arguments
@@ -2736,20 +3163,27 @@ public class DBGUI extends javax.swing.JFrame {
     private javax.swing.JButton atualizaCandidatoTitular;
     private javax.swing.JButton atualizaFilia;
     private javax.swing.JButton atualizaFuncionario;
+    private javax.swing.JButton atualizaGovernador;
     private javax.swing.JButton atualizaPartido;
     private javax.swing.JButton atualizaPessoa;
     private javax.swing.JButton atualizaPessoaCandidato;
+    private javax.swing.JButton atualizaPrefeito;
+    private javax.swing.JButton atualizaPresidente;
     private javax.swing.JButton atualizaSecao;
     private javax.swing.JButton atualizaSecaoPessoa;
     private javax.swing.JButton atualizaSecaoUrna;
     private javax.swing.JButton atualizaTabelaCandidato;
     private javax.swing.JButton atualizaUrna;
+    private javax.swing.JButton atualizaVereador;
+    private javax.swing.JButton atualizaVotoCandidato;
     private javax.swing.JButton atualizaZona;
     private javax.swing.JButton atualizaZonaSecao;
+    private javax.swing.JButton atualizaZonaVoto;
     private javax.swing.JButton atualizarTabelaFilia;
     private javax.swing.JLabel candidatoTitularLabel;
     private javax.swing.JComboBox cargoCandidato;
     private javax.swing.JComboBox cargoFuncionario;
+    private javax.swing.JComboBox cargoVotoCandidato;
     private javax.swing.JPanel consultaPane;
     private javax.swing.JPanel consultaPane1;
     private javax.swing.JPanel consultaPane2;
@@ -2768,6 +3202,8 @@ public class DBGUI extends javax.swing.JFrame {
     private javax.swing.JLabel estadoZonaLabelCria;
     private javax.swing.JButton filiaButton;
     private javax.swing.JTabbedPane filiacaoPane;
+    private javax.swing.JTextField governadorInput;
+    private javax.swing.JButton governadorVoto;
     private javax.swing.JButton insereCandidatoButton;
     private javax.swing.JButton insereFuncionario;
     private javax.swing.JPanel inserePane;
@@ -2778,18 +3214,8 @@ public class DBGUI extends javax.swing.JFrame {
     private javax.swing.JButton insereSecaoBotaoCria;
     private javax.swing.JButton insereUrnaBotaoCria;
     private javax.swing.JButton insereZonaBotaoCria;
-    private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
-    private javax.swing.JButton jButton5;
-    private javax.swing.JButton jButton6;
-    private javax.swing.JButton jButton7;
-    private javax.swing.JButton jButton8;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel10;
-    private javax.swing.JLabel jLabel11;
-    private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -2797,7 +3223,6 @@ public class DBGUI extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
-    private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel10;
     private javax.swing.JPanel jPanel11;
@@ -2816,6 +3241,10 @@ public class DBGUI extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane13;
     private javax.swing.JScrollPane jScrollPane14;
     private javax.swing.JScrollPane jScrollPane15;
+    private javax.swing.JScrollPane jScrollPane16;
+    private javax.swing.JScrollPane jScrollPane17;
+    private javax.swing.JScrollPane jScrollPane18;
+    private javax.swing.JScrollPane jScrollPane19;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane4;
@@ -2827,10 +3256,7 @@ public class DBGUI extends javax.swing.JFrame {
     private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JTabbedPane jTabbedPane2;
     private javax.swing.JTabbedPane jTabbedPane3;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
-    private javax.swing.JTextField jTextField3;
-    private javax.swing.JTextField jTextField4;
+    private javax.swing.JTable jTable2;
     private javax.swing.JTextField localSecaoCria;
     private javax.swing.JComboBox modeloUrnaCria;
     private javax.swing.JLabel modeloUrnaLabelCria;
@@ -2855,6 +3281,10 @@ public class DBGUI extends javax.swing.JFrame {
     private javax.swing.JSpinner numeroZona4;
     private javax.swing.JSpinner numeroZonaCria;
     private javax.swing.JTabbedPane pessoasPane;
+    private javax.swing.JTextField prefeitoInput;
+    private javax.swing.JButton prefeitoVoto;
+    private javax.swing.JTextField presidenteInput;
+    private javax.swing.JButton presidenteVoto;
     private javax.swing.JTabbedPane registroPane;
     private javax.swing.JTabbedPane relatoriosPane;
     private javax.swing.JPanel secaoPane;
@@ -2872,14 +3302,19 @@ public class DBGUI extends javax.swing.JFrame {
     private javax.swing.JTable tabelaSecaoPessoa;
     private javax.swing.JTable tabelaSecaoUrna;
     private javax.swing.JTable tabelaUrna;
+    private javax.swing.JTable tabelaVoto;
+    private javax.swing.JTable tabelaVotoCandidato;
     private javax.swing.JTable tabelaZona;
     private javax.swing.JTable tabelaZonaSecao;
+    private javax.swing.JTable tabelaZonaVoto;
     private javax.swing.JComboBox tipoPessoa;
     private javax.swing.JComboBox tipoUrnaCria;
     private javax.swing.JLabel tipoUrnaLabelCria;
     private javax.swing.JLabel tipoUrnaLabelCria2;
     private javax.swing.JTabbedPane urnaConsultaPane;
     private javax.swing.JPanel urnaPane;
+    private javax.swing.JTextField vereadorInput;
+    private javax.swing.JButton vereadorVoto;
     private javax.swing.JTabbedPane votosPane;
     private javax.swing.JTabbedPane zonaPane;
     private javax.swing.JTabbedPane zonaPane1;
