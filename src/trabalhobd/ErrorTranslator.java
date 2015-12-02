@@ -25,6 +25,9 @@ public class ErrorTranslator {
                 case 4091:
                     erro += "Valor não pode ser removido, pois outros valores dependem dele.\n";
                     break;
+                case 12899:
+                    erro += "Valor de campo inserido é muito grande.\n";
+                    break;
                 default:
                     erro += "Erro desconhecido - Código: "+ex.getErrorCode()+".\n"+ex.getMessage()+"\n";
             }
